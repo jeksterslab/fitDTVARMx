@@ -39,37 +39,30 @@ documentation.
 <div id="refs" class="references csl-bib-body hanging-indent"
 entry-spacing="0" line-spacing="2">
 
-<div id="ref-Chow-Losardo-Park-etal-2023" class="csl-entry">
+<div id="ref-Hunter-2017" class="csl-entry">
 
-Chow, S.-M., Losardo, D., Park, J., & Molenaar, P. C. M. (2023).
-Continuous-time dynamic models: Connections to structural equation
-models and other discrete-time models. In R. H. Hoyle (Ed.), *Handbook
-of structural equation modeling* (2nd ed.). The Guilford Press.
-
-</div>
-
-<div id="ref-Ou-Hunter-Chow-2019" class="csl-entry">
-
-Ou, L., Hunter, M. D., & Chow, S.-M. (2019). What’s for
-<span class="nocase">dynr</span>: A package for linear and nonlinear
-dynamic modeling in R. *The R Journal*, *11*(1), 91.
-<https://doi.org/10.32614/rj-2019-012>
+Hunter, M. D. (2017). State space modeling in an open source, modular,
+structural equation modeling environment. *Structural Equation Modeling:
+A Multidisciplinary Journal*, *25*(2), 307–324.
+<https://doi.org/10.1080/10705511.2017.1369354>
 
 </div>
 
-<div id="ref-RCoreTeam-2023" class="csl-entry">
+<div id="ref-Neale-Hunter-Pritikin-etal-2015" class="csl-entry">
 
-R Core Team. (2023). *R: A language and environment for statistical
+Neale, M. C., Hunter, M. D., Pritikin, J. N., Zahery, M., Brick, T. R.,
+Kirkpatrick, R. M., Estabrook, R., Bates, T. C., Maes, H. H., & Boker,
+S. M. (2015). OpenMx 2.0: Extended structural equation and statistical
+modeling. *Psychometrika*, *81*(2), 535–549.
+<https://doi.org/10.1007/s11336-014-9435-8>
+
+</div>
+
+<div id="ref-RCoreTeam-2024" class="csl-entry">
+
+R Core Team. (2024). *R: A language and environment for statistical
 computing*. R Foundation for Statistical Computing.
 <https://www.R-project.org/>
-
-</div>
-
-<div id="ref-Uhlenbeck-Ornstein-1930" class="csl-entry">
-
-Uhlenbeck, G. E., & Ornstein, L. S. (1930). On the theory of the
-brownian motion. *Physical Review*, *36*(5), 823–841.
-<https://doi.org/10.1103/physrev.36.823>
 
 </div>
 

@@ -5,10 +5,9 @@ output: rmarkdown::html_vignette
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
-  @RCoreTeam-2023
-  @Chow-Losardo-Park-etal-2023
-  @Ou-Hunter-Chow-2019
-  @Uhlenbeck-Ornstein-1930
+  @RCoreTeam-2024
+  @Neale-Hunter-Pritikin-etal-2015
+  @Hunter-2017
 vignette: >
   %\VignetteIndexEntry{fitDTVARMx: Fit The Discrete-Time Vector Autoregressive Model}
   %\VignetteEngine{knitr::rmarkdown}
