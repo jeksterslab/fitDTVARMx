@@ -34,6 +34,9 @@
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/FitDTVARIDMx.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jeksterslab/fitDTVARMx/reference/coef.fitdtvaridmx.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/fitDTVARMx-package.html</loc>
   </url>
   <url>
@@ -44,5 +47,8 @@
   </url>
   <url>
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/summary.fitdtvaridmx.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslab/fitDTVARMx/reference/vcov.fitdtvaridmx.html</loc>
   </url>
 </urlset>
