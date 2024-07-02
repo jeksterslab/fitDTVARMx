@@ -6,7 +6,7 @@
 cff-version: 1.2.0
 message: 'To cite package "fitDTVARMx" in publications use:'
 type: software
-license: GPL-3.0-or-later
+license: MIT
 title: 'fitDTVARMx: Fit The Discrete-Time Vector Autoregressive Model'
 version: 0.0.0.9000
 abstract: Fit the discrete-time vector autoregressive model using the 'OpenMx' package.

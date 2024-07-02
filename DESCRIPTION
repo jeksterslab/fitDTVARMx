@@ -10,7 +10,7 @@ Authors@R:
 Description: Fit the discrete-time vector autoregressive model using the 'OpenMx' package.
 URL: https://github.com/jeksterslab/fitDTVARMx, https://jeksterslab.github.io/fitDTVARMx/
 BugReports: https://github.com/jeksterslab/fitDTVARMx/issues
-License: GPL (>= 3)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -23,5 +23,6 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    simStateSpace
 RoxygenNote: 7.3.2
