@@ -1,0 +1,61 @@
+---
+title: "fitDTVARMx: Fit The Discrete-Time Vector Autoregressive Model"
+author: "Ivan Jacob Agaloos Pesigan"
+output: rmarkdown::html_vignette
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @RCoreTeam-2023
+  @Chow-Losardo-Park-etal-2023
+  @Ou-Hunter-Chow-2019
+  @Uhlenbeck-Ornstein-1930
+vignette: >
+  %\VignetteIndexEntry{fitDTVARMx: Fit The Discrete-Time Vector Autoregressive Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/vignettes-"
+)
+```
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/jeksterslab/fitDTVARMx/workflows/R-CMD-check/badge.svg)](https://github.com/jeksterslab/fitDTVARMx/actions)
+[![test-coverage](https://github.com/jeksterslab/fitDTVARMx/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/fitDTVARMx/actions/workflows/test-coverage.yml)
+[![lint](https://github.com/jeksterslab/fitDTVARMx/actions/workflows/lint.yml/badge.svg)](https://github.com/jeksterslab/fitDTVARMx/actions/workflows/lint.yml)
+[![pkgdown](https://github.com/jeksterslab/fitDTVARMx/actions/workflows/pkgdown-gh-pages.yml/badge.svg)](https://github.com/jeksterslab/fitDTVARMx/actions/workflows/pkgdown-gh-pages.yml)
+[![codecov](https://codecov.io/gh/jeksterslab/fitDTVARMx/branch/main/graph/badge.svg)](https://codecov.io/gh/jeksterslab/fitDTVARMx)
+<!-- badges: end -->
+
+## Description
+
+Fit the discrete-time vector autoregressive model using the `OpenMx` package.
+
+## Installation
+
+You can install the released version of
+`fitDTVARMx`
+from
+[GitHub](https://github.com/jeksterslab/fitDTVARMx) with:
+
+```r
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("jeksterslab/fitDTVARMx")
+```
+
+## More Information
+
+See
+[GitHub Pages](https://jeksterslab.github.io/fitDTVARMx)
+for package documentation.
+
+See
+[Quarto Pub](https://jeksterslab.quarto.pub/fitDTVARMx)
+for package wiki and other resources.
+
+## References
