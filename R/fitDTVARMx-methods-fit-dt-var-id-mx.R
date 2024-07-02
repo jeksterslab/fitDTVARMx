@@ -63,3 +63,83 @@ summary.fitdtvaridmx <- function(object,
   }
   return(out)
 }
+
+#' Parameter Estimates
+#'
+#' @author Ivan Jacob Agaloos Pesigan
+#'
+#' @param object Object of class `fitdtvaridmx`.
+#' @param psi Logical.
+#'   If `psi = TRUE`,
+#'   include estimates of the `psi` matrix.
+#'   If `psi = FALSE`,
+#'   exclude estimates of the `psi` matrix.
+#' @param ... additional arguments.
+#' @return Returns a list of vectors of parameter estimates.
+#'
+#' @method coef fitdtvaridmx
+#' @keywords methods
+#' @export
+coef.fitdtvaridmx <- function(object,
+                              psi = TRUE,
+                              ...) {
+  coef_1 <- coef(object$output[[1]])
+  if (psi) {
+    idx <- names(coef_1)
+  } else {
+    idx <- grep(
+      pattern = "^beta_",
+      x = names(coef_1)
+    )
+  }
+  return(
+    lapply(
+      X = object$output,
+      FUN = function(x,
+                     idx) {
+        return(coef(x)[idx])
+      },
+      idx = idx
+    )
+  )
+}
+
+#' Sampling Covariance Matrix of the Parameter Estimates
+#'
+#' @author Ivan Jacob Agaloos Pesigan
+#'
+#' @param object Object of class `fitdtvaridmx`.
+#' @param psi Logical.
+#'   If `psi = TRUE`,
+#'   include estimates of the `psi` matrix.
+#'   If `psi = FALSE`,
+#'   exclude estimates of the `psi` matrix.
+#' @param ... additional arguments.
+#' @return Returns a list of sampling variance-covariance matrices.
+#'
+#' @method vcov fitdtvaridmx
+#' @keywords methods
+#' @export
+vcov.fitdtvaridmx <- function(object,
+                              psi = TRUE,
+                              ...) {
+  coef_1 <- coef(object$output[[1]])
+  if (psi) {
+    idx <- names(coef_1)
+  } else {
+    idx <- grep(
+      pattern = "^beta_",
+      x = names(coef_1)
+    )
+  }
+  return(
+    lapply(
+      X = object$output,
+      FUN = function(x,
+                     idx) {
+        return(vcov(x)[idx, idx])
+      },
+      idx = idx
+    )
+  )
+}

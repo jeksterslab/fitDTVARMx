@@ -27,7 +27,7 @@
 #' @family Meta-Analysis of VAR Functions
 #' @keywords metaVAR fit
 #' @import OpenMx
-#' @importFrom stats coef
+#' @importFrom stats coef vcov
 #' @export
 FitDTVARIDMx <- function(data,
                          observed,
