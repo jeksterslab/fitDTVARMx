@@ -17,7 +17,9 @@
 
 project <- "fitDTVARMx"
 
-pkg_cran <- c()
+pkg_cran <- c(
+  "OpenMx"
+)
 
 pkg_github <- c(
   "jeksterslab/simStateSpace"
@@ -31,7 +33,7 @@ ver <- c()
 
 ignore <- "^vignettes$"
 
-license <- "gpl3"
+license <- "mit"
 
 git_user <- "jeksterslab"
 git_email <- "learn.jeksterslab@gmail.com"
