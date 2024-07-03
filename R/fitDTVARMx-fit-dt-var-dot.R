@@ -7,6 +7,7 @@
                       psi_start = NULL,
                       psi_lbound = NULL,
                       psi_ubound = NULL,
+                      psi_diag = TRUE,
                       try = 1000,
                       ncores = NULL) {
   k <- length(observed)
@@ -35,7 +36,8 @@
     k = k,
     psi_start = psi_start,
     psi_lbound = psi_lbound,
-    psi_ubound = psi_ubound
+    psi_ubound = psi_ubound,
+    psi_diag = psi_diag
   )
   theta <- .FitDTVARTheta(
     k = k,
