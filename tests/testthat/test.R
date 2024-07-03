@@ -54,9 +54,30 @@ lapply(
       id = "id",
       beta_start = beta_mu,
       psi_start = psi,
+      psi_diag = FALSE,
       ncores = NULL
     )
     print(fit)
+    summary(fit)
+    print(fit, means = FALSE)
+    summary(fit, means = FALSE)
+    coef(fit, psi = TRUE)
+    coef(fit, psi = FALSE)
+    vcov(fit, psi = TRUE)
+    vcov(fit, psi = FALSE)
+    fit <- FitDTVARIDMx(
+      data = data,
+      observed = paste0("y", seq_len(k)),
+      id = "id",
+      beta_start = beta_mu,
+      psi_start = psi,
+      psi_diag = TRUE,
+      ncores = NULL
+    )
+    print(fit)
+    summary(fit)
+    print(fit, means = FALSE)
+    summary(fit, means = FALSE)
     coef(fit, psi = TRUE)
     coef(fit, psi = FALSE)
     vcov(fit, psi = TRUE)

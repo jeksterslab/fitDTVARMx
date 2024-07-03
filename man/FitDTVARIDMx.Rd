@@ -14,6 +14,7 @@ FitDTVARIDMx(
   psi_start = NULL,
   psi_lbound = NULL,
   psi_ubound = NULL,
+  psi_diag = TRUE,
   try = 1000,
   ncores = NULL
 )
@@ -44,6 +45,10 @@ A character string of the name of the ID variable in the data.}
 \item{psi_lbound}{Optional lower bound for \code{psi}.}
 
 \item{psi_ubound}{Optional upper bound for \code{psi}.}
+
+\item{psi_diag}{Logical.
+If \code{psi_diag = TRUE},
+\code{psi} is a diagonal matrix.}
 
 \item{try}{Positive integer.
 Number of extra tries for \code{\link[OpenMx:mxTryHard]{OpenMx::mxTryHard()}}.}
