@@ -21,11 +21,27 @@
       x = .Machine$double.xmin,
       times = k
     )
+  } else {
+    if (is.matrix(theta_lbound)) {
+      theta_lbound <- diag(theta_lbound)
+    }
+    stopifnot(
+      is.vector(theta_lbound),
+      length(theta_lbound) == k
+    )
   }
   if (is.null(theta_ubound)) {
     theta_ubound <- rep(
       x = NA,
       times = k
+    )
+  } else {
+    if (is.matrix(theta_ubound)) {
+      theta_ubound <- diag(theta_ubound)
+    }
+    stopifnot(
+      is.vector(theta_ubound),
+      length(theta_ubound) == k
     )
   }
   return(
