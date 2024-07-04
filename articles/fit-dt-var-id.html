@@ -239,10 +239,10 @@ distributed with the following means</p>
 \end{array}
 \right) .
 \end{equation}\]</span></p>
-<p>The SimBetaN function from the simStateSpace package generates random
-transition matrices from the multivariate normal distribution. Note that
-the function generates transition matrices that are weakly
-stationary.</p>
+<p>The <code>SimBetaN</code> function from the
+<code>simStateSpace</code> package generates random transition matrices
+from the multivariate normal distribution. Note that the function
+generates transition matrices that are weakly stationary.</p>
 <p>Let the dynamic process noise <span class="math inline">\(\boldsymbol{\Psi}\)</span> be given by</p>
 <p><span class="math display">\[\begin{equation}
 \boldsymbol{\Psi}
@@ -314,8 +314,8 @@ Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-d
 <p><img src="fig-vignettes-fit-dt-var-id-mx-no-error-1.png" width="3300"><img src="fig-vignettes-fit-dt-var-id-mx-no-error-2.png" width="3300"><img src="fig-vignettes-fit-dt-var-id-mx-no-error-3.png" width="3300"></p>
 </div>
 <div class="section level3">
-<h3 id="using-the-simssmvarivary-function-from-the-simstatespace-package-to-simulate-data">Using the SimSSMVARIVary Function from the simStateSpace Package to
-Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmvarivary-function-from-the-simstatespace-package-to-simulate-data"></a>
+<h3 id="using-the-simssmvarivary-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMVARIVary</code> Function from the
+<code>simStateSpace</code> Package to Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmvarivary-function-from-the-simstatespace-package-to-simulate-data"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span>
@@ -345,8 +345,8 @@ Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmvariva
 <div class="section level2">
 <h2 id="model-fitting">Model Fitting<a class="anchor" aria-label="anchor" href="#model-fitting"></a>
 </h2>
-<p>The FitDTVARIDMx function fits a DT-VAR model on each individual
-<span class="math inline">\(i\)</span>.</p>
+<p>The <code>FitDTVARIDMx</code> function fits a DT-VAR model on each
+individual <span class="math inline">\(i\)</span>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitDTVARMx">fitDTVARMx</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required package: OpenMx</span></span>
