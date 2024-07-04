@@ -21,17 +21,20 @@
   )
   for (j in seq_len(k)) {
     for (i in seq_len(k)) {
-      if (i >= j) {
-        psi_labels[j, i] <- psi_labels[i, j] <- paste0(
-          "psi_",
-          i,
-          j
-        )
-      }
+      psi_labels[i, j] <- paste0(
+        "psi_",
+        i,
+        j
+      )
     }
   }
   if (is.null(psi_lbound)) {
-    psi_lbound <- .Machine$double.xmin * diag(k)
+    psi_lbound <- matrix(
+      data = NA,
+      nrow = k,
+      ncol = k
+    )
+    diag(psi_lbound) <- .Machine$double.xmin
   } else {
     stopifnot(
       is.matrix(psi_lbound),
@@ -50,9 +53,14 @@
       dim(psi_ubound) == c(k, k)
     )
   }
+  # make sure matrices are symmetric
+  psi_start[upper.tri(psi_start)] <- psi_start[lower.tri(psi_start)]
+  psi_labels[upper.tri(psi_labels)] <- psi_labels[lower.tri(psi_labels)]
+  psi_lbound[upper.tri(psi_lbound)] <- psi_lbound[lower.tri(psi_lbound)]
+  psi_ubound[upper.tri(psi_ubound)] <- psi_ubound[lower.tri(psi_ubound)]
   return(
     OpenMx::mxMatrix(
-      type = "Full",
+      type = "Symm",
       nrow = k,
       ncol = k,
       free = TRUE,

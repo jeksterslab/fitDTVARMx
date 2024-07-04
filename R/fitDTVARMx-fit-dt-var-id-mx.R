@@ -13,15 +13,30 @@
 #'   of the names of the observed variables in the data.
 #' @param id Character string.
 #'   A character string of the name of the ID variable in the data.
-#' @param beta_start Optional starting values for `beta`.
-#' @param beta_lbound Optional lower bound for `beta`.
-#' @param beta_ubound Optional upper bound for `beta`.
-#' @param psi_start Optional starting values for `psi`.
-#' @param psi_lbound Optional lower bound for `psi`.
+#' @param beta_start Numeric matrix.
+#'   Optional starting values for `beta`.
+#' @param beta_lbound Numeric matrix.
+#'   Optional lower bound for `beta`.
+#' @param beta_ubound Numeric matrix.
+#'   Optional upper bound for `beta`.
+#' @param psi_start Numeric matrix.
+#'   Optional starting values for `psi`.
+#' @param psi_lbound Numeric matrix.
+#'   Optional lower bound for `psi`.
 #' @param psi_ubound Optional upper bound for `psi`.
 #' @param psi_diag Logical.
 #'   If `psi_diag = TRUE`,
 #'   `psi` is a diagonal matrix.
+#' @param theta Logical.
+#'   If `theta = TRUE`,
+#'   estimate the diagonal measurement error matrix `theta`.
+#' @param theta_start Optional starting values for `theta`.
+#'   Ignored if `theta = FALSE`.
+#' @param theta_lbound Optional lower bound for `theta`.
+#'   Ignored if `theta = FALSE`.
+#' @param theta_ubound Optional upper bound for `theta`.
+#'   Ignored if `theta = FALSE`.
+#'
 #' @param try Positive integer.
 #'   Number of extra tries for [OpenMx::mxTryHard()].
 #' @param ncores Positive integer.
@@ -42,6 +57,10 @@ FitDTVARIDMx <- function(data,
                          psi_lbound = NULL,
                          psi_ubound = NULL,
                          psi_diag = TRUE,
+                         theta = FALSE,
+                         theta_start = NULL,
+                         theta_lbound = NULL,
+                         theta_ubound = NULL,
                          try = 1000,
                          ncores = NULL) {
   args <- list(
@@ -54,6 +73,10 @@ FitDTVARIDMx <- function(data,
     psi_start = psi_start,
     psi_lbound = psi_lbound,
     psi_ubound = psi_ubound,
+    theta = theta,
+    theta_start = theta_start,
+    theta_lbound = theta_lbound,
+    theta_ubound = theta_ubound,
     try = try,
     ncores = ncores
   )
@@ -68,13 +91,17 @@ FitDTVARIDMx <- function(data,
     psi_lbound = psi_lbound,
     psi_ubound = psi_ubound,
     psi_diag = psi_diag,
+    theta = theta,
+    theta_start = theta_start,
+    theta_lbound = theta_lbound,
+    theta_ubound = theta_ubound,
     try = try,
     ncores = ncores
   )
   out <- list(
     call = match.call(),
     args = args,
-    fun = "FitDTVAR",
+    fun = "FitDTVARIDMx",
     output = output
   )
   class(out) <- c(

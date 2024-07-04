@@ -33,6 +33,9 @@
       times = k
     )
   } else {
+    if (is.matrix(psi_lbound)) {
+      psi_lbound <- diag(psi_lbound)
+    }
     stopifnot(
       is.vector(psi_lbound),
       length(psi_lbound) == k
@@ -44,6 +47,9 @@
       times = k
     )
   } else {
+    if (is.matrix(psi_ubound)) {
+      psi_ubound <- diag(psi_ubound)
+    }
     stopifnot(
       is.vector(psi_ubound),
       length(psi_ubound) == k
