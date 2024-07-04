@@ -15,6 +15,10 @@ FitDTVARIDMx(
   psi_lbound = NULL,
   psi_ubound = NULL,
   psi_diag = TRUE,
+  theta = FALSE,
+  theta_start = NULL,
+  theta_lbound = NULL,
+  theta_ubound = NULL,
   try = 1000,
   ncores = NULL
 )
@@ -34,21 +38,39 @@ of the names of the observed variables in the data.}
 \item{id}{Character string.
 A character string of the name of the ID variable in the data.}
 
-\item{beta_start}{Optional starting values for \code{beta}.}
+\item{beta_start}{Numeric matrix.
+Optional starting values for \code{beta}.}
 
-\item{beta_lbound}{Optional lower bound for \code{beta}.}
+\item{beta_lbound}{Numeric matrix.
+Optional lower bound for \code{beta}.}
 
-\item{beta_ubound}{Optional upper bound for \code{beta}.}
+\item{beta_ubound}{Numeric matrix.
+Optional upper bound for \code{beta}.}
 
-\item{psi_start}{Optional starting values for \code{psi}.}
+\item{psi_start}{Numeric matrix.
+Optional starting values for \code{psi}.}
 
-\item{psi_lbound}{Optional lower bound for \code{psi}.}
+\item{psi_lbound}{Numeric matrix.
+Optional lower bound for \code{psi}.}
 
 \item{psi_ubound}{Optional upper bound for \code{psi}.}
 
 \item{psi_diag}{Logical.
 If \code{psi_diag = TRUE},
 \code{psi} is a diagonal matrix.}
+
+\item{theta}{Logical.
+If \code{theta = TRUE},
+estimate the diagonal measurement error matrix \code{theta}.}
+
+\item{theta_start}{Optional starting values for \code{theta}.
+Ignored if \code{theta = FALSE}.}
+
+\item{theta_lbound}{Optional lower bound for \code{theta}.
+Ignored if \code{theta = FALSE}.}
+
+\item{theta_ubound}{Optional upper bound for \code{theta}.
+Ignored if \code{theta = FALSE}.}
 
 \item{try}{Positive integer.
 Number of extra tries for \code{\link[OpenMx:mxTryHard]{OpenMx::mxTryHard()}}.}

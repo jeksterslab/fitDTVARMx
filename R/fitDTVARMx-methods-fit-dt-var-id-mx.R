@@ -74,6 +74,11 @@ summary.fitdtvaridmx <- function(object,
 #'   include estimates of the `psi` matrix.
 #'   If `psi = FALSE`,
 #'   exclude estimates of the `psi` matrix.
+#' @param theta Logical.
+#'   If `theta = TRUE`,
+#'   include estimates of the `theta` matrix if available.
+#'   If `theta = FALSE`,
+#'   exclude estimates of the `theta` matrix.
 #' @param ... additional arguments.
 #' @return Returns a list of vectors of parameter estimates.
 #'
@@ -81,15 +86,32 @@ summary.fitdtvaridmx <- function(object,
 #' @keywords methods
 #' @export
 coef.fitdtvaridmx <- function(object,
-                              psi = TRUE,
+                              psi = FALSE,
+                              theta = FALSE,
                               ...) {
-  coef_1 <- coef(object$output[[1]])
+  parnames <- names(
+    coef(object$output[[1]])
+  )
+  idx <- grep(
+    pattern = "^beta_",
+    x = parnames
+  )
   if (psi) {
-    idx <- names(coef_1)
-  } else {
-    idx <- grep(
-      pattern = "^beta_",
-      x = names(coef_1)
+    idx <- c(
+      idx,
+      grep(
+        pattern = "^psi_",
+        x = parnames
+      )
+    )
+  }
+  if (theta) {
+    idx <- c(
+      idx,
+      grep(
+        pattern = "^theta_",
+        x = parnames
+      )
     )
   }
   return(
@@ -114,6 +136,11 @@ coef.fitdtvaridmx <- function(object,
 #'   include estimates of the `psi` matrix.
 #'   If `psi = FALSE`,
 #'   exclude estimates of the `psi` matrix.
+#' @param theta Logical.
+#'   If `theta = TRUE`,
+#'   include estimates of the `theta` matrix if available.
+#'   If `theta = FALSE`,
+#'   exclude estimates of the `theta` matrix.
 #' @param ... additional arguments.
 #' @return Returns a list of sampling variance-covariance matrices.
 #'
@@ -121,15 +148,32 @@ coef.fitdtvaridmx <- function(object,
 #' @keywords methods
 #' @export
 vcov.fitdtvaridmx <- function(object,
-                              psi = TRUE,
+                              psi = FALSE,
+                              theta = FALSE,
                               ...) {
-  coef_1 <- coef(object$output[[1]])
+  parnames <- names(
+    coef(object$output[[1]])
+  )
+  idx <- grep(
+    pattern = "^beta_",
+    x = parnames
+  )
   if (psi) {
-    idx <- names(coef_1)
-  } else {
-    idx <- grep(
-      pattern = "^beta_",
-      x = names(coef_1)
+    idx <- c(
+      idx,
+      grep(
+        pattern = "^psi_",
+        x = parnames
+      )
+    )
+  }
+  if (theta) {
+    idx <- c(
+      idx,
+      grep(
+        pattern = "^theta_",
+        x = parnames
+      )
     )
   }
   return(

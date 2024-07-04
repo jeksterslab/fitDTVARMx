@@ -8,6 +8,10 @@
                       psi_lbound = NULL,
                       psi_ubound = NULL,
                       psi_diag = TRUE,
+                      theta = FALSE,
+                      theta_start = NULL,
+                      theta_lbound = NULL,
+                      theta_ubound = NULL,
                       try = 1000,
                       ncores = NULL) {
   k <- length(observed)
@@ -41,7 +45,11 @@
   )
   theta <- .FitDTVARTheta(
     k = k,
-    observed = observed
+    observed = observed,
+    theta = theta,
+    theta_start = theta_start,
+    theta_lbound = theta_lbound,
+    theta_ubound = theta_ubound
   )
   mu0 <- .FitDTVARMu0(k = k)
   sigma0 <- .FitDTVARSigma0(k = k)
