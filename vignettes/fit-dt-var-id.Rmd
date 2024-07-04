@@ -195,7 +195,7 @@ and covariance matrix
 \right) .
 \end{equation}
 
-The SimBetaN function from the simStateSpace package generates random transition matrices from the multivariate normal distribution. Note that the function generates transition matrices that are weakly stationary.
+The `SimBetaN` function from the `simStateSpace` package generates random transition matrices from the multivariate normal distribution. Note that the function generates transition matrices that are weakly stationary.
 
 Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
 
@@ -283,7 +283,7 @@ psi_l
 
 <img src="fig-vignettes-fit-dt-var-id-mx-no-error-1.png" width="3300" /><img src="fig-vignettes-fit-dt-var-id-mx-no-error-2.png" width="3300" /><img src="fig-vignettes-fit-dt-var-id-mx-no-error-3.png" width="3300" />
 
-### Using the SimSSMVARIVary Function from the simStateSpace Package to Simulate Data
+### Using the `SimSSMVARIVary` Function from the `simStateSpace` Package to Simulate Data
 
 
 ``` r
@@ -316,7 +316,7 @@ plot(sim)
 
 ## Model Fitting
 
-The FitDTVARIDMx function fits a DT-VAR model on each individual $i$.
+The `FitDTVARIDMx` function fits a DT-VAR model on each individual $i$.
 
 
 ``` r
