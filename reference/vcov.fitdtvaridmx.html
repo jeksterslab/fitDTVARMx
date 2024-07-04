@@ -62,7 +62,7 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for fitdtvaridmx</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">object</span>, psi <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">object</span>, psi <span class="op">=</span> <span class="cn">FALSE</span>, theta <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -77,6 +77,14 @@ If <code>psi = TRUE</code>,
 include estimates of the <code>psi</code> matrix.
 If <code>psi = FALSE</code>,
 exclude estimates of the <code>psi</code> matrix.</p></dd>
+
+
+<dt>theta</dt>
+<dd><p>Logical.
+If <code>theta = TRUE</code>,
+include estimates of the <code>theta</code> matrix if available.
+If <code>theta = FALSE</code>,
+exclude estimates of the <code>theta</code> matrix.</p></dd>
 
 
 <dt>...</dt>

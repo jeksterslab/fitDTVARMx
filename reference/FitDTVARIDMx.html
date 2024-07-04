@@ -72,6 +72,10 @@
 <span>  psi_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  psi_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  psi_diag <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  theta <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  theta_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  theta_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  theta_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  try <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -100,23 +104,28 @@ A character string of the name of the ID variable in the data.</p></dd>
 
 
 <dt>beta_start</dt>
-<dd><p>Optional starting values for <code>beta</code>.</p></dd>
+<dd><p>Numeric matrix.
+Optional starting values for <code>beta</code>.</p></dd>
 
 
 <dt>beta_lbound</dt>
-<dd><p>Optional lower bound for <code>beta</code>.</p></dd>
+<dd><p>Numeric matrix.
+Optional lower bound for <code>beta</code>.</p></dd>
 
 
 <dt>beta_ubound</dt>
-<dd><p>Optional upper bound for <code>beta</code>.</p></dd>
+<dd><p>Numeric matrix.
+Optional upper bound for <code>beta</code>.</p></dd>
 
 
 <dt>psi_start</dt>
-<dd><p>Optional starting values for <code>psi</code>.</p></dd>
+<dd><p>Numeric matrix.
+Optional starting values for <code>psi</code>.</p></dd>
 
 
 <dt>psi_lbound</dt>
-<dd><p>Optional lower bound for <code>psi</code>.</p></dd>
+<dd><p>Numeric matrix.
+Optional lower bound for <code>psi</code>.</p></dd>
 
 
 <dt>psi_ubound</dt>
@@ -127,6 +136,27 @@ A character string of the name of the ID variable in the data.</p></dd>
 <dd><p>Logical.
 If <code>psi_diag = TRUE</code>,
 <code>psi</code> is a diagonal matrix.</p></dd>
+
+
+<dt>theta</dt>
+<dd><p>Logical.
+If <code>theta = TRUE</code>,
+estimate the diagonal measurement error matrix <code>theta</code>.</p></dd>
+
+
+<dt>theta_start</dt>
+<dd><p>Optional starting values for <code>theta</code>.
+Ignored if <code>theta = FALSE</code>.</p></dd>
+
+
+<dt>theta_lbound</dt>
+<dd><p>Optional lower bound for <code>theta</code>.
+Ignored if <code>theta = FALSE</code>.</p></dd>
+
+
+<dt>theta_ubound</dt>
+<dd><p>Optional upper bound for <code>theta</code>.
+Ignored if <code>theta = FALSE</code>.</p></dd>
 
 
 <dt>try</dt>
