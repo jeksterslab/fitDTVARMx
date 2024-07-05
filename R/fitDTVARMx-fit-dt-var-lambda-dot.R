@@ -1,5 +1,6 @@
 .FitDTVARLambda <- function(k,
-                            observed) {
+                            observed,
+                            statenames) {
   # C
   # measurement model factor loadings
   return(
@@ -15,7 +16,7 @@
       byrow = FALSE,
       dimnames = list(
         observed,
-        paste0("eta", seq_len(k))
+        statenames
       ),
       name = "lambda"
     )

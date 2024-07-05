@@ -1,9 +1,9 @@
 .FitDTVARBeta <- function(k,
+                          idx,
                           statenames,
                           beta_start = NULL,
                           beta_lbound = NULL,
                           beta_ubound = NULL) {
-  idx <- seq_len(k)
   # A
   # auto regression and cross regression coefficients
   if (is.null(beta_start)) {
@@ -15,7 +15,7 @@
     )
   }
   beta_labels <- matrix(
-    data = "0",
+    data = "",
     nrow = k,
     ncol = k
   )
@@ -30,11 +30,7 @@
     }
   }
   if (is.null(beta_lbound)) {
-    beta_lbound <- matrix(
-      data = -10,
-      nrow = k,
-      ncol = k
-    )
+    beta_lbound <- NA
   } else {
     stopifnot(
       is.matrix(beta_lbound),
@@ -42,11 +38,7 @@
     )
   }
   if (is.null(beta_ubound)) {
-    beta_ubound <- matrix(
-      data = 10,
-      nrow = k,
-      ncol = k
-    )
+    beta_ubound <- NA
   } else {
     stopifnot(
       is.matrix(beta_ubound),

@@ -1,7 +1,7 @@
 ---
 title: "Fit The Vector Autoregressive Model By ID"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-07-04"
+date: "2024-07-05"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -341,9 +341,9 @@ fit
 #> 
 #> Means of the estimated paramaters per individual.
 #>      beta_11      beta_21      beta_31      beta_12      beta_22      beta_32 
-#>  0.680538197  0.491146814 -0.096286416 -0.003674982  0.584713524  0.385652910 
+#>  0.680538196  0.491146825 -0.096286417 -0.003674982  0.584713523  0.385652908 
 #>      beta_13      beta_23      beta_33       psi_11       psi_22       psi_33 
-#>  0.008386859 -0.011648323  0.492088875  0.099910448  0.099401607  0.099618299
+#>  0.008386864 -0.011648320  0.492088877  0.099910448  0.099401605  0.099618296
 ```
 
 ## References
