@@ -1,4 +1,5 @@
 .FitDTVARThetaDiag <- function(k,
+                               idx,
                                observed,
                                theta_start = NULL,
                                theta_lbound = NULL,
@@ -10,11 +11,19 @@
       x = 0.10,
       times = k
     )
+  } else {
+    if (is.matrix(theta_start)) {
+      theta_start <- diag(theta_start)
+    }
+    stopifnot(
+      is.vector(theta_start),
+      length(theta_start) == k
+    )
   }
   theta_labels <- paste0(
     "theta_",
-    seq_len(k),
-    seq_len(k)
+    idx,
+    idx
   )
   if (is.null(theta_lbound)) {
     theta_lbound <- rep(

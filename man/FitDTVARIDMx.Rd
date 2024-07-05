@@ -11,14 +11,23 @@ FitDTVARIDMx(
   beta_start = NULL,
   beta_lbound = NULL,
   beta_ubound = NULL,
+  psi_diag = TRUE,
   psi_start = NULL,
   psi_lbound = NULL,
   psi_ubound = NULL,
-  psi_diag = TRUE,
-  theta = FALSE,
+  theta_fixed = TRUE,
   theta_start = NULL,
   theta_lbound = NULL,
   theta_ubound = NULL,
+  mu0_fixed = TRUE,
+  mu0_start = NULL,
+  mu0_lbound = NULL,
+  mu0_ubound = NULL,
+  sigma0_fixed = TRUE,
+  sigma0_diag = TRUE,
+  sigma0_start = NULL,
+  sigma0_lbound = NULL,
+  sigma0_ubound = NULL,
   try = 1000,
   ncores = NULL
 )
@@ -47,6 +56,10 @@ Optional lower bound for \code{beta}.}
 \item{beta_ubound}{Numeric matrix.
 Optional upper bound for \code{beta}.}
 
+\item{psi_diag}{Logical.
+If \code{psi_diag = TRUE},
+\code{psi} is a diagonal matrix.}
+
 \item{psi_start}{Numeric matrix.
 Optional starting values for \code{psi}.}
 
@@ -55,22 +68,56 @@ Optional lower bound for \code{psi}.}
 
 \item{psi_ubound}{Optional upper bound for \code{psi}.}
 
-\item{psi_diag}{Logical.
-If \code{psi_diag = TRUE},
-\code{psi} is a diagonal matrix.}
-
-\item{theta}{Logical.
-If \code{theta = TRUE},
+\item{theta_fixed}{Logical.
+If \code{theta_fixed = TRUE},
+the measurement error matrix \code{theta} is fixed to zero.
+If \code{theta_fixed = FALSE},
 estimate the diagonal measurement error matrix \code{theta}.}
 
 \item{theta_start}{Optional starting values for \code{theta}.
-Ignored if \code{theta = FALSE}.}
+Ignored if \code{theta_fixed = TRUE}.}
 
 \item{theta_lbound}{Optional lower bound for \code{theta}.
-Ignored if \code{theta = FALSE}.}
+Ignored if \code{theta_fixed = TRUE}.}
 
 \item{theta_ubound}{Optional upper bound for \code{theta}.
-Ignored if \code{theta = FALSE}.}
+Ignored if \code{theta_fixed = TRUE}.}
+
+\item{mu0_fixed}{Logical.
+If \code{mu0_fixed = TRUE},
+initial mean vector \code{mu0} is fixed.
+If \code{mu0_fixed = FALSE},
+initial mean vector \code{mu0} is estimated.}
+
+\item{mu0_start}{Optional starting values for \code{mu0}.
+If \code{mu0_fixed = TRUE}, \code{mu0_start} will be used as fixed values.
+If \code{mu0_fixed = FALSE}, \code{mu0_start} will be used as starting values.}
+
+\item{mu0_lbound}{Optional lower bound for \code{mu0}.
+Ignored if \code{mu0_fixed = TRUE}.}
+
+\item{mu0_ubound}{Optional upper bound for \code{mu0}.
+Ignored if \code{mu0_fixed = TRUE}.}
+
+\item{sigma0_fixed}{Logical.
+If \code{sigma0_fixed = TRUE},
+initial mean vector \code{sigma0} is fixed.
+If \code{sigma0_fixed = FALSE},
+initial mean vector \code{sigma0} is estimated.}
+
+\item{sigma0_diag}{Logical.
+If \code{sigma0_diag = TRUE},
+\code{sigma0} is a diagonal matrix.}
+
+\item{sigma0_start}{Optional starting values for \code{sigma0}.
+If \code{sigma0_fixed = TRUE}, \code{sigma0_start} will be used as fixed values.
+If \code{sigma0_fixed = FALSE}, \code{sigma0_start} will be used as starting values.}
+
+\item{sigma0_lbound}{Optional lower bound for \code{sigma0}.
+Ignored if \code{sigma0_fixed = TRUE}.}
+
+\item{sigma0_ubound}{Optional upper bound for \code{sigma0}.
+Ignored if \code{sigma0_fixed = TRUE}.}
 
 \item{try}{Positive integer.
 Number of extra tries for \code{\link[OpenMx:mxTryHard]{OpenMx::mxTryHard()}}.}

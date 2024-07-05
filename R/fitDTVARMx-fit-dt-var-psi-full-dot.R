@@ -1,9 +1,9 @@
 .FitDTVARPsiFull <- function(k,
+                             idx,
+                             statenames,
                              psi_start = NULL,
                              psi_lbound = NULL,
                              psi_ubound = NULL) {
-  idx <- seq_len(k)
-  statenames <- paste0("eta", idx)
   # Q
   # process noise
   if (is.null(psi_start)) {
@@ -19,8 +19,8 @@
     nrow = k,
     ncol = k
   )
-  for (j in seq_len(k)) {
-    for (i in seq_len(k)) {
+  for (j in idx) {
+    for (i in idx) {
       psi_labels[i, j] <- paste0(
         "psi_",
         i,
