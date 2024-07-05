@@ -1,8 +1,9 @@
-## ---- test
+## ---- test-psi-full
 lapply(
   X = 1,
   FUN = function(i,
-                 text) {
+                 text,
+                 tol) {
     message(text)
     set.seed(42)
     n <- 5
@@ -52,8 +53,6 @@ lapply(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
-      beta_start = beta_mu,
-      psi_start = psi,
       psi_diag = FALSE,
       ncores = NULL
     )
@@ -62,38 +61,28 @@ lapply(
     print(fit, means = FALSE)
     summary(fit, means = FALSE)
     coef(fit, psi = TRUE)
-    coef(fit, psi = FALSE)
     vcov(fit, psi = TRUE)
-    vcov(fit, psi = FALSE)
-    fit <- FitDTVARIDMx(
-      data = data,
-      observed = paste0("y", seq_len(k)),
-      id = "id",
-      beta_start = beta_mu,
-      psi_start = psi,
-      psi_diag = TRUE,
-      ncores = NULL
-    )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE)
-    summary(fit, means = FALSE)
-    coef(fit, psi = TRUE)
-    coef(fit, psi = FALSE)
-    vcov(fit, psi = TRUE)
-    vcov(fit, psi = FALSE)
     testthat::test_that(
       text,
       {
         testthat::expect_true(
           all(
             abs(
-              c(beta_mu, diag(psi)) - summary(fit)
-            ) <= 0.1
+              c(
+                c(beta_mu),
+                psi[
+                  lower.tri(
+                    x = psi,
+                    diag = TRUE
+                  )
+                ]
+              ) - summary(fit)
+            ) <= tol
           )
         )
       }
     )
   },
-  text = "test"
+  text = "test-psi-full",
+  tol = 0.1
 )

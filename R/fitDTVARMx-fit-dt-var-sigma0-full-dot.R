@@ -54,10 +54,27 @@
       dim(sigma0_ubound) == c(k, k)
     )
   }
-  sigma0_start[upper.tri(sigma0_start)] <- t(sigma0_start)[upper.tri(sigma0_start)]
-  sigma0_labels[upper.tri(sigma0_labels)] <- t(sigma0_labels)[upper.tri(sigma0_labels)]
-  sigma0_lbound[upper.tri(sigma0_lbound)] <- t(sigma0_lbound)[upper.tri(sigma0_lbound)]
-  sigma0_ubound[upper.tri(sigma0_ubound)] <- t(sigma0_ubound)[upper.tri(sigma0_ubound)]
+  # make sure matrices are symmetric
+  sigma0_start[
+    upper.tri(sigma0_start)
+  ] <- t(sigma0_start)[
+    upper.tri(sigma0_start)
+  ]
+  sigma0_labels[
+    upper.tri(sigma0_labels)
+  ] <- t(sigma0_labels)[
+    upper.tri(sigma0_labels)
+  ]
+  sigma0_lbound[
+    upper.tri(sigma0_lbound)
+  ] <- t(sigma0_lbound)[
+    upper.tri(sigma0_lbound)
+  ]
+  sigma0_ubound[
+    upper.tri(sigma0_ubound)
+  ] <- t(sigma0_ubound)[
+    upper.tri(sigma0_ubound)
+  ]
   return(
     OpenMx::mxMatrix(
       type = "Symm",
