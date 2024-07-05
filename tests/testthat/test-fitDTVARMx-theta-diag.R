@@ -91,7 +91,7 @@ lapply(
       beta_start = beta_mu,
       beta_lbound = beta_lbound,
       beta_ubound = beta_ubound,
-      psi_diag = FALSE,
+      psi_diag = TRUE,
       psi_start = psi,
       psi_lbound = psi_lbound,
       psi_ubound = psi_ubound,
