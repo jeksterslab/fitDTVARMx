@@ -68,14 +68,23 @@
 <span>  beta_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  beta_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  beta_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  psi_diag <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  psi_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  psi_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  psi_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  psi_diag <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  theta <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  theta_fixed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  theta_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  theta_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  theta_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mu0_fixed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  mu0_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mu0_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mu0_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma0_fixed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sigma0_diag <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sigma0_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma0_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sigma0_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  try <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -118,6 +127,12 @@ Optional lower bound for <code>beta</code>.</p></dd>
 Optional upper bound for <code>beta</code>.</p></dd>
 
 
+<dt>psi_diag</dt>
+<dd><p>Logical.
+If <code>psi_diag = TRUE</code>,
+<code>psi</code> is a diagonal matrix.</p></dd>
+
+
 <dt>psi_start</dt>
 <dd><p>Numeric matrix.
 Optional starting values for <code>psi</code>.</p></dd>
@@ -132,31 +147,81 @@ Optional lower bound for <code>psi</code>.</p></dd>
 <dd><p>Optional upper bound for <code>psi</code>.</p></dd>
 
 
-<dt>psi_diag</dt>
+<dt>theta_fixed</dt>
 <dd><p>Logical.
-If <code>psi_diag = TRUE</code>,
-<code>psi</code> is a diagonal matrix.</p></dd>
-
-
-<dt>theta</dt>
-<dd><p>Logical.
-If <code>theta = TRUE</code>,
+If <code>theta_fixed = TRUE</code>,
+the measurement error matrix <code>theta</code> is fixed to zero.
+If <code>theta_fixed = FALSE</code>,
 estimate the diagonal measurement error matrix <code>theta</code>.</p></dd>
 
 
 <dt>theta_start</dt>
 <dd><p>Optional starting values for <code>theta</code>.
-Ignored if <code>theta = FALSE</code>.</p></dd>
+Ignored if <code>theta_fixed = TRUE</code>.</p></dd>
 
 
 <dt>theta_lbound</dt>
 <dd><p>Optional lower bound for <code>theta</code>.
-Ignored if <code>theta = FALSE</code>.</p></dd>
+Ignored if <code>theta_fixed = TRUE</code>.</p></dd>
 
 
 <dt>theta_ubound</dt>
 <dd><p>Optional upper bound for <code>theta</code>.
-Ignored if <code>theta = FALSE</code>.</p></dd>
+Ignored if <code>theta_fixed = TRUE</code>.</p></dd>
+
+
+<dt>mu0_fixed</dt>
+<dd><p>Logical.
+If <code>mu0_fixed = TRUE</code>,
+initial mean vector <code>mu0</code> is fixed.
+If <code>mu0_fixed = FALSE</code>,
+initial mean vector <code>mu0</code> is estimated.</p></dd>
+
+
+<dt>mu0_start</dt>
+<dd><p>Optional starting values for <code>mu0</code>.
+If <code>mu0_fixed = TRUE</code>, <code>mu0_start</code> will be used as fixed values.
+If <code>mu0_fixed = FALSE</code>, <code>mu0_start</code> will be used as starting values.</p></dd>
+
+
+<dt>mu0_lbound</dt>
+<dd><p>Optional lower bound for <code>mu0</code>.
+Ignored if <code>mu0_fixed = TRUE</code>.</p></dd>
+
+
+<dt>mu0_ubound</dt>
+<dd><p>Optional upper bound for <code>mu0</code>.
+Ignored if <code>mu0_fixed = TRUE</code>.</p></dd>
+
+
+<dt>sigma0_fixed</dt>
+<dd><p>Logical.
+If <code>sigma0_fixed = TRUE</code>,
+initial mean vector <code>sigma0</code> is fixed.
+If <code>sigma0_fixed = FALSE</code>,
+initial mean vector <code>sigma0</code> is estimated.</p></dd>
+
+
+<dt>sigma0_diag</dt>
+<dd><p>Logical.
+If <code>sigma0_diag = TRUE</code>,
+<code>sigma0</code> is a diagonal matrix.</p></dd>
+
+
+<dt>sigma0_start</dt>
+<dd><p>Optional starting values for <code>sigma0</code>.
+If <code>sigma0_fixed = TRUE</code>, <code>sigma0_start</code> will be used as fixed values.
+If <code>sigma0_fixed = FALSE</code>, <code>sigma0_start</code> will be used as starting values.</p></dd>
+
+
+<dt>sigma0_lbound</dt>
+<dd><p>Optional lower bound for <code>sigma0</code>.
+Ignored if <code>sigma0_fixed = TRUE</code>.</p></dd>
+
+
+<dt>sigma0_ubound</dt>
+<dd><p>Optional upper bound for <code>sigma0</code>.
+Ignored if <code>sigma0_fixed = TRUE</code>.</p></dd>
 
 
 <dt>try</dt>
