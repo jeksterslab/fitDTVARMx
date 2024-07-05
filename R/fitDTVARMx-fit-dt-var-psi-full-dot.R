@@ -54,10 +54,26 @@
     )
   }
   # make sure matrices are symmetric
-  psi_start[upper.tri(psi_start)] <- t(psi_start)[upper.tri(psi_start)]
-  psi_labels[upper.tri(psi_labels)] <- t(psi_labels)[upper.tri(psi_labels)]
-  psi_lbound[upper.tri(psi_lbound)] <- t(psi_lbound)[upper.tri(psi_lbound)]
-  psi_ubound[upper.tri(psi_ubound)] <- t(psi_ubound)[upper.tri(psi_ubound)]
+  psi_start[
+    upper.tri(psi_start)
+  ] <- t(psi_start)[
+    upper.tri(psi_start)
+  ]
+  psi_labels[
+    upper.tri(psi_labels)
+  ] <- t(psi_labels)[
+    upper.tri(psi_labels)
+  ]
+  psi_lbound[
+    upper.tri(psi_lbound)
+  ] <- t(psi_lbound)[
+    upper.tri(psi_lbound)
+  ]
+  psi_ubound[
+    upper.tri(psi_ubound)
+  ] <- t(psi_ubound)[
+    upper.tri(psi_ubound)
+  ]
   return(
     OpenMx::mxMatrix(
       type = "Symm",

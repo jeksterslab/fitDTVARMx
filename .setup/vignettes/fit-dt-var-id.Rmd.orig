@@ -1,5 +1,5 @@
 ---
-title: "Fit The Vector Autoregressive Model By ID"
+title: "Fit The Discrete-Time Vector Autoregressive Model By ID"
 author: Ivan Jacob Agaloos Pesigan
 date: "`r Sys.Date()`"
 bibliography: "vignettes.bib"
@@ -10,7 +10,7 @@ nocite: |
   @Hunter-2017
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Fit The Vector Autoregressive Model By ID}
+  %\VignetteIndexEntry{Fit The Discrete-Time Vector Autoregressive Model By ID}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -321,6 +321,11 @@ plot(sim)
 ## Model Fitting
 
 The `FitDTVARIDMx` function fits a DT-VAR model on each individual $i$.
+
+```{r}
+#| include = FALSE
+library(fitDTVARMx)
+```
 
 ```{r}
 library(fitDTVARMx)

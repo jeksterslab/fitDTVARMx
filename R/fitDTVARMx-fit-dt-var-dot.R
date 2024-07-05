@@ -81,12 +81,14 @@
   )
   x <- .FitDTVARX()
   par <- FALSE
+  # nocov start
   if (!is.null(ncores)) {
     ncores <- as.integer(ncores)
     if (ncores > 1) {
       par <- TRUE
     }
   }
+  # nocov end
   expectation <- OpenMx::mxExpectationStateSpace(
     A = "beta",
     B = "gamma",
@@ -100,6 +102,7 @@
     dimnames = observed
   )
   if (par) {
+    # nocov start
     OpenMx::mxOption(
       key = "Number of Threads",
       value = 1
@@ -136,6 +139,7 @@
         )
       }
     )
+    # nocov end
   } else {
     output <- lapply(
       X = ids,

@@ -1,5 +1,5 @@
 ---
-title: "Fit The Vector Autoregressive Model By ID"
+title: "Fit The Discrete-Time Vector Autoregressive Model By ID"
 author: Ivan Jacob Agaloos Pesigan
 date: "2024-07-05"
 bibliography: "vignettes.bib"
@@ -10,7 +10,7 @@ nocite: |
   @Hunter-2017
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Fit The Vector Autoregressive Model By ID}
+  %\VignetteIndexEntry{Fit The Discrete-Time Vector Autoregressive Model By ID}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -319,15 +319,10 @@ plot(sim)
 The `FitDTVARIDMx` function fits a DT-VAR model on each individual $i$.
 
 
-``` r
-library(fitDTVARMx)
-#> Loading required package: OpenMx
-#> To take full advantage of multiple cores, use:
-#>   mxOption(key='Number of Threads', value=parallel::detectCores()) #now
-#>   Sys.setenv(OMP_NUM_THREADS=parallel::detectCores()) #before library(OpenMx)
-```
+
 
 ``` r
+library(fitDTVARMx)
 fit <- FitDTVARIDMx(
   data = data,
   observed = paste0("y", seq_len(k)),
