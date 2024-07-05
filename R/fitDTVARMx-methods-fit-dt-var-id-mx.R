@@ -52,14 +52,18 @@ summary.fitdtvaridmx <- function(object,
     )
   )
   if (means) {
+    # nocov start
     if (interactive()) {
       cat("\nMeans of the estimated paramaters per individual.\n")
     }
+    # nocov end
     out <- colMeans(out)
   } else {
+    # nocov start
     if (interactive()) {
       cat("\nEstimated paramaters per individual.\n")
     }
+    # nocov end
   }
   return(out)
 }

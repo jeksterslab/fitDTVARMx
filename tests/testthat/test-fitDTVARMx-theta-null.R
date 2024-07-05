@@ -1,4 +1,4 @@
-## ---- test-psi-full
+## ---- test-fitDTVARMx-theta-null
 lapply(
   X = 1,
   FUN = function(i,
@@ -53,7 +53,7 @@ lapply(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
-      psi_diag = FALSE,
+      psi_diag = TRUE,
       ncores = NULL
     )
     print(fit)
@@ -63,26 +63,71 @@ lapply(
     coef(fit, psi = TRUE)
     vcov(fit, psi = TRUE)
     testthat::test_that(
-      text,
+      paste(text, 1),
       {
         testthat::expect_true(
           all(
             abs(
               c(
-                c(beta_mu),
-                psi[
-                  lower.tri(
-                    x = psi,
-                    diag = TRUE
-                  )
-                ]
+                beta_mu,
+                diag(psi)
               ) - summary(fit)
             ) <= tol
           )
         )
       }
     )
+    psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
+      data = NA,
+      nrow = p,
+      ncol = p
+    )
+    fit2 <- FitDTVARIDMx(
+      data = data,
+      observed = paste0("y", seq_len(k)),
+      id = "id",
+      beta_start = beta_mu,
+      beta_lbound = beta_lbound,
+      beta_ubound = beta_ubound,
+      psi_diag = TRUE,
+      psi_start = psi,
+      psi_lbound = psi_lbound,
+      psi_ubound = psi_ubound,
+      theta_fixed = TRUE,
+      theta_start = NULL,
+      theta_lbound = NULL,
+      theta_ubound = NULL,
+      mu0_fixed = TRUE,
+      mu0_start = NULL,
+      mu0_lbound = NULL,
+      mu0_ubound = NULL,
+      sigma0_fixed = TRUE,
+      sigma0_diag = TRUE,
+      sigma0_start = NULL,
+      sigma0_lbound = NULL,
+      sigma0_ubound = NULL,
+      try = 1000,
+      ncores = NULL
+    )
+    print(fit2)
+    summary(fit2)
+    print(fit2, means = FALSE)
+    summary(fit2, means = FALSE)
+    coef(fit2, psi = TRUE)
+    vcov(fit2, psi = TRUE)
+    testthat::test_that(
+      paste(text, 2),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              summary(fit) - summary(fit2)
+            ) <= 0.01
+          )
+        )
+      }
+    )
   },
-  text = "test-psi-full",
+  text = "test-fitDTVARMx-theta-null",
   tol = 0.1
 )

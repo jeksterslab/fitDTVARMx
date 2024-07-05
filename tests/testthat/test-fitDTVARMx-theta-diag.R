@@ -1,4 +1,4 @@
-## ---- test-theta-diag
+## ---- test-fitDTVARMx-theta-diag
 lapply(
   X = 1,
   FUN = function(i,
@@ -64,7 +64,7 @@ lapply(
     coef(fit, psi = TRUE, theta = TRUE)
     vcov(fit, psi = TRUE, theta = TRUE)
     testthat::test_that(
-      text,
+      paste(text, 1),
       {
         testthat::expect_true(
           all(
@@ -79,7 +79,57 @@ lapply(
         )
       }
     )
+    theta_ubound <- theta_lbound <- psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
+      data = NA,
+      nrow = p,
+      ncol = p
+    )
+    fit2 <- FitDTVARIDMx(
+      data = data,
+      observed = paste0("y", seq_len(k)),
+      id = "id",
+      beta_start = beta_mu,
+      beta_lbound = beta_lbound,
+      beta_ubound = beta_ubound,
+      psi_diag = TRUE,
+      psi_start = psi,
+      psi_lbound = psi_lbound,
+      psi_ubound = psi_ubound,
+      theta_fixed = FALSE,
+      theta_start = .Machine$double.xmin * diag(p),
+      theta_lbound = theta_lbound,
+      theta_ubound = theta_ubound,
+      mu0_fixed = TRUE,
+      mu0_start = NULL,
+      mu0_lbound = NULL,
+      mu0_ubound = NULL,
+      sigma0_fixed = TRUE,
+      sigma0_diag = TRUE,
+      sigma0_start = NULL,
+      sigma0_lbound = NULL,
+      sigma0_ubound = NULL,
+      try = 1000,
+      ncores = NULL
+    )
+    print(fit2)
+    summary(fit2)
+    print(fit2, means = FALSE)
+    summary(fit2, means = FALSE)
+    coef(fit2, psi = TRUE)
+    vcov(fit2, psi = TRUE)
+    testthat::test_that(
+      paste(text, 2),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              summary(fit) - summary(fit2)
+            ) <= 0.01
+          )
+        )
+      }
+    )
   },
-  text = "test-theta-diag",
+  text = "test-fitDTVARMx-theta-diag",
   tol = 0.1
 )
