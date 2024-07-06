@@ -13,6 +13,9 @@
     <loc>https://github.com/jeksterslab/fitDTVARMx/articles/fit-dt-var-id.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jeksterslab/fitDTVARMx/articles/fit-dt-var.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jeksterslab/fitDTVARMx/articles/fitDTVARMx.html</loc>
   </url>
   <url>
@@ -34,7 +37,13 @@
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/FitDTVARIDMx.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jeksterslab/fitDTVARMx/reference/FitDTVARMx.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/coef.fitdtvaridmx.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslab/fitDTVARMx/reference/coef.fitdtvarmx.html</loc>
   </url>
   <url>
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/fitDTVARMx-package.html</loc>
@@ -46,9 +55,18 @@
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/print.fitdtvaridmx.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jeksterslab/fitDTVARMx/reference/print.fitdtvarmx.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/summary.fitdtvaridmx.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jeksterslab/fitDTVARMx/reference/summary.fitdtvarmx.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jeksterslab/fitDTVARMx/reference/vcov.fitdtvaridmx.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslab/fitDTVARMx/reference/vcov.fitdtvarmx.html</loc>
   </url>
 </urlset>
