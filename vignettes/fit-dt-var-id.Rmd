@@ -1,7 +1,7 @@
 ---
-title: "Fit The Discrete-Time Vector Autoregressive Model By ID"
+title: "Fit the Discrete-Time Vector Autoregressive Model By ID"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-07-05"
+date: "2024-07-06"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -10,7 +10,7 @@ nocite: |
   @Hunter-2017
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Fit The Discrete-Time Vector Autoregressive Model By ID}
+  %\VignetteIndexEntry{Fit the Discrete-Time Vector Autoregressive Model By ID}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -327,18 +327,15 @@ fit <- FitDTVARIDMx(
   data = data,
   observed = paste0("y", seq_len(k)),
   id = "id",
-  beta_start = beta_mu,
-  psi_start = psi,
-  psi_diag = TRUE,
   ncores = parallel::detectCores()
 )
 fit
 #> 
 #> Means of the estimated paramaters per individual.
 #>      beta_11      beta_21      beta_31      beta_12      beta_22      beta_32 
-#>  0.681708150  0.490648455 -0.095598348 -0.004552292  0.585829941  0.385393181 
+#>  0.681708156  0.490648463 -0.095598357 -0.004552304  0.585829938  0.385393184 
 #>      beta_13      beta_23      beta_33       psi_11       psi_22       psi_33 
-#>  0.009392705 -0.012720822  0.492579345  0.099902460  0.099408892  0.099638016
+#>  0.009392707 -0.012720822  0.492579348  0.099902461  0.099408893  0.099638018
 ```
 
 ## References

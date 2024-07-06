@@ -2,7 +2,7 @@
 % Please edit documentation in R/fitDTVARMx-fit-dt-var-id-mx.R
 \name{FitDTVARIDMx}
 \alias{FitDTVARIDMx}
-\title{Fit First Order Discrete-Time Vector Autoregressive Model by ID}
+\title{Fit the First-Order Discrete-Time Vector Autoregressive Model by ID}
 \usage{
 FitDTVARIDMx(
   data,
@@ -120,17 +120,72 @@ Ignored if \code{sigma0_fixed = TRUE}.}
 Ignored if \code{sigma0_fixed = TRUE}.}
 
 \item{try}{Positive integer.
-Number of extra tries for \code{\link[OpenMx:mxTryHard]{OpenMx::mxTryHard()}}.}
+Number of extra optimization tries.}
 
 \item{ncores}{Positive integer.
 Number of cores to use.}
 }
+\value{
+Returns an object of class \code{fitdtvaridmx} which is
+a list with the following elements:
+\describe{
+\item{call}{Function call.}
+\item{args}{List of function arguments.}
+\item{fun}{Function used ("FitDTVARIDMx").}
+\item{output}{A list of fitted OpenMx models.}
+}
+}
 \description{
-Fit First Order Discrete-Time Vector Autoregressive Model by ID
+Fit the First-Order Discrete-Time Vector Autoregressive Model by ID
+}
+\examples{
+\dontrun{
+# Generate data using the simStateSpace package------------------------------
+beta_mu <- matrix(
+  data = c(
+    0.7, 0.5, -0.1,
+    0.0, 0.6, 0.4,
+    0, 0, 0.5
+  ),
+  nrow = 3
+)
+beta_sigma <- diag(3 * 3)
+beta <- simStateSpace::SimBetaN(
+  n = 5,
+  beta = beta_mu,
+  vcov_beta_vec_l = t(chol(beta_sigma))
+)
+sim <- simStateSpace::SimSSMVARIVary(
+  n = 5,
+  time = 100,
+  mu0 = list(rep(x = 0, times = 3)),
+  sigma0_l = list(t(chol(diag(3)))),
+  alpha = list(rep(x = 0, times = 3)),
+  beta = beta,
+  psi_l = list(t(chol(diag(3))))
+)
+data <- as.data.frame(sim)
+
+# Fit the model--------------------------------------------------------------
+library(fitDTVARMx)
+fit <- FitDTVARIDMx(
+  data = data,
+  observed = c("y1", "y2", "y3"),
+  id = "id"
+)
+print(fit)
+summary(fit)
+coef(fit)
+vcov(fit)
+}
+}
+\seealso{
+Other DTVAR Functions: 
+\code{\link{FitDTVARMx}()}
 }
 \author{
 Ivan Jacob Agaloos Pesigan
 }
-\concept{Meta-Analysis of VAR Functions}
+\concept{DTVAR Functions}
 \keyword{fit}
-\keyword{metaVAR}
+\keyword{fitDTVARMx}

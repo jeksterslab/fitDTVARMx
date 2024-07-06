@@ -185,7 +185,7 @@ vcov.fitdtvaridmx <- function(object,
       X = object$output,
       FUN = function(x,
                      idx) {
-        return(vcov(x)[idx, idx])
+        return(vcov(x)[idx, idx, drop = FALSE])
       },
       idx = idx
     )

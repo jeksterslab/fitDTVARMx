@@ -1,0 +1,383 @@
+---
+title: "Fit the Discrete-Time Vector Autoregressive Model"
+author: Ivan Jacob Agaloos Pesigan
+date: "2024-07-06"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @RCoreTeam-2024
+  @Neale-Hunter-Pritikin-etal-2015
+  @Hunter-2017
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fit the Discrete-Time Vector Autoregressive Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+
+
+## Model
+
+The measurement model is given by
+\begin{equation}
+  \mathbf{y}_{i, t}
+  =
+  \boldsymbol{\eta}_{i, t}
+\end{equation}
+where $\mathbf{y}_{i, t}$
+represents a vector of observed variables
+and $\boldsymbol{\eta}_{i, t}$
+a vector of latent variables
+for individual $i$ and time $t$.
+Since the observed and latent variables are equal,
+we only generate data
+from the dynamic structure.
+
+The dynamic structure is given by
+\begin{equation}
+  \boldsymbol{\eta}_{i, t}
+  =
+  \boldsymbol{\alpha}
+  +
+  \boldsymbol{\beta}
+  \boldsymbol{\eta}_{i, t - 1}
+  +
+  \boldsymbol{\zeta}_{i, t},
+  \quad
+  \mathrm{with}
+  \quad
+  \boldsymbol{\zeta}_{i, t}
+  \sim
+  \mathcal{N}
+  \left(
+  \mathbf{0},
+  \boldsymbol{\Psi}
+  \right)
+\end{equation}
+where
+$\boldsymbol{\eta}_{i, t}$,
+$\boldsymbol{\eta}_{i, t - 1}$,
+and
+$\boldsymbol{\zeta}_{i, t}$
+are random variables,
+and
+$\boldsymbol{\alpha}$,
+$\boldsymbol{\beta}$,
+and
+$\boldsymbol{\Psi}$
+are model parameters.
+Here,
+$\boldsymbol{\eta}_{i, t}$
+is a vector of latent variables
+at time $t$ and individual $i$,
+$\boldsymbol{\eta}_{i, t - 1}$
+represents a vector of latent variables
+at time $t - 1$ and individual $i$,
+and
+$\boldsymbol{\zeta}_{i, t}$
+represents a vector of dynamic noise
+at time $t$ and individual $i$.
+$\boldsymbol{\alpha}$
+denotes a vector of intercepts,
+$\boldsymbol{\beta}$
+a matrix of autoregression
+and cross regression coefficients,
+and
+$\boldsymbol{\Psi}$
+the covariance matrix of
+$\boldsymbol{\zeta}_{i, t}$.
+
+An alternative representation of the dynamic noise
+is given by
+\begin{equation}
+  \boldsymbol{\zeta}_{i, t}
+  =
+  \boldsymbol{\Psi}^{\frac{1}{2}}
+  \mathbf{z}_{i, t},
+  \quad
+  \mathrm{with}
+  \quad
+  \mathbf{z}_{i, t}
+  \sim
+  \mathcal{N}
+  \left(
+  \mathbf{0},
+  \mathbf{I}
+  \right)
+\end{equation}
+where
+$\left( \boldsymbol{\Psi}^{\frac{1}{2}} \right) \left( \boldsymbol{\Psi}^{\frac{1}{2}} \right)^{\prime} = \boldsymbol{\Psi}$ .
+
+## Data Generation
+
+### Notation
+
+Let $t = 1000$ be the number of time points and $n = 100$ be the number of individuals.
+
+Let the initial condition
+$\boldsymbol{\eta}_{0}$
+be given by
+
+\begin{equation}
+\boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}, \boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0} \right)
+\end{equation}
+
+\begin{equation}
+\boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}
+=
+\left(
+\begin{array}{c}
+  0 \\
+  0 \\
+  0 \\
+\end{array}
+\right)
+\end{equation}
+
+\begin{equation}
+\boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0}
+=
+\left(
+\begin{array}{ccc}
+  1 & 0 & 0 \\
+  0 & 1 & 0 \\
+  0 & 0 & 1 \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the constant vector $\boldsymbol{\alpha}$ be given by
+
+\begin{equation}
+\boldsymbol{\alpha}
+=
+\left(
+\begin{array}{c}
+  0 \\
+  0 \\
+  0 \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the transition matrix $\boldsymbol{\beta}$ be given by
+
+\begin{equation}
+\boldsymbol{\beta}
+=
+\left(
+\begin{array}{ccc}
+  0.7 & 0 & 0 \\
+  0.5 & 0.6 & 0 \\
+  -0.1 & 0.4 & 0.5 \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
+
+\begin{equation}
+\boldsymbol{\Psi}
+=
+\left(
+\begin{array}{ccc}
+  0.1 & 0 & 0 \\
+  0 & 0.1 & 0 \\
+  0 & 0 & 0.1 \\
+\end{array}
+\right) .
+\end{equation}
+
+### R Function Arguments
+
+
+``` r
+n
+#> [1] 100
+```
+
+``` r
+time
+#> [1] 1000
+```
+
+``` r
+mu0
+#> [1] 0 0 0
+```
+
+``` r
+sigma0
+#>      [,1] [,2] [,3]
+#> [1,]    1    0    0
+#> [2,]    0    1    0
+#> [3,]    0    0    1
+```
+
+``` r
+sigma0_l
+#>      [,1] [,2] [,3]
+#> [1,]    1    0    0
+#> [2,]    0    1    0
+#> [3,]    0    0    1
+```
+
+``` r
+alpha
+#> [1] 0 0 0
+```
+
+``` r
+beta
+#>      [,1] [,2] [,3]
+#> [1,]  0.7  0.0  0.0
+#> [2,]  0.5  0.6  0.0
+#> [3,] -0.1  0.4  0.5
+```
+
+``` r
+psi
+#>      [,1] [,2] [,3]
+#> [1,]  0.1  0.0  0.0
+#> [2,]  0.0  0.1  0.0
+#> [3,]  0.0  0.0  0.1
+```
+
+``` r
+psi_l
+#>           [,1]      [,2]      [,3]
+#> [1,] 0.3162278 0.0000000 0.0000000
+#> [2,] 0.0000000 0.3162278 0.0000000
+#> [3,] 0.0000000 0.0000000 0.3162278
+```
+
+### Visualizing the Dynamics Without Process Noise (n = 5 with Different Initial Condition)
+
+<img src="fig-vignettes-fit-dt-var-mx-no-error-1.png" width="3300" /><img src="fig-vignettes-fit-dt-var-mx-no-error-2.png" width="3300" /><img src="fig-vignettes-fit-dt-var-mx-no-error-3.png" width="3300" />
+
+### Using the `SimSSMVARFixed` Function from the `simStateSpace` Package to Simulate Data
+
+
+``` r
+library(simStateSpace)
+sim <- SimSSMVARFixed(
+  n = n,
+  time = time,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  alpha = alpha,
+  beta = beta,
+  psi_l = psi_l
+)
+data <- as.data.frame(sim)
+head(data)
+#>   id time          y1         y2         y3
+#> 1  1    0 -1.84569501  0.9702829  1.0520895
+#> 2  1    1 -1.34252674 -0.8887268  1.2660712
+#> 3  1    2 -0.57123433 -1.0192206  0.3606659
+#> 4  1    3 -0.44448720 -0.8943515 -0.1305443
+#> 5  1    4 -0.28796224 -1.1718514 -0.2609855
+#> 6  1    5  0.01622801 -1.2059746 -0.9255831
+```
+
+``` r
+plot(sim)
+```
+
+<img src="fig-vignettes-fit-dt-var-mx-error-1.png" width="3300" /><img src="fig-vignettes-fit-dt-var-mx-error-2.png" width="3300" /><img src="fig-vignettes-fit-dt-var-mx-error-3.png" width="3300" />
+
+## Model Fitting
+
+The `FitDTVARMx` function fits a DT-VAR model.
+
+
+
+
+``` r
+library(fitDTVARMx)
+fit <- FitDTVARMx(
+  data = data,
+  observed = paste0("y", seq_len(k)),
+  id = "id",
+  ncores = parallel::detectCores()
+)
+#> Running DTVAR with 12 parameters
+#> 
+#> Beginning initial fit attempt
+#> Running DTVAR with 12 parameters
+#> 
+#>  Lowest minimum so far:  161147.776665735
+#> 
+#> Solution found
+```
+
+
+
+```
+#> 
+#>  Solution found!  Final fit=161147.78 (started at 559956.91)  (1 attempt(s): 1 valid, 0 errors)
+#>  Start values from best fit:
+#> 0.699100963316375,0.498053073559555,-0.100937447224889,-0.0015600327617861,0.602705790036225,0.401870024126801,0.00490614070660785,-0.00383247105431546,0.498874252399096,0.100182502728935,0.0996918740870773,0.0998830418803938
+```
+
+``` r
+fit
+#> Summary of DTVAR 
+#>  
+#> free parameters:
+#>       name       matrix  row  col     Estimate    Std.Error A
+#> 1  beta_11 DTVAR_1.beta eta1 eta1  0.699100963 0.0025306502  
+#> 2  beta_21 DTVAR_1.beta eta2 eta1  0.498053074 0.0025316947  
+#> 3  beta_31 DTVAR_1.beta eta3 eta1 -0.100937447 0.0025346201  
+#> 4  beta_12 DTVAR_1.beta eta1 eta2 -0.001560033 0.0021327509  
+#> 5  beta_22 DTVAR_1.beta eta2 eta2  0.602705790 0.0021293455  
+#> 6  beta_32 DTVAR_1.beta eta3 eta2  0.401870024 0.0021363674  
+#> 7  beta_13 DTVAR_1.beta eta1 eta3  0.004906141 0.0021802741  
+#> 8  beta_23 DTVAR_1.beta eta2 eta3 -0.003832471 0.0021741345  
+#> 9  beta_33 DTVAR_1.beta eta3 eta3  0.498874252 0.0021759606  
+#> 10  psi_11  DTVAR_1.psi eta1 eta1  0.100182503 0.0004485499  
+#> 11  psi_22  DTVAR_1.psi eta2 eta2  0.099691874 0.0004463423  
+#> 12  psi_33  DTVAR_1.psi eta3 eta3  0.099883042 0.0004471061  
+#>                  lbound ubound
+#> 1                             
+#> 2                             
+#> 3                             
+#> 4                             
+#> 5                             
+#> 6                             
+#> 7                             
+#> 8                             
+#> 9                             
+#> 10 2.2250738585072e-308       
+#> 11 2.2250738585072e-308       
+#> 12 2.2250738585072e-308       
+#> 
+#> Model Statistics: 
+#>                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
+#>        Model:             12                 299988              161147.8
+#>    Saturated:             NA                     NA                    NA
+#> Independence:             NA                     NA                    NA
+#> Number of observations/statistics: 1e+05/3e+05
+#> 
+#> Information Criteria: 
+#>       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
+#> AIC:      -438828.2               161171.8                 161171.8
+#> BIC:     -3292591.7               161285.9                 161247.8
+#> CFI: NA 
+#> TLI: 1   (also known as NNFI) 
+#> RMSEA:  0  [95% CI (NA, NA)]
+#> Prob(RMSEA <= 0.05): NA
+#> To get additional fit indices, see help(mxRefModels)
+#> timestamp: 2024-07-06 22:20:49 
+#> Wall clock time: 66.5304 secs 
+#> optimizer:  SLSQP 
+#> OpenMx version number: 2.21.11 
+#> Need help?  See help(mxSummary)
+```
+
+## References
+
+
