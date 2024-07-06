@@ -79,11 +79,13 @@ lapply(
         )
       }
     )
-    theta_ubound <- theta_lbound <- psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
+    beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
       ncol = p
     )
+    theta_lbound <- psi_lbound <- beta_lbound
+    theta_ubound <- psi_ubound <- beta_ubound
     fit2 <- FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
