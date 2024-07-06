@@ -284,7 +284,7 @@ psi_l
 library(simStateSpace)
 sim <- SimSSMVARIVary(
   n = 5,
-  time = 20,
+  time = 50,
   mu0 = mu0,
   sigma0_l = sigma0_l,
   alpha = alpha,
