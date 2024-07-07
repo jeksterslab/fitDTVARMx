@@ -19,8 +19,8 @@ reference:
 articles:
 - title: Examples
   contents:
-  - fit-dt-var-id
   - fit-dt-var
+  - fit-dt-var-id
 - title: Session Information
   contents:
   - session
