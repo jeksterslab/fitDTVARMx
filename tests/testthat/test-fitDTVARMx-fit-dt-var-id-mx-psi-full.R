@@ -60,8 +60,8 @@ lapply(
     summary(fit)
     print(fit, means = FALSE)
     summary(fit, means = FALSE)
-    coef(fit, psi = TRUE)
-    vcov(fit, psi = TRUE)
+    coef(fit, psi = TRUE, theta = TRUE)
+    vcov(fit, psi = TRUE, theta = TRUE)
     testthat::test_that(
       paste(text, 1),
       {
@@ -118,8 +118,8 @@ lapply(
     summary(fit2)
     print(fit2, means = FALSE)
     summary(fit2, means = FALSE)
-    coef(fit2, psi = TRUE)
-    vcov(fit2, psi = TRUE)
+    coef(fit2, psi = TRUE, theta = TRUE)
+    vcov(fit2, psi = TRUE, theta = TRUE)
     testthat::test_that(
       paste(text, 2),
       {

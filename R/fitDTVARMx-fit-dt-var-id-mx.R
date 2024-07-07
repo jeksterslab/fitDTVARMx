@@ -82,6 +82,7 @@
 #' @examples
 #' \dontrun{
 #' # Generate data using the simStateSpace package------------------------------
+#' set.seed(42)
 #' beta_mu <- matrix(
 #'   data = c(
 #'     0.7, 0.5, -0.1,
@@ -119,6 +120,7 @@
 #' coef(fit)
 #' vcov(fit)
 #' }
+#'
 #' @family DTVAR Functions
 #' @keywords fitDTVARMx fit
 #' @import OpenMx

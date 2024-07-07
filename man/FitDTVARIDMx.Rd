@@ -141,6 +141,7 @@ Fit the First-Order Discrete-Time Vector Autoregressive Model by ID
 \examples{
 \dontrun{
 # Generate data using the simStateSpace package------------------------------
+set.seed(42)
 beta_mu <- matrix(
   data = c(
     0.7, 0.5, -0.1,
@@ -178,6 +179,7 @@ summary(fit)
 coef(fit)
 vcov(fit)
 }
+
 }
 \seealso{
 Other DTVAR Functions: 
