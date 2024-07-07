@@ -16,6 +16,7 @@
 #' @examples
 #' \dontrun{
 #' # Generate data using the simStateSpace package------------------------------
+#' set.seed(42)
 #' sim <- simStateSpace::SimSSMVARFixed(
 #'   n = 5,
 #'   time = 100,
@@ -46,6 +47,7 @@
 #' coef(fit)
 #' vcov(fit)
 #' }
+#'
 #' @family DTVAR Functions
 #' @keywords fitDTVARMx fit
 #' @export

@@ -141,6 +141,7 @@ Fit the First-Order Discrete-Time Vector Autoregressive Model
 \examples{
 \dontrun{
 # Generate data using the simStateSpace package------------------------------
+set.seed(42)
 sim <- simStateSpace::SimSSMVARFixed(
   n = 5,
   time = 100,
@@ -171,6 +172,7 @@ summary(fit)
 coef(fit)
 vcov(fit)
 }
+
 }
 \seealso{
 Other DTVAR Functions: 
