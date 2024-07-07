@@ -4,7 +4,7 @@
 \name{fitDTVARMx-package}
 \alias{fitDTVARMx}
 \alias{fitDTVARMx-package}
-\title{fitDTVARMx: Fit The Discrete-Time Vector Autoregressive Model}
+\title{fitDTVARMx: Fit the Discrete-Time Vector Autoregressive Model}
 \description{
 Fit the discrete-time vector autoregressive model using the 'OpenMx' package.
 }
