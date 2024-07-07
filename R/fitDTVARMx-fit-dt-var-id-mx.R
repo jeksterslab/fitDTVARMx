@@ -1,4 +1,4 @@
-#' Fit First Order Discrete-Time Vector Autoregressive Model by ID
+#' Fit the First-Order Discrete-Time Vector Autoregressive Model by ID
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
@@ -66,12 +66,61 @@
 #' @param sigma0_ubound Optional upper bound for `sigma0`.
 #'   Ignored if `sigma0_fixed = TRUE`.
 #' @param try Positive integer.
-#'   Number of extra tries for [OpenMx::mxTryHard()].
+#'   Number of extra optimization tries.
 #' @param ncores Positive integer.
 #'   Number of cores to use.
 #'
-#' @family Meta-Analysis of VAR Functions
-#' @keywords metaVAR fit
+#' @return Returns an object of class `fitdtvaridmx` which is
+#'   a list with the following elements:
+#'   \describe{
+#'     \item{call}{Function call.}
+#'     \item{args}{List of function arguments.}
+#'     \item{fun}{Function used ("FitDTVARIDMx").}
+#'     \item{output}{A list of fitted OpenMx models.}
+#'   }
+#'
+#' @examples
+#' \dontrun{
+#' # Generate data using the simStateSpace package------------------------------
+#' beta_mu <- matrix(
+#'   data = c(
+#'     0.7, 0.5, -0.1,
+#'     0.0, 0.6, 0.4,
+#'     0, 0, 0.5
+#'   ),
+#'   nrow = 3
+#' )
+#' beta_sigma <- diag(3 * 3)
+#' beta <- simStateSpace::SimBetaN(
+#'   n = 5,
+#'   beta = beta_mu,
+#'   vcov_beta_vec_l = t(chol(beta_sigma))
+#' )
+#' sim <- simStateSpace::SimSSMVARIVary(
+#'   n = 5,
+#'   time = 100,
+#'   mu0 = list(rep(x = 0, times = 3)),
+#'   sigma0_l = list(t(chol(diag(3)))),
+#'   alpha = list(rep(x = 0, times = 3)),
+#'   beta = beta,
+#'   psi_l = list(t(chol(diag(3))))
+#' )
+#' data <- as.data.frame(sim)
+#'
+#' # Fit the model--------------------------------------------------------------
+#' library(fitDTVARMx)
+#' fit <- FitDTVARIDMx(
+#'   data = data,
+#'   observed = c("y1", "y2", "y3"),
+#'   id = "id"
+#' )
+#' print(fit)
+#' summary(fit)
+#' coef(fit)
+#' vcov(fit)
+#' }
+#' @family DTVAR Functions
+#' @keywords fitDTVARMx fit
 #' @import OpenMx
 #' @importFrom stats coef vcov
 #' @export
@@ -100,6 +149,7 @@ FitDTVARIDMx <- function(data,
                          sigma0_ubound = NULL,
                          try = 1000,
                          ncores = NULL) {
+  byid <- TRUE
   args <- list(
     data = data,
     observed = observed,
@@ -125,7 +175,8 @@ FitDTVARIDMx <- function(data,
     sigma0_lbound = sigma0_lbound,
     sigma0_ubound = sigma0_ubound,
     try = try,
-    ncores = ncores
+    ncores = ncores,
+    byid = byid
   )
   output <- .FitDTVAR(
     data = data,
@@ -152,7 +203,8 @@ FitDTVARIDMx <- function(data,
     sigma0_lbound = sigma0_lbound,
     sigma0_ubound = sigma0_ubound,
     try = try,
-    ncores = ncores
+    ncores = ncores,
+    byid = byid
   )
   out <- list(
     call = match.call(),

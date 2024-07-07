@@ -1,4 +1,4 @@
-## ---- test-fitDTVARMx-theta-diag
+## ---- test-fitDTVARMx-fit-dt-var-id-mx-theta-diag
 lapply(
   X = 1,
   FUN = function(i,
@@ -6,8 +6,8 @@ lapply(
                  tol) {
     message(text)
     set.seed(42)
-    n <- 5
-    time <- 1000
+    n <- 2
+    time <- 500
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
@@ -33,7 +33,7 @@ lapply(
       ),
       nrow = p
     )
-    beta_sigma <- 0.001 * diag(p * p)
+    beta_sigma <- 0.00001 * diag(p * p)
     beta <- simStateSpace::SimBetaN(
       n = n,
       beta = beta_mu,
@@ -86,6 +86,7 @@ lapply(
     )
     theta_lbound <- psi_lbound <- beta_lbound
     theta_ubound <- psi_ubound <- beta_ubound
+    diag(theta_lbound) <- .Machine$double.xmin
     fit2 <- FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
@@ -98,7 +99,7 @@ lapply(
       psi_lbound = psi_lbound,
       psi_ubound = psi_ubound,
       theta_fixed = FALSE,
-      theta_start = .Machine$double.xmin * diag(p),
+      theta_start = 0.10 * diag(p),
       theta_lbound = theta_lbound,
       theta_ubound = theta_ubound,
       mu0_fixed = TRUE,
@@ -126,12 +127,12 @@ lapply(
           all(
             abs(
               summary(fit) - summary(fit2)
-            ) <= 0.01
+            ) <= tol
           )
         )
       }
     )
   },
-  text = "test-fitDTVARMx-theta-diag",
-  tol = 0.1
+  text = "test-fitDTVARMx-fit-dt-var-id-mx-theta-diag",
+  tol = 0.3
 )

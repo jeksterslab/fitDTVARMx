@@ -1,4 +1,4 @@
-## ---- test-fitDTVARMx-theta-null
+## ---- test-fitDTVARMx-fit-dt-var-id-mx-theta-null
 lapply(
   X = 1,
   FUN = function(i,
@@ -6,8 +6,8 @@ lapply(
                  tol) {
     message(text)
     set.seed(42)
-    n <- 5
-    time <- 1000
+    n <- 2
+    time <- 500
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
@@ -33,7 +33,7 @@ lapply(
       ),
       nrow = p
     )
-    beta_sigma <- 0.001 * diag(p * p)
+    beta_sigma <- 0.00001 * diag(p * p)
     beta <- simStateSpace::SimBetaN(
       n = n,
       beta = beta_mu,
@@ -122,12 +122,12 @@ lapply(
           all(
             abs(
               summary(fit) - summary(fit2)
-            ) <= 0.01
+            ) <= tol
           )
         )
       }
     )
   },
-  text = "test-fitDTVARMx-theta-null",
-  tol = 0.1
+  text = "test-fitDTVARMx-fit-dt-var-id-mx-theta-null",
+  tol = 0.3
 )

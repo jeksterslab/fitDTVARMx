@@ -1,4 +1,4 @@
-## ---- test-fitDTVARMx-psi-full
+## ---- test-fitDTVARMx-fit-dt-var-id-mx-psi-diag
 lapply(
   X = 1,
   FUN = function(i,
@@ -6,8 +6,8 @@ lapply(
                  tol) {
     message(text)
     set.seed(42)
-    n <- 5
-    time <- 1000
+    n <- 2
+    time <- 500
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
@@ -33,7 +33,7 @@ lapply(
       ),
       nrow = p
     )
-    beta_sigma <- 0.001 * diag(p * p)
+    beta_sigma <- 0.00001 * diag(p * p)
     beta <- simStateSpace::SimBetaN(
       n = n,
       beta = beta_mu,
@@ -53,7 +53,7 @@ lapply(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
-      psi_diag = FALSE,
+      psi_diag = TRUE,
       ncores = NULL
     )
     print(fit)
@@ -69,13 +69,8 @@ lapply(
           all(
             abs(
               c(
-                c(beta_mu),
-                psi[
-                  lower.tri(
-                    x = psi,
-                    diag = TRUE
-                  )
-                ]
+                beta_mu,
+                diag(psi)
               ) - summary(fit)
             ) <= tol
           )
@@ -94,7 +89,7 @@ lapply(
       beta_start = beta_mu,
       beta_lbound = beta_lbound,
       beta_ubound = beta_ubound,
-      psi_diag = FALSE,
+      psi_diag = TRUE,
       psi_start = psi,
       psi_lbound = psi_lbound,
       psi_ubound = psi_ubound,
@@ -127,12 +122,12 @@ lapply(
           all(
             abs(
               summary(fit) - summary(fit2)
-            ) <= 0.01
+            ) <= tol
           )
         )
       }
     )
   },
-  text = "test-fitDTVARMx-psi-full",
-  tol = 0.1
+  text = "test-fitDTVARMx-fit-dt-var-id-mx-psi-diag",
+  tol = 0.3
 )

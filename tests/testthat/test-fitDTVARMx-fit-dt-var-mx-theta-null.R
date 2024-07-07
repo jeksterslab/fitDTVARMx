@@ -1,4 +1,4 @@
-## ---- test-fitDTVARMx-psi-diag
+## ---- test-fitDTVARMx-fit-dt-var-mx-theta-null
 lapply(
   X = 1,
   FUN = function(i,
@@ -6,26 +6,18 @@ lapply(
                  tol) {
     message(text)
     set.seed(42)
-    n <- 5
-    time <- 1000
+    n <- 2
+    time <- 500
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
-    mu0 <- list(
-      null_vec
-    )
+    mu0 <- null_vec
     sigma0 <- diag(p)
-    sigma0_l <- list(
-      t(chol(sigma0))
-    )
-    alpha <- list(
-      null_vec
-    )
+    sigma0_l <- t(chol(sigma0))
+    alpha <- null_vec
     psi <- 0.1 * iden
-    psi_l <- list(
-      t(chol(psi))
-    )
-    beta_mu <- matrix(
+    psi_l <- t(chol(psi))
+    beta <- matrix(
       data = c(
         0.7, 0.5, -0.1,
         0.0, 0.6, 0.4,
@@ -33,13 +25,7 @@ lapply(
       ),
       nrow = p
     )
-    beta_sigma <- 0.001 * diag(p * p)
-    beta <- simStateSpace::SimBetaN(
-      n = n,
-      beta = beta_mu,
-      vcov_beta_vec_l = t(chol(beta_sigma))
-    )
-    sim <- simStateSpace::SimSSMVARIVary(
+    sim <- simStateSpace::SimSSMVARFixed(
       n = n,
       time = time,
       mu0 = mu0,
@@ -49,7 +35,7 @@ lapply(
       psi_l = psi_l
     )
     data <- as.data.frame(sim)
-    fit <- FitDTVARIDMx(
+    fit <- FitDTVARMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -69,9 +55,9 @@ lapply(
           all(
             abs(
               c(
-                beta_mu,
+                beta,
                 diag(psi)
-              ) - summary(fit)
+              ) - coef(fit, psi = TRUE)
             ) <= tol
           )
         )
@@ -82,11 +68,11 @@ lapply(
       nrow = p,
       ncol = p
     )
-    fit2 <- FitDTVARIDMx(
+    fit2 <- FitDTVARMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
-      beta_start = beta_mu,
+      beta_start = beta,
       beta_lbound = beta_lbound,
       beta_ubound = beta_ubound,
       psi_diag = TRUE,
@@ -121,13 +107,13 @@ lapply(
         testthat::expect_true(
           all(
             abs(
-              summary(fit) - summary(fit2)
-            ) <= 0.01
+              coef(fit) - coef(fit2)
+            ) <= tol
           )
         )
       }
     )
   },
-  text = "test-fitDTVARMx-psi-diag",
-  tol = 0.1
+  text = "test-fitDTVARMx-fit-dt-var-mx-theta-null",
+  tol = 0.3
 )

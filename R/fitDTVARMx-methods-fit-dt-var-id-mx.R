@@ -75,12 +75,12 @@ summary.fitdtvaridmx <- function(object,
 #' @param object Object of class `fitdtvaridmx`.
 #' @param psi Logical.
 #'   If `psi = TRUE`,
-#'   include estimates of the `psi` matrix.
+#'   include estimates of the `psi` matrix, if available.
 #'   If `psi = FALSE`,
 #'   exclude estimates of the `psi` matrix.
 #' @param theta Logical.
 #'   If `theta = TRUE`,
-#'   include estimates of the `theta` matrix if available.
+#'   include estimates of the `theta` matrix, if available.
 #'   If `theta = FALSE`,
 #'   exclude estimates of the `theta` matrix.
 #' @param ... additional arguments.
@@ -137,12 +137,12 @@ coef.fitdtvaridmx <- function(object,
 #' @param object Object of class `fitdtvaridmx`.
 #' @param psi Logical.
 #'   If `psi = TRUE`,
-#'   include estimates of the `psi` matrix.
+#'   include estimates of the `psi` matrix, if available.
 #'   If `psi = FALSE`,
 #'   exclude estimates of the `psi` matrix.
 #' @param theta Logical.
 #'   If `theta = TRUE`,
-#'   include estimates of the `theta` matrix if available.
+#'   include estimates of the `theta` matrix, if available.
 #'   If `theta = FALSE`,
 #'   exclude estimates of the `theta` matrix.
 #' @param ... additional arguments.
@@ -185,7 +185,7 @@ vcov.fitdtvaridmx <- function(object,
       X = object$output,
       FUN = function(x,
                      idx) {
-        return(vcov(x)[idx, idx])
+        return(vcov(x)[idx, idx, drop = FALSE])
       },
       idx = idx
     )
