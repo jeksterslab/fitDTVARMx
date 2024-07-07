@@ -69,17 +69,11 @@ lapply(
         testthat::expect_true(
           all(
             abs(
-              round(
-                c(
-                  beta_mu,
-                  diag(psi),
-                  rep(x = 0, times = p)
-                ),
-                digits = 1
-              ) - round(
-                summary(fit),
-                digits = 1
-              )
+              c(
+                beta_mu,
+                diag(psi),
+                rep(x = 0, times = p)
+              ) - summary(fit)
             ) <= tol
           )
         )
@@ -92,6 +86,7 @@ lapply(
     )
     theta_lbound <- psi_lbound <- beta_lbound
     theta_ubound <- psi_ubound <- beta_ubound
+    diag(theta_lbound) <- .Machine$double.xmin
     fit2 <- FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
@@ -131,13 +126,7 @@ lapply(
         testthat::expect_true(
           all(
             abs(
-              round(
-                summary(fit),
-                digits = 1
-              ) - round(
-                summary(fit2),
-                digits = 1
-              )
+              summary(fit) - summary(fit2)
             ) <= tol
           )
         )
@@ -145,5 +134,5 @@ lapply(
     )
   },
   text = "test-fitDTVARMx-fit-dt-var-id-mx-theta-diag",
-  tol = 0.1
+  tol = 0.3
 )

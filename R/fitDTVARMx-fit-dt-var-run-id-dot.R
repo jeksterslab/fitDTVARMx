@@ -87,6 +87,7 @@
   if (length(ids) == 1) {
     par <- FALSE
   }
+  # nocov end
   if (par) {
     # nocov start
     foo <- function(ids,

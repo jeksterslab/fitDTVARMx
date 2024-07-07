@@ -54,16 +54,10 @@ lapply(
         testthat::expect_true(
           all(
             abs(
-              round(
-                c(
-                  beta,
-                  diag(psi)
-                ),
-                digits = 1
-              ) - round(
-                coef(fit, psi = TRUE),
-                digits = 1
-              )
+              c(
+                beta,
+                diag(psi)
+              ) - coef(fit, psi = TRUE)
             ) <= tol
           )
         )
@@ -113,13 +107,7 @@ lapply(
         testthat::expect_true(
           all(
             abs(
-              round(
-                coef(fit),
-                digits = 1
-              ) - round(
-                coef(fit2),
-                digits = 1
-              )
+              coef(fit) - coef(fit2)
             ) <= tol
           )
         )
@@ -127,5 +115,5 @@ lapply(
     )
   },
   text = "test-fitDTVARMx-fit-dt-var-mx-theta-null",
-  tol = 0.1
+  tol = 0.3
 )

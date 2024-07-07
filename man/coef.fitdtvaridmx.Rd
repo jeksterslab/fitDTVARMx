@@ -11,13 +11,13 @@
 
 \item{psi}{Logical.
 If \code{psi = TRUE},
-include estimates of the \code{psi} matrix.
+include estimates of the \code{psi} matrix, if available.
 If \code{psi = FALSE},
 exclude estimates of the \code{psi} matrix.}
 
 \item{theta}{Logical.
 If \code{theta = TRUE},
-include estimates of the \code{theta} matrix if available.
+include estimates of the \code{theta} matrix, if available.
 If \code{theta = FALSE},
 exclude estimates of the \code{theta} matrix.}
 

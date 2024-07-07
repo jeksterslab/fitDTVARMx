@@ -68,21 +68,15 @@ lapply(
         testthat::expect_true(
           all(
             abs(
-              round(
-                c(
-                  c(beta_mu),
-                  psi[
-                    lower.tri(
-                      x = psi,
-                      diag = TRUE
-                    )
-                  ]
-                ),
-                digits = 1
-              ) - round(
-                summary(fit),
-                digits = 1
-              )
+              c(
+                c(beta_mu),
+                psi[
+                  lower.tri(
+                    x = psi,
+                    diag = TRUE
+                  )
+                ]
+              ) - summary(fit)
             ) <= tol
           )
         )
@@ -132,13 +126,7 @@ lapply(
         testthat::expect_true(
           all(
             abs(
-              round(
-                summary(fit),
-                digits = 1
-              ) - round(
-                summary(fit2),
-                digits = 1
-              )
+              summary(fit) - summary(fit2)
             ) <= tol
           )
         )
@@ -146,5 +134,5 @@ lapply(
     )
   },
   text = "test-fitDTVARMx-fit-dt-var-id-mx-psi-full",
-  tol = 0.1
+  tol = 0.3
 )

@@ -37,12 +37,12 @@ summary.fitdtvarmx <- function(object,
 #' @param object Object of class `fitdtvarmx`.
 #' @param psi Logical.
 #'   If `psi = TRUE`,
-#'   include estimates of the `psi` matrix.
+#'   include estimates of the `psi` matrix, if available.
 #'   If `psi = FALSE`,
 #'   exclude estimates of the `psi` matrix.
 #' @param theta Logical.
 #'   If `theta = TRUE`,
-#'   include estimates of the `theta` matrix if available.
+#'   include estimates of the `theta` matrix, if available.
 #'   If `theta = FALSE`,
 #'   exclude estimates of the `theta` matrix.
 #' @param ... additional arguments.
@@ -91,12 +91,12 @@ coef.fitdtvarmx <- function(object,
 #' @param object Object of class `fitdtvarmx`.
 #' @param psi Logical.
 #'   If `psi = TRUE`,
-#'   include estimates of the `psi` matrix.
+#'   include estimates of the `psi` matrix, if available.
 #'   If `psi = FALSE`,
 #'   exclude estimates of the `psi` matrix.
 #' @param theta Logical.
 #'   If `theta = TRUE`,
-#'   include estimates of the `theta` matrix if available.
+#'   include estimates of the `theta` matrix, if available.
 #'   If `theta = FALSE`,
 #'   exclude estimates of the `theta` matrix.
 #' @param ... additional arguments.

@@ -67,6 +67,7 @@
   if (length(ids) == 1) {
     par <- FALSE
   }
+  # nocov end
   if (par) {
     # nocov start
     foo <- function(ids,
@@ -112,22 +113,22 @@
       X = ids,
       FUN = model_id,
       data = data,
+      id = id,
       model = model
     )
   }
-  model <- OpenMx::mxModel(
-    name = "DTVAR",
-    model_i,
-    mxFitFunctionMultigroup(
-      paste0(
-        "DTVAR",
-        "_",
-        ids
-      )
-    )
-  )
   fit <- OpenMx::mxTryHardctsem(
-    model = model,
+    model = OpenMx::mxModel(
+      name = "DTVAR",
+      model_i,
+      mxFitFunctionMultigroup(
+        paste0(
+          "DTVAR",
+          "_",
+          ids
+        )
+      )
+    ),
     extraTries = try
   )
   if (fit@output[["status"]][["code"]] > 1) {
