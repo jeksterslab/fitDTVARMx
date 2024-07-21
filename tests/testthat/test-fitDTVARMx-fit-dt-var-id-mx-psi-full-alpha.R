@@ -54,6 +54,9 @@ lapply(
       observed = paste0("y", seq_len(k)),
       id = "id",
       alpha_fixed = FALSE,
+      alpha_start = rep(x = 0, times = p),
+      alpha_lbound = rep(x = NA, times = p),
+      alpha_ubound = rep(x = NA, times = p),
       psi_diag = FALSE,
       theta_fixed = FALSE,
       ncores = NULL
@@ -91,13 +94,15 @@ lapply(
       nrow = p,
       ncol = p
     )
-    alpha_start <- rep(
-      x = 0,
-      times = p
+    alpha_start <- matrix(
+      data = 0,
+      nrow = p,
+      ncol = 1
     )
-    alpha_ubound <- alpha_lbound <- rep(
-      x = NA,
-      times = p
+    alpha_ubound <- alpha_lbound <- matrix(
+      data = NA,
+      nrow = p,
+      ncol = 1
     )
     fit2 <- FitDTVARIDMx(
       data = data,
@@ -134,8 +139,8 @@ lapply(
     summary(fit2)
     print(fit2, means = FALSE)
     summary(fit2, means = FALSE)
-    coef(fit2, psi = TRUE, theta = TRUE)
-    vcov(fit2, psi = TRUE, theta = TRUE)
+    coef(fit2, alpha = TRUE, psi = TRUE, theta = TRUE)
+    vcov(fit2, alpha = TRUE, psi = TRUE, theta = TRUE)
     testthat::test_that(
       paste(text, 2),
       {
