@@ -59,7 +59,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-07-09</h4>
+            <h4 data-toc-skip class="date">2024-07-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/fitDTVARMx/blob/main/vignettes/fit-dt-var-id.Rmd"><code>vignettes/fit-dt-var-id.Rmd</code></a></small>
       <div class="d-none name"><code>fit-dt-var-id.Rmd</code></div>
@@ -344,13 +344,12 @@ individual
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitDTVARMx">fitDTVARMx</a></span><span class="op">)</span></span>
-<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/FitDTVARIDMx.html">FitDTVARIDMx</a></span><span class="op">(</span></span>
+<span><span class="fu"><a href="../reference/FitDTVARIDMx.html">FitDTVARIDMx</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">data</span>,</span>
 <span>  observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  id <span class="op">=</span> <span class="st">"id"</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="va">fit</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Means of the estimated paramaters per individual.</span></span>
 <span><span class="co">#&gt;      beta_11      beta_21      beta_31      beta_12      beta_22      beta_32 </span></span>

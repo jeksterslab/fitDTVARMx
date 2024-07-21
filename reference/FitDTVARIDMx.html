@@ -45,6 +45,10 @@
 <span>  <span class="va">data</span>,</span>
 <span>  <span class="va">observed</span>,</span>
 <span>  <span class="va">id</span>,</span>
+<span>  alpha_fixed <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  alpha_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  alpha_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  alpha_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  beta_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  beta_lbound <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  beta_ubound <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -92,6 +96,32 @@ of the names of the observed variables in the data.</p></dd>
 <dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
 <dd><p>Character string.
 A character string of the name of the ID variable in the data.</p></dd>
+
+
+<dt id="arg-alpha-fixed">alpha_fixed<a class="anchor" aria-label="anchor" href="#arg-alpha-fixed"></a></dt>
+<dd><p>Logical.
+If <code>alpha_fixed = TRUE</code>,
+the dynamic model intercept vector <code>alpha</code> is fixed at zero.
+If <code>alpha_fixed = FALSE</code>,
+the dynamic model intercept vector <code>alpha</code> is estimated.</p></dd>
+
+
+<dt id="arg-alpha-start">alpha_start<a class="anchor" aria-label="anchor" href="#arg-alpha-start"></a></dt>
+<dd><p>Optional starting values for <code>alpha</code>.
+If <code>alpha_fixed = TRUE</code>,
+<code>alpha_start</code> will be used as fixed values.
+If <code>alpha_fixed = FALSE</code>,
+<code>alpha_start</code> will be used as starting values.</p></dd>
+
+
+<dt id="arg-alpha-lbound">alpha_lbound<a class="anchor" aria-label="anchor" href="#arg-alpha-lbound"></a></dt>
+<dd><p>Optional lower bound for <code>alpha</code>.
+Ignored if <code>alpha_fixed = TRUE</code>.</p></dd>
+
+
+<dt id="arg-alpha-ubound">alpha_ubound<a class="anchor" aria-label="anchor" href="#arg-alpha-ubound"></a></dt>
+<dd><p>Optional upper bound for <code>alpha</code>.
+Ignored if <code>alpha_fixed = TRUE</code>.</p></dd>
 
 
 <dt id="arg-beta-start">beta_start<a class="anchor" aria-label="anchor" href="#arg-beta-start"></a></dt>
@@ -162,8 +192,10 @@ initial mean vector <code>mu0</code> is estimated.</p></dd>
 
 <dt id="arg-mu-start">mu0_start<a class="anchor" aria-label="anchor" href="#arg-mu-start"></a></dt>
 <dd><p>Optional starting values for <code>mu0</code>.
-If <code>mu0_fixed = TRUE</code>, <code>mu0_start</code> will be used as fixed values.
-If <code>mu0_fixed = FALSE</code>, <code>mu0_start</code> will be used as starting values.</p></dd>
+If <code>mu0_fixed = TRUE</code>,
+<code>mu0_start</code> will be used as fixed values.
+If <code>mu0_fixed = FALSE</code>,
+<code>mu0_start</code> will be used as starting values.</p></dd>
 
 
 <dt id="arg-mu-lbound">mu0_lbound<a class="anchor" aria-label="anchor" href="#arg-mu-lbound"></a></dt>
@@ -192,8 +224,10 @@ If <code>sigma0_diag = TRUE</code>,
 
 <dt id="arg-sigma-start">sigma0_start<a class="anchor" aria-label="anchor" href="#arg-sigma-start"></a></dt>
 <dd><p>Optional starting values for <code>sigma0</code>.
-If <code>sigma0_fixed = TRUE</code>, <code>sigma0_start</code> will be used as fixed values.
-If <code>sigma0_fixed = FALSE</code>, <code>sigma0_start</code> will be used as starting values.</p></dd>
+If <code>sigma0_fixed = TRUE</code>,
+<code>sigma0_start</code> will be used as fixed values.
+If <code>sigma0_fixed = FALSE</code>,
+<code>sigma0_start</code> will be used as starting values.</p></dd>
 
 
 <dt id="arg-sigma-lbound">sigma0_lbound<a class="anchor" aria-label="anchor" href="#arg-sigma-lbound"></a></dt>
