@@ -35,6 +35,11 @@ summary.fitdtvarmx <- function(object,
 #' @author Ivan Jacob Agaloos Pesigan
 #'
 #' @param object Object of class `fitdtvarmx`.
+#' @param alpha Logical.
+#'   If `alpha = TRUE`,
+#'   include estimates of the `alpha` vector, if available.
+#'   If `alpha = FALSE`,
+#'   exclude estimates of the `alpha` vector.
 #' @param psi Logical.
 #'   If `psi = TRUE`,
 #'   include estimates of the `psi` matrix, if available.
@@ -52,6 +57,7 @@ summary.fitdtvarmx <- function(object,
 #' @keywords methods
 #' @export
 coef.fitdtvarmx <- function(object,
+                            alpha = FALSE,
                             psi = FALSE,
                             theta = FALSE,
                             ...) {
@@ -61,6 +67,15 @@ coef.fitdtvarmx <- function(object,
     pattern = "^beta_",
     x = parnames
   )
+  if (alpha) {
+    idx <- c(
+      idx,
+      grep(
+        pattern = "^alpha_",
+        x = parnames
+      )
+    )
+  }
   if (psi) {
     idx <- c(
       idx,
@@ -89,6 +104,11 @@ coef.fitdtvarmx <- function(object,
 #' @author Ivan Jacob Agaloos Pesigan
 #'
 #' @param object Object of class `fitdtvarmx`.
+#' @param alpha Logical.
+#'   If `alpha = TRUE`,
+#'   include estimates of the `alpha` vector, if available.
+#'   If `alpha = FALSE`,
+#'   exclude estimates of the `alpha` vector.
 #' @param psi Logical.
 #'   If `psi = TRUE`,
 #'   include estimates of the `psi` matrix, if available.
@@ -106,6 +126,7 @@ coef.fitdtvarmx <- function(object,
 #' @keywords methods
 #' @export
 vcov.fitdtvarmx <- function(object,
+                            alpha = FALSE,
                             psi = FALSE,
                             theta = FALSE,
                             ...) {
@@ -115,6 +136,15 @@ vcov.fitdtvarmx <- function(object,
     pattern = "^beta_",
     x = parnames
   )
+  if (alpha) {
+    idx <- c(
+      idx,
+      grep(
+        pattern = "^alpha_",
+        x = parnames
+      )
+    )
+  }
   if (psi) {
     idx <- c(
       idx,

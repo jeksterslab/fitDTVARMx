@@ -1,7 +1,7 @@
 ---
 title: "Fit the Discrete-Time Vector Autoregressive Model"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-07-09"
+date: "2024-07-21"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -271,7 +271,7 @@ The `FitDTVARMx` function fits a DT-VAR model.
 
 ``` r
 library(fitDTVARMx)
-fit <- FitDTVARMx(
+FitDTVARMx(
   data = data,
   observed = paste0("y", seq_len(k)),
   id = "id",
@@ -294,7 +294,6 @@ fit <- FitDTVARMx(
 #>  Solution found!  Final fit=161147.78 (started at 559956.91)  (1 attempt(s): 1 valid, 0 errors)
 #>  Start values from best fit:
 #> 0.699100963316375,0.498053073559555,-0.100937447224889,-0.0015600327617861,0.602705790036225,0.401870024126801,0.00490614070660785,-0.00383247105431546,0.498874252399096,0.100182502728935,0.0996918740870773,0.0998830418803938
-fit
 #> Summary of DTVAR 
 #>  
 #> free parameters:
@@ -341,8 +340,8 @@ fit
 #> RMSEA:  0  [95% CI (NA, NA)]
 #> Prob(RMSEA <= 0.05): NA
 #> To get additional fit indices, see help(mxRefModels)
-#> timestamp: 2024-07-09 08:13:31 
-#> Wall clock time: 66.4021 secs 
+#> timestamp: 2024-07-21 07:51:56 
+#> Wall clock time: 66.00849 secs 
 #> optimizer:  SLSQP 
 #> OpenMx version number: 2.21.11 
 #> Need help?  See help(mxSummary)

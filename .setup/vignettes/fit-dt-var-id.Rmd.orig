@@ -329,13 +329,12 @@ library(fitDTVARMx)
 
 ```{r}
 library(fitDTVARMx)
-fit <- FitDTVARIDMx(
+FitDTVARIDMx(
   data = data,
   observed = paste0("y", seq_len(k)),
   id = "id",
   ncores = parallel::detectCores()
 )
-fit
 ```
 
 ## References

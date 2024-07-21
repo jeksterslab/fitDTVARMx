@@ -1,7 +1,7 @@
 ---
 title: "Fit the Discrete-Time Vector Autoregressive Model By ID"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-07-09"
+date: "2024-07-21"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -296,13 +296,12 @@ The `FitDTVARIDMx` function fits a DT-VAR model on each individual $i$.
 
 ``` r
 library(fitDTVARMx)
-fit <- FitDTVARIDMx(
+FitDTVARIDMx(
   data = data,
   observed = paste0("y", seq_len(k)),
   id = "id",
   ncores = parallel::detectCores()
 )
-fit
 #> 
 #> Means of the estimated paramaters per individual.
 #>      beta_11      beta_21      beta_31      beta_12      beta_22      beta_32 

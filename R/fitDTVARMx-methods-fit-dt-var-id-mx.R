@@ -73,6 +73,11 @@ summary.fitdtvaridmx <- function(object,
 #' @author Ivan Jacob Agaloos Pesigan
 #'
 #' @param object Object of class `fitdtvaridmx`.
+#' @param alpha Logical.
+#'   If `alpha = TRUE`,
+#'   include estimates of the `alpha` vector, if available.
+#'   If `alpha = FALSE`,
+#'   exclude estimates of the `alpha` vector.
 #' @param psi Logical.
 #'   If `psi = TRUE`,
 #'   include estimates of the `psi` matrix, if available.
@@ -90,6 +95,7 @@ summary.fitdtvaridmx <- function(object,
 #' @keywords methods
 #' @export
 coef.fitdtvaridmx <- function(object,
+                              alpha = FALSE,
                               psi = FALSE,
                               theta = FALSE,
                               ...) {
@@ -100,6 +106,15 @@ coef.fitdtvaridmx <- function(object,
     pattern = "^beta_",
     x = parnames
   )
+  if (alpha) {
+    idx <- c(
+      idx,
+      grep(
+        pattern = "^alpha_",
+        x = parnames
+      )
+    )
+  }
   if (psi) {
     idx <- c(
       idx,
@@ -135,6 +150,11 @@ coef.fitdtvaridmx <- function(object,
 #' @author Ivan Jacob Agaloos Pesigan
 #'
 #' @param object Object of class `fitdtvaridmx`.
+#' @param alpha Logical.
+#'   If `alpha = TRUE`,
+#'   include estimates of the `alpha` vector, if available.
+#'   If `alpha = FALSE`,
+#'   exclude estimates of the `alpha` vector.
 #' @param psi Logical.
 #'   If `psi = TRUE`,
 #'   include estimates of the `psi` matrix, if available.
@@ -152,6 +172,7 @@ coef.fitdtvaridmx <- function(object,
 #' @keywords methods
 #' @export
 vcov.fitdtvaridmx <- function(object,
+                              alpha = FALSE,
                               psi = FALSE,
                               theta = FALSE,
                               ...) {
@@ -162,6 +183,15 @@ vcov.fitdtvaridmx <- function(object,
     pattern = "^beta_",
     x = parnames
   )
+  if (alpha) {
+    idx <- c(
+      idx,
+      grep(
+        pattern = "^alpha_",
+        x = parnames
+      )
+    )
+  }
   if (psi) {
     idx <- c(
       idx,

@@ -4,10 +4,16 @@
 \alias{coef.fitdtvarmx}
 \title{Parameter Estimates}
 \usage{
-\method{coef}{fitdtvarmx}(object, psi = FALSE, theta = FALSE, ...)
+\method{coef}{fitdtvarmx}(object, alpha = FALSE, psi = FALSE, theta = FALSE, ...)
 }
 \arguments{
 \item{object}{Object of class \code{fitdtvarmx}.}
+
+\item{alpha}{Logical.
+If \code{alpha = TRUE},
+include estimates of the \code{alpha} vector, if available.
+If \code{alpha = FALSE},
+exclude estimates of the \code{alpha} vector.}
 
 \item{psi}{Logical.
 If \code{psi = TRUE},
