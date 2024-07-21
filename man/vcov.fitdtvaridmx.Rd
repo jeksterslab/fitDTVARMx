@@ -4,10 +4,16 @@
 \alias{vcov.fitdtvaridmx}
 \title{Sampling Covariance Matrix of the Parameter Estimates}
 \usage{
-\method{vcov}{fitdtvaridmx}(object, psi = FALSE, theta = FALSE, ...)
+\method{vcov}{fitdtvaridmx}(object, alpha = FALSE, psi = FALSE, theta = FALSE, ...)
 }
 \arguments{
 \item{object}{Object of class \code{fitdtvaridmx}.}
+
+\item{alpha}{Logical.
+If \code{alpha = TRUE},
+include estimates of the \code{alpha} vector, if available.
+If \code{alpha = FALSE},
+exclude estimates of the \code{alpha} vector.}
 
 \item{psi}{Logical.
 If \code{psi = TRUE},

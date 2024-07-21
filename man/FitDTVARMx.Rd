@@ -8,6 +8,10 @@ FitDTVARMx(
   data,
   observed,
   id,
+  alpha_fixed = TRUE,
+  alpha_start = NULL,
+  alpha_lbound = NULL,
+  alpha_ubound = NULL,
   beta_start = NULL,
   beta_lbound = NULL,
   beta_ubound = NULL,
@@ -46,6 +50,24 @@ of the names of the observed variables in the data.}
 
 \item{id}{Character string.
 A character string of the name of the ID variable in the data.}
+
+\item{alpha_fixed}{Logical.
+If \code{alpha_fixed = TRUE},
+the dynamic model intercept vector \code{alpha} is fixed at zero.
+If \code{alpha_fixed = FALSE},
+the dynamic model intercept vector \code{alpha} is estimated.}
+
+\item{alpha_start}{Optional starting values for \code{alpha}.
+If \code{alpha_fixed = TRUE},
+\code{alpha_start} will be used as fixed values.
+If \code{alpha_fixed = FALSE},
+\code{alpha_start} will be used as starting values.}
+
+\item{alpha_lbound}{Optional lower bound for \code{alpha}.
+Ignored if \code{alpha_fixed = TRUE}.}
+
+\item{alpha_ubound}{Optional upper bound for \code{alpha}.
+Ignored if \code{alpha_fixed = TRUE}.}
 
 \item{beta_start}{Numeric matrix.
 Optional starting values for \code{beta}.}
@@ -90,8 +112,10 @@ If \code{mu0_fixed = FALSE},
 initial mean vector \code{mu0} is estimated.}
 
 \item{mu0_start}{Optional starting values for \code{mu0}.
-If \code{mu0_fixed = TRUE}, \code{mu0_start} will be used as fixed values.
-If \code{mu0_fixed = FALSE}, \code{mu0_start} will be used as starting values.}
+If \code{mu0_fixed = TRUE},
+\code{mu0_start} will be used as fixed values.
+If \code{mu0_fixed = FALSE},
+\code{mu0_start} will be used as starting values.}
 
 \item{mu0_lbound}{Optional lower bound for \code{mu0}.
 Ignored if \code{mu0_fixed = TRUE}.}
@@ -110,8 +134,10 @@ If \code{sigma0_diag = TRUE},
 \code{sigma0} is a diagonal matrix.}
 
 \item{sigma0_start}{Optional starting values for \code{sigma0}.
-If \code{sigma0_fixed = TRUE}, \code{sigma0_start} will be used as fixed values.
-If \code{sigma0_fixed = FALSE}, \code{sigma0_start} will be used as starting values.}
+If \code{sigma0_fixed = TRUE},
+\code{sigma0_start} will be used as fixed values.
+If \code{sigma0_fixed = FALSE},
+\code{sigma0_start} will be used as starting values.}
 
 \item{sigma0_lbound}{Optional lower bound for \code{sigma0}.
 Ignored if \code{sigma0_fixed = TRUE}.}

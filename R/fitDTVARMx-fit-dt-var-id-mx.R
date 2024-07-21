@@ -13,6 +13,20 @@
 #'   of the names of the observed variables in the data.
 #' @param id Character string.
 #'   A character string of the name of the ID variable in the data.
+#' @param alpha_fixed Logical.
+#'   If `alpha_fixed = TRUE`,
+#'   the dynamic model intercept vector `alpha` is fixed at zero.
+#'   If `alpha_fixed = FALSE`,
+#'   the dynamic model intercept vector `alpha` is estimated.
+#' @param alpha_start Optional starting values for `alpha`.
+#'   If `alpha_fixed = TRUE`,
+#'   `alpha_start` will be used as fixed values.
+#'   If `alpha_fixed = FALSE`,
+#'   `alpha_start` will be used as starting values.
+#' @param alpha_lbound Optional lower bound for `alpha`.
+#'   Ignored if `alpha_fixed = TRUE`.
+#' @param alpha_ubound Optional upper bound for `alpha`.
+#'   Ignored if `alpha_fixed = TRUE`.
 #' @param beta_start Numeric matrix.
 #'   Optional starting values for `beta`.
 #' @param beta_lbound Numeric matrix.
@@ -44,8 +58,10 @@
 #'   If `mu0_fixed = FALSE`,
 #'   initial mean vector `mu0` is estimated.
 #' @param mu0_start Optional starting values for `mu0`.
-#'   If `mu0_fixed = TRUE`, `mu0_start` will be used as fixed values.
-#'   If `mu0_fixed = FALSE`, `mu0_start` will be used as starting values.
+#'   If `mu0_fixed = TRUE`,
+#'   `mu0_start` will be used as fixed values.
+#'   If `mu0_fixed = FALSE`,
+#'   `mu0_start` will be used as starting values.
 #' @param mu0_lbound Optional lower bound for `mu0`.
 #'   Ignored if `mu0_fixed = TRUE`.
 #' @param mu0_ubound Optional upper bound for `mu0`.
@@ -59,8 +75,10 @@
 #'   If `sigma0_diag = TRUE`,
 #'   `sigma0` is a diagonal matrix.
 #' @param sigma0_start Optional starting values for `sigma0`.
-#'   If `sigma0_fixed = TRUE`, `sigma0_start` will be used as fixed values.
-#'   If `sigma0_fixed = FALSE`, `sigma0_start` will be used as starting values.
+#'   If `sigma0_fixed = TRUE`,
+#'   `sigma0_start` will be used as fixed values.
+#'   If `sigma0_fixed = FALSE`,
+#'   `sigma0_start` will be used as starting values.
 #' @param sigma0_lbound Optional lower bound for `sigma0`.
 #'   Ignored if `sigma0_fixed = TRUE`.
 #' @param sigma0_ubound Optional upper bound for `sigma0`.
@@ -145,6 +163,10 @@
 FitDTVARIDMx <- function(data,
                          observed,
                          id,
+                         alpha_fixed = TRUE,
+                         alpha_start = NULL,
+                         alpha_lbound = NULL,
+                         alpha_ubound = NULL,
                          beta_start = NULL,
                          beta_lbound = NULL,
                          beta_ubound = NULL,
@@ -172,6 +194,10 @@ FitDTVARIDMx <- function(data,
     data = data,
     observed = observed,
     id = id,
+    alpha_fixed = alpha_fixed,
+    alpha_start = alpha_start,
+    alpha_lbound = alpha_lbound,
+    alpha_ubound = alpha_ubound,
     beta_start = beta_start,
     beta_lbound = beta_lbound,
     beta_ubound = beta_ubound,
@@ -200,6 +226,10 @@ FitDTVARIDMx <- function(data,
     data = data,
     observed = observed,
     id = id,
+    alpha_fixed = alpha_fixed,
+    alpha_start = alpha_start,
+    alpha_lbound = alpha_lbound,
+    alpha_ubound = alpha_ubound,
     beta_start = beta_start,
     beta_lbound = beta_lbound,
     beta_ubound = beta_ubound,

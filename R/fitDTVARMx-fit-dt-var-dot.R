@@ -1,6 +1,10 @@
 .FitDTVAR <- function(data,
                       observed,
                       id,
+                      alpha_fixed = TRUE,
+                      alpha_start = NULL,
+                      alpha_lbound = NULL,
+                      alpha_ubound = NULL,
                       beta_start = NULL,
                       beta_lbound = NULL,
                       beta_ubound = NULL,
@@ -40,13 +44,22 @@
         beta_lbound = beta_lbound,
         beta_ubound = beta_ubound
       ),
-      gamma = .FitDTVARGamma(k = k),
+      gamma = .FitDTVARGamma(
+        k = k,
+        idx = idx,
+        alpha_fixed = alpha_fixed,
+        alpha_start = alpha_start,
+        alpha_lbound = alpha_lbound,
+        alpha_ubound = alpha_ubound
+      ),
       lambda = .FitDTVARLambda(
         k = k,
         observed = observed,
         statenames = statenames
       ),
-      kappa = .FitDTVARKappa(k = k),
+      kappa = .FitDTVARKappa(
+        k = k
+      ),
       psi = .FitDTVARPsi(
         k = k,
         idx = idx,
@@ -68,6 +81,7 @@
       mu0 = .FitDTVARMu0(
         k = k,
         idx = idx,
+        statenames = statenames,
         mu0_fixed = mu0_fixed,
         mu0_start = mu0_start,
         mu0_lbound = mu0_lbound,
@@ -82,7 +96,10 @@
         sigma0_lbound = sigma0_lbound,
         sigma0_ubound = sigma0_ubound
       ),
-      covariate = .FitDTVARX(),
+      covariate = .FitDTVARX(
+        k = k,
+        alpha_fixed = alpha_fixed
+      ),
       try = try,
       ncores = ncores,
       byid = byid
