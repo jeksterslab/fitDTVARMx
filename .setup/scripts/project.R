@@ -18,6 +18,7 @@
 project <- "fitDTVARMx"
 
 pkg_cran <- c(
+  "simStateSpace",
   "OpenMx"
 )
 
