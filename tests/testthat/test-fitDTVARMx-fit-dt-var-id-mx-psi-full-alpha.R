@@ -153,6 +153,19 @@ lapply(
         )
       }
     )
+    # coverage
+    FitDTVARIDMx(
+      data = data,
+      observed = paste0("y", seq_len(k)),
+      id = "id",
+      alpha_fixed = FALSE,
+      alpha_start = NULL,
+      alpha_lbound = NULL,
+      alpha_ubound = NULL,
+      psi_diag = FALSE,
+      theta_fixed = FALSE,
+      ncores = NULL
+    )
   },
   text = "test-fitDTVARMx-fit-dt-var-id-mx-psi-full-alpha",
   tol = 0.3
