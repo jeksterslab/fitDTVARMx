@@ -82,7 +82,7 @@ lapply(
       nrow = p,
       ncol = p
     )
-    fit2 <- FitDTVARIDMx(
+    fit <- FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -109,19 +109,22 @@ lapply(
       try = 1000,
       ncores = NULL
     )
-    print(fit2)
-    summary(fit2)
-    print(fit2, means = FALSE)
-    summary(fit2, means = FALSE)
-    coef(fit2, psi = TRUE, theta = TRUE)
-    vcov(fit2, psi = TRUE, theta = TRUE)
+    print(fit)
+    summary(fit)
+    print(fit, means = FALSE)
+    summary(fit, means = FALSE)
+    coef(fit, psi = TRUE, theta = TRUE)
+    vcov(fit, psi = TRUE, theta = TRUE)
     testthat::test_that(
       paste(text, 2),
       {
         testthat::expect_true(
           all(
             abs(
-              summary(fit) - summary(fit2)
+              c(
+                beta_mu,
+                diag(psi)
+              ) - summary(fit)
             ) <= tol
           )
         )
