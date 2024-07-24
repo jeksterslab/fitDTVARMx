@@ -1,7 +1,7 @@
 fitDTVARMx
 ================
 Ivan Jacob Agaloos Pesigan
-2024-07-23
+2024-07-24
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
 
