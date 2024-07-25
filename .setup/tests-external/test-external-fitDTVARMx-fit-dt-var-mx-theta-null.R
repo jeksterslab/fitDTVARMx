@@ -1,12 +1,13 @@
-## ---- test-fitDTVARMx-fit-dt-var-mx-theta-null
+## ---- test-external-fitDTVARMx-fit-dt-var-mx-theta-null
 lapply(
   X = 1,
   FUN = function(i,
-                 text) {
+                 text,
+                 tol) {
     message(text)
     set.seed(42)
-    n <- 2
-    time <- 100
+    n <- 10
+    time <- 500
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
@@ -41,12 +42,21 @@ lapply(
       psi_diag = TRUE,
       ncores = NULL
     )
-    print.fitdtvarmx(fit)
-    summary.fitdtvarmx(fit)
-    print.fitdtvarmx(fit, means = FALSE)
-    summary.fitdtvarmx(fit, means = FALSE)
-    coef.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
-    vcov.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
+    testthat::test_that(
+      paste(text, 1),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                beta,
+                diag(psi)
+              ) - coef.fitdtvarmx(fit, psi = TRUE)
+            ) <= tol
+          )
+        )
+      }
+    )
     psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
@@ -79,6 +89,22 @@ lapply(
       try = 1000,
       ncores = NULL
     )
+    testthat::test_that(
+      paste(text, 2),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                beta,
+                diag(psi)
+              ) - coef.fitdtvarmx(fit, psi = TRUE)
+            ) <= tol
+          )
+        )
+      }
+    )
   },
-  text = "test-fitDTVARMx-fit-dt-var-mx-theta-null"
+  text = "test-external-fitDTVARMx-fit-dt-var-mx-theta-null",
+  tol = 0.1
 )

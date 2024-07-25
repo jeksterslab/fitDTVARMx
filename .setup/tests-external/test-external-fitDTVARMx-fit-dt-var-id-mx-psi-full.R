@@ -1,8 +1,9 @@
-## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-psi-diag
+## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-psi-full
 lapply(
   X = 1,
   FUN = function(i,
-                 text) {
+                 text,
+                 tol) {
     message(text)
     set.seed(42)
     n <- 50
@@ -52,7 +53,7 @@ lapply(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
-      psi_diag = TRUE,
+      psi_diag = FALSE,
       ncores = NULL
     )
     print.fitdtvaridmx(fit)
@@ -61,6 +62,26 @@ lapply(
     summary.fitdtvaridmx(fit, means = FALSE)
     coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
     vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
+    testthat::test_that(
+      paste(text, 1),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                c(beta_mu),
+                psi[
+                  lower.tri(
+                    x = psi,
+                    diag = TRUE
+                  )
+                ]
+              ) - summary.fitdtvaridmx(fit)
+            ) <= tol
+          )
+        )
+      }
+    )
     psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
@@ -73,7 +94,7 @@ lapply(
       beta_start = beta_mu,
       beta_lbound = beta_lbound,
       beta_ubound = beta_ubound,
-      psi_diag = TRUE,
+      psi_diag = FALSE,
       psi_start = psi,
       psi_lbound = psi_lbound,
       psi_ubound = psi_ubound,
@@ -93,6 +114,27 @@ lapply(
       try = 1000,
       ncores = NULL
     )
+    testthat::test_that(
+      paste(text, 2),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                c(beta_mu),
+                psi[
+                  lower.tri(
+                    x = psi,
+                    diag = TRUE
+                  )
+                ]
+              ) - summary.fitdtvaridmx(fit)
+            ) <= tol
+          )
+        )
+      }
+    )
   },
-  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-psi-diag"
+  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-psi-full",
+  tol = 0.1
 )

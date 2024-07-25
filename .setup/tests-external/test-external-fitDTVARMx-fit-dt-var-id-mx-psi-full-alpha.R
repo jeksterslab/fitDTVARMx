@@ -1,8 +1,9 @@
-## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-psi-diag
+## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-psi-full-alpha-nu
 lapply(
   X = 1,
   FUN = function(i,
-                 text) {
+                 text,
+                 tol) {
     message(text)
     set.seed(42)
     n <- 50
@@ -52,7 +53,12 @@ lapply(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
-      psi_diag = TRUE,
+      alpha_fixed = FALSE,
+      alpha_start = rep(x = 0, times = p),
+      alpha_lbound = rep(x = NA, times = p),
+      alpha_ubound = rep(x = NA, times = p),
+      psi_diag = FALSE,
+      theta_fixed = FALSE,
       ncores = NULL
     )
     print.fitdtvaridmx(fit)
@@ -61,23 +67,59 @@ lapply(
     summary.fitdtvaridmx(fit, means = FALSE)
     coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
     vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
+    testthat::test_that(
+      paste(text, 1),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                c(beta_mu),
+                null_vec,
+                null_vec,
+                psi[
+                  lower.tri(
+                    x = psi,
+                    diag = TRUE
+                  )
+                ]
+              ) - summary.fitdtvaridmx(fit)
+            ) <= tol
+          )
+        )
+      }
+    )
     psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
       ncol = p
     )
+    alpha_start <- matrix(
+      data = 0,
+      nrow = p,
+      ncol = 1
+    )
+    alpha_ubound <- alpha_lbound <- matrix(
+      data = NA,
+      nrow = p,
+      ncol = 1
+    )
     fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
+      alpha_fixed = FALSE,
+      alpha_start = alpha_start,
+      alpha_lbound = alpha_lbound,
+      alpha_ubound = alpha_ubound,
       beta_start = beta_mu,
       beta_lbound = beta_lbound,
       beta_ubound = beta_ubound,
-      psi_diag = TRUE,
+      psi_diag = FALSE,
       psi_start = psi,
       psi_lbound = psi_lbound,
       psi_ubound = psi_ubound,
-      theta_fixed = TRUE,
+      theta_fixed = FALSE,
       theta_start = NULL,
       theta_lbound = NULL,
       theta_ubound = NULL,
@@ -93,6 +135,29 @@ lapply(
       try = 1000,
       ncores = NULL
     )
+    testthat::test_that(
+      paste(text, 2),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                c(beta_mu),
+                null_vec,
+                null_vec,
+                psi[
+                  lower.tri(
+                    x = psi,
+                    diag = TRUE
+                  )
+                ]
+              ) - summary.fitdtvaridmx(fit)
+            ) <= tol
+          )
+        )
+      }
+    )
   },
-  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-psi-diag"
+  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-psi-full-alpha",
+  tol = 0.1
 )

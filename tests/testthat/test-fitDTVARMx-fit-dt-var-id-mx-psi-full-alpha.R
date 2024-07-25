@@ -1,13 +1,12 @@
-## ---- test-fitDTVARMx-fit-dt-var-id-mx-psi-full-alpha-nu
+## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-psi-full-alpha-nu
 lapply(
   X = 1,
   FUN = function(i,
-                 text,
-                 tol) {
+                 text) {
     message(text)
     set.seed(42)
     n <- 2
-    time <- 500
+    time <- 100
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
@@ -49,7 +48,7 @@ lapply(
       psi_l = psi_l
     )
     data <- as.data.frame(sim)
-    fit <- FitDTVARIDMx(
+    fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -61,34 +60,12 @@ lapply(
       theta_fixed = FALSE,
       ncores = NULL
     )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE)
-    summary(fit, means = FALSE)
-    coef(fit, alpha = TRUE, psi = TRUE, theta = TRUE)
-    vcov(fit, alpha = TRUE, psi = TRUE, theta = TRUE)
-    testthat::test_that(
-      paste(text, 1),
-      {
-        testthat::expect_true(
-          all(
-            abs(
-              c(
-                c(beta_mu),
-                null_vec,
-                null_vec,
-                psi[
-                  lower.tri(
-                    x = psi,
-                    diag = TRUE
-                  )
-                ]
-              ) - summary(fit)
-            ) <= tol
-          )
-        )
-      }
-    )
+    print.fitdtvaridmx(fit)
+    summary.fitdtvaridmx(fit)
+    print.fitdtvaridmx(fit, means = FALSE)
+    summary.fitdtvaridmx(fit, means = FALSE)
+    coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
+    vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
     psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
@@ -104,7 +81,7 @@ lapply(
       nrow = p,
       ncol = 1
     )
-    fit <- FitDTVARIDMx(
+    fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -135,36 +112,7 @@ lapply(
       try = 1000,
       ncores = NULL
     )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE)
-    summary(fit, means = FALSE)
-    coef(fit, alpha = TRUE, psi = TRUE, theta = TRUE)
-    vcov(fit, alpha = TRUE, psi = TRUE, theta = TRUE)
-    testthat::test_that(
-      paste(text, 2),
-      {
-        testthat::expect_true(
-          all(
-            abs(
-              c(
-                c(beta_mu),
-                null_vec,
-                null_vec,
-                psi[
-                  lower.tri(
-                    x = psi,
-                    diag = TRUE
-                  )
-                ]
-              ) - summary(fit)
-            ) <= tol
-          )
-        )
-      }
-    )
-    # coverage
-    FitDTVARIDMx(
+    fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -177,6 +125,5 @@ lapply(
       ncores = NULL
     )
   },
-  text = "test-fitDTVARMx-fit-dt-var-id-mx-psi-full-alpha",
-  tol = 0.3
+  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-psi-full-alpha"
 )

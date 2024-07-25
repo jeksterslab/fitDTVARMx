@@ -2,12 +2,11 @@
 lapply(
   X = 1,
   FUN = function(i,
-                 text,
-                 tol) {
+                 text) {
     message(text)
     set.seed(42)
     n <- 2
-    time <- 500
+    time <- 100
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
@@ -49,7 +48,7 @@ lapply(
       psi_l = psi_l
     )
     data <- as.data.frame(sim)
-    fit <- FitDTVARIDMx(
+    fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -57,28 +56,12 @@ lapply(
       theta_fixed = FALSE,
       ncores = NULL
     )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE, theta = TRUE)
-    summary(fit, means = FALSE, theta = TRUE)
-    coef(fit, psi = TRUE, theta = TRUE)
-    vcov(fit, psi = TRUE, theta = TRUE)
-    testthat::test_that(
-      paste(text, 1),
-      {
-        testthat::expect_true(
-          all(
-            abs(
-              c(
-                beta_mu,
-                diag(psi),
-                rep(x = 0, times = p)
-              ) - summary(fit)
-            ) <= tol
-          )
-        )
-      }
-    )
+    print.fitdtvaridmx(fit)
+    summary.fitdtvaridmx(fit)
+    print.fitdtvaridmx(fit, means = FALSE, theta = TRUE)
+    summary.fitdtvaridmx(fit, means = FALSE, theta = TRUE)
+    coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
+    vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
     beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
@@ -87,7 +70,7 @@ lapply(
     theta_lbound <- psi_lbound <- beta_lbound
     theta_ubound <- psi_ubound <- beta_ubound
     diag(theta_lbound) <- .Machine$double.xmin
-    fit <- FitDTVARIDMx(
+    fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -114,29 +97,6 @@ lapply(
       try = 1000,
       ncores = NULL
     )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE)
-    summary(fit, means = FALSE)
-    coef(fit, psi = TRUE, theta = TRUE)
-    vcov(fit, psi = TRUE, theta = TRUE)
-    testthat::test_that(
-      paste(text, 2),
-      {
-        testthat::expect_true(
-          all(
-            abs(
-              c(
-                beta_mu,
-                diag(psi),
-                rep(x = 0, times = p)
-              ) - summary(fit)
-            ) <= tol
-          )
-        )
-      }
-    )
   },
-  text = "test-fitDTVARMx-fit-dt-var-id-mx-theta-diag",
-  tol = 0.3
+  text = "test-fitDTVARMx-fit-dt-var-id-mx-theta-diag"
 )

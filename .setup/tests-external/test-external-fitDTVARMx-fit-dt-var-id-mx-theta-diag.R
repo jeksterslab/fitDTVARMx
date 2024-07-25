@@ -1,8 +1,9 @@
-## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-psi-diag
+## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-theta-diag
 lapply(
   X = 1,
   FUN = function(i,
-                 text) {
+                 text,
+                 tol) {
     message(text)
     set.seed(42)
     n <- 50
@@ -53,19 +54,39 @@ lapply(
       observed = paste0("y", seq_len(k)),
       id = "id",
       psi_diag = TRUE,
+      theta_fixed = FALSE,
       ncores = NULL
     )
     print.fitdtvaridmx(fit)
     summary.fitdtvaridmx(fit)
-    print.fitdtvaridmx(fit, means = FALSE)
-    summary.fitdtvaridmx(fit, means = FALSE)
+    print.fitdtvaridmx(fit, means = FALSE, theta = TRUE)
+    summary.fitdtvaridmx(fit, means = FALSE, theta = TRUE)
     coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
     vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
-    psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
+    testthat::test_that(
+      paste(text, 1),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                beta_mu,
+                diag(psi),
+                rep(x = 0, times = p)
+              ) - summary.fitdtvaridmx(fit)
+            ) <= tol
+          )
+        )
+      }
+    )
+    beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
       ncol = p
     )
+    theta_lbound <- psi_lbound <- beta_lbound
+    theta_ubound <- psi_ubound <- beta_ubound
+    diag(theta_lbound) <- .Machine$double.xmin
     fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
@@ -77,10 +98,10 @@ lapply(
       psi_start = psi,
       psi_lbound = psi_lbound,
       psi_ubound = psi_ubound,
-      theta_fixed = TRUE,
-      theta_start = NULL,
-      theta_lbound = NULL,
-      theta_ubound = NULL,
+      theta_fixed = FALSE,
+      theta_start = 0.10 * diag(p),
+      theta_lbound = theta_lbound,
+      theta_ubound = theta_ubound,
       mu0_fixed = TRUE,
       mu0_start = NULL,
       mu0_lbound = NULL,
@@ -93,6 +114,23 @@ lapply(
       try = 1000,
       ncores = NULL
     )
+    testthat::test_that(
+      paste(text, 2),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                beta_mu,
+                diag(psi),
+                rep(x = 0, times = p)
+              ) - summary.fitdtvaridmx(fit)
+            ) <= tol
+          )
+        )
+      }
+    )
   },
-  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-psi-diag"
+  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-theta-diag",
+  tol = 0.1
 )

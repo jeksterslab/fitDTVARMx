@@ -1,22 +1,31 @@
-## ---- test-fitDTVARMx-fit-dt-var-mx-theta-null
+## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-theta-null
 lapply(
   X = 1,
   FUN = function(i,
-                 text) {
+                 text,
+                 tol) {
     message(text)
     set.seed(42)
-    n <- 2
-    time <- 100
+    n <- 50
+    time <- 500
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
-    mu0 <- null_vec
+    mu0 <- list(
+      null_vec
+    )
     sigma0 <- diag(p)
-    sigma0_l <- t(chol(sigma0))
-    alpha <- null_vec
+    sigma0_l <- list(
+      t(chol(sigma0))
+    )
+    alpha <- list(
+      null_vec
+    )
     psi <- 0.1 * iden
-    psi_l <- t(chol(psi))
-    beta <- matrix(
+    psi_l <- list(
+      t(chol(psi))
+    )
+    beta_mu <- matrix(
       data = c(
         0.7, 0.5, -0.1,
         0.0, 0.6, 0.4,
@@ -24,7 +33,13 @@ lapply(
       ),
       nrow = p
     )
-    sim <- simStateSpace::SimSSMVARFixed(
+    beta_sigma <- 0.00001 * diag(p * p)
+    beta <- simStateSpace::SimBetaN(
+      n = n,
+      beta = beta_mu,
+      vcov_beta_vec_l = t(chol(beta_sigma))
+    )
+    sim <- simStateSpace::SimSSMVARIVary(
       n = n,
       time = time,
       mu0 = mu0,
@@ -34,29 +49,38 @@ lapply(
       psi_l = psi_l
     )
     data <- as.data.frame(sim)
-    fit <- fitDTVARMx::FitDTVARMx(
+    fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
       psi_diag = TRUE,
       ncores = NULL
     )
-    print.fitdtvarmx(fit)
-    summary.fitdtvarmx(fit)
-    print.fitdtvarmx(fit, means = FALSE)
-    summary.fitdtvarmx(fit, means = FALSE)
-    coef.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
-    vcov.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
+    testthat::test_that(
+      paste(text, 1),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                beta_mu,
+                diag(psi)
+              ) - summary.fitdtvaridmx(fit)
+            ) <= tol
+          )
+        )
+      }
+    )
     psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
       ncol = p
     )
-    fit <- fitDTVARMx::FitDTVARMx(
+    fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
-      beta_start = beta,
+      beta_start = beta_mu,
       beta_lbound = beta_lbound,
       beta_ubound = beta_ubound,
       psi_diag = TRUE,
@@ -79,6 +103,22 @@ lapply(
       try = 1000,
       ncores = NULL
     )
+    testthat::test_that(
+      paste(text, 2),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                beta_mu,
+                diag(psi)
+              ) - summary.fitdtvaridmx(fit)
+            ) <= tol
+          )
+        )
+      }
+    )
   },
-  text = "test-fitDTVARMx-fit-dt-var-mx-theta-null"
+  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-theta-null",
+  tol = 0.1
 )
