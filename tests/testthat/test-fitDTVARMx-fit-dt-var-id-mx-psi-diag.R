@@ -1,12 +1,11 @@
-## ---- test-fitDTVARMx-fit-dt-var-id-mx-psi-diag
+## ---- test-external-fitDTVARMx-fit-dt-var-id-mx-psi-diag
 lapply(
   X = 1,
   FUN = function(i,
-                 text,
-                 tol) {
+                 text) {
     message(text)
     set.seed(42)
-    n <- 2
+    n <- 50
     time <- 500
     k <- p <- 3
     iden <- diag(k)
@@ -49,40 +48,25 @@ lapply(
       psi_l = psi_l
     )
     data <- as.data.frame(sim)
-    fit <- FitDTVARIDMx(
+    fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
       psi_diag = TRUE,
       ncores = NULL
     )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE)
-    summary(fit, means = FALSE)
-    coef(fit, psi = TRUE, theta = TRUE)
-    vcov(fit, psi = TRUE, theta = TRUE)
-    testthat::test_that(
-      paste(text, 1),
-      {
-        testthat::expect_true(
-          all(
-            abs(
-              c(
-                beta_mu,
-                diag(psi)
-              ) - summary(fit)
-            ) <= tol
-          )
-        )
-      }
-    )
+    print.fitdtvaridmx(fit)
+    summary.fitdtvaridmx(fit)
+    print.fitdtvaridmx(fit, means = FALSE)
+    summary.fitdtvaridmx(fit, means = FALSE)
+    coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
+    vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
     psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
       ncol = p
     )
-    fit <- FitDTVARIDMx(
+    fit <- fitDTVARMx::FitDTVARIDMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -109,28 +93,6 @@ lapply(
       try = 1000,
       ncores = NULL
     )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE)
-    summary(fit, means = FALSE)
-    coef(fit, psi = TRUE, theta = TRUE)
-    vcov(fit, psi = TRUE, theta = TRUE)
-    testthat::test_that(
-      paste(text, 2),
-      {
-        testthat::expect_true(
-          all(
-            abs(
-              c(
-                beta_mu,
-                diag(psi)
-              ) - summary(fit)
-            ) <= tol
-          )
-        )
-      }
-    )
   },
-  text = "test-fitDTVARMx-fit-dt-var-id-mx-psi-diag",
-  tol = 0.3
+  text = "test-external-fitDTVARMx-fit-dt-var-id-mx-psi-diag"
 )

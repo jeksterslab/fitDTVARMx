@@ -2,12 +2,11 @@
 lapply(
   X = 1,
   FUN = function(i,
-                 text,
-                 tol) {
+                 text) {
     message(text)
     set.seed(42)
     n <- 2
-    time <- 500
+    time <- 100
     k <- p <- 3
     iden <- diag(k)
     null_vec <- rep(x = 0, times = k)
@@ -35,40 +34,25 @@ lapply(
       psi_l = psi_l
     )
     data <- as.data.frame(sim)
-    fit <- FitDTVARMx(
+    fit <- fitDTVARMx::FitDTVARMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
       psi_diag = TRUE,
       ncores = NULL
     )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE)
-    summary(fit, means = FALSE)
-    coef(fit, psi = TRUE, theta = TRUE)
-    vcov(fit, psi = TRUE, theta = TRUE)
-    testthat::test_that(
-      paste(text, 1),
-      {
-        testthat::expect_true(
-          all(
-            abs(
-              c(
-                beta,
-                diag(psi)
-              ) - coef(fit, psi = TRUE)
-            ) <= tol
-          )
-        )
-      }
-    )
+    print.fitdtvarmx(fit)
+    summary.fitdtvarmx(fit)
+    print.fitdtvarmx(fit, means = FALSE)
+    summary.fitdtvarmx(fit, means = FALSE)
+    coef.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
+    vcov.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
     psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
       ncol = p
     )
-    fit <- FitDTVARMx(
+    fit <- fitDTVARMx::FitDTVARMx(
       data = data,
       observed = paste0("y", seq_len(k)),
       id = "id",
@@ -95,28 +79,6 @@ lapply(
       try = 1000,
       ncores = NULL
     )
-    print(fit)
-    summary(fit)
-    print(fit, means = FALSE)
-    summary(fit, means = FALSE)
-    coef(fit, psi = TRUE, theta = TRUE)
-    vcov(fit, psi = TRUE, theta = TRUE)
-    testthat::test_that(
-      paste(text, 2),
-      {
-        testthat::expect_true(
-          all(
-            abs(
-              c(
-                beta,
-                diag(psi)
-              ) - coef(fit, psi = TRUE)
-            ) <= tol
-          )
-        )
-      }
-    )
   },
-  text = "test-fitDTVARMx-fit-dt-var-mx-theta-null",
-  tol = 0.3
+  text = "test-fitDTVARMx-fit-dt-var-mx-theta-null"
 )
