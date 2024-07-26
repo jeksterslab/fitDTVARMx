@@ -2,7 +2,8 @@
 lapply(
   X = 1,
   FUN = function(i,
-                 text) {
+                 text,
+                 tol) {
     message(text)
     set.seed(42)
     n <- 2
@@ -47,6 +48,21 @@ lapply(
     summary.fitdtvarmx(fit, means = FALSE)
     coef.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
     vcov.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
+    testthat::test_that(
+      paste(text, 1),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                beta,
+                diag(psi)
+              ) - coef.fitdtvarmx(fit, psi = TRUE)
+            ) <= tol
+          )
+        )
+      }
+    )
     psi_ubound <- psi_lbound <- beta_ubound <- beta_lbound <- matrix(
       data = NA,
       nrow = p,
@@ -79,6 +95,22 @@ lapply(
       try = 1000,
       ncores = NULL
     )
+    testthat::test_that(
+      paste(text, 2),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              c(
+                beta,
+                diag(psi)
+              ) - coef.fitdtvarmx(fit, psi = TRUE)
+            ) <= tol
+          )
+        )
+      }
+    )
   },
-  text = "test-fitDTVARMx-fit-dt-var-mx-theta-null"
+  text = "test-fitDTVARMx-fit-dt-var-mx-theta-null",
+  tol = 1
 )
