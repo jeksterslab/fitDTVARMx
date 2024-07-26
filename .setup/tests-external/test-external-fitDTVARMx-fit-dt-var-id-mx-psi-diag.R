@@ -56,12 +56,6 @@ lapply(
       psi_diag = TRUE,
       ncores = NULL
     )
-    print.fitdtvaridmx(fit)
-    summary.fitdtvaridmx(fit)
-    print.fitdtvaridmx(fit, means = FALSE)
-    summary.fitdtvaridmx(fit, means = FALSE)
-    coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
-    vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
     testthat::test_that(
       paste(text, 1),
       {

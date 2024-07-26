@@ -57,12 +57,6 @@ lapply(
       theta_fixed = FALSE,
       ncores = NULL
     )
-    print.fitdtvaridmx(fit)
-    summary.fitdtvaridmx(fit)
-    print.fitdtvaridmx(fit, means = FALSE, theta = TRUE)
-    summary.fitdtvaridmx(fit, means = FALSE, theta = TRUE)
-    coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
-    vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
     testthat::test_that(
       paste(text, 1),
       {
