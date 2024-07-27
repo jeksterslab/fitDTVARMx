@@ -46,8 +46,8 @@ lapply(
     summary.fitdtvarmx(fit)
     print.fitdtvarmx(fit, means = FALSE)
     summary.fitdtvarmx(fit, means = FALSE)
-    coef.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
-    vcov.fitdtvarmx(fit, psi = TRUE, theta = TRUE)
+    coef.fitdtvarmx(fit, alpha = TRUE, psi = TRUE, theta = TRUE)
+    vcov.fitdtvarmx(fit, alpha = TRUE, psi = TRUE, theta = TRUE)
     testthat::test_that(
       paste(text, 1),
       {
