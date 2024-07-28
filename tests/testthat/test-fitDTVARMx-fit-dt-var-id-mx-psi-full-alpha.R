@@ -65,8 +65,8 @@ lapply(
     summary.fitdtvaridmx(fit)
     print.fitdtvaridmx(fit, means = FALSE)
     summary.fitdtvaridmx(fit, means = FALSE)
-    coef.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
-    vcov.fitdtvaridmx(fit, psi = TRUE, theta = TRUE)
+    coef.fitdtvaridmx(fit, alpha = TRUE, psi = TRUE, theta = TRUE)
+    vcov.fitdtvaridmx(fit, alpha = TRUE, psi = TRUE, theta = TRUE)
     testthat::test_that(
       paste(text, 1),
       {
@@ -163,6 +163,18 @@ lapply(
       id = "id",
       alpha_fixed = FALSE,
       alpha_start = NULL,
+      alpha_lbound = NULL,
+      alpha_ubound = NULL,
+      psi_diag = FALSE,
+      theta_fixed = FALSE,
+      ncores = NULL
+    )
+    fitDTVARMx::FitDTVARIDMx(
+      data = data,
+      observed = paste0("y", seq_len(k)),
+      id = "id",
+      alpha_fixed = TRUE,
+      alpha_start = alpha_start,
       alpha_lbound = NULL,
       alpha_ubound = NULL,
       psi_diag = FALSE,
