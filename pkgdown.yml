@@ -1,4 +1,4 @@
-pandoc: 3.2.1
+pandoc: '3.3'
 pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
@@ -6,7 +6,7 @@ articles:
   fit-dt-var: fit-dt-var.html
   fitDTVARMx: fitDTVARMx.html
   session: session.html
-last_built: 2024-07-28T00:12Z
+last_built: 2024-08-01T21:29Z
 urls:
   reference: https://github.com/jeksterslab/fitDTVARMx/reference
   article: https://github.com/jeksterslab/fitDTVARMx/articles
