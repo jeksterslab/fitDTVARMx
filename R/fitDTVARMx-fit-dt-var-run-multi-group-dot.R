@@ -11,7 +11,8 @@
                                    sigma0,
                                    covariate,
                                    try = 1000,
-                                   ncores = NULL) {
+                                   ncores = NULL,
+                                   ...) {
   ids <- sort(
     unique(data[, id])
   )
@@ -129,12 +130,14 @@
         )
       )
     ),
-    extraTries = try
+    extraTries = try,
+    ...
   )
   if (fit@output[["status"]][["code"]] > 1) {
     fit <- OpenMx::mxTryHardctsem(
       model = fit,
-      extraTries = try
+      extraTries = try,
+      ...
     )
   }
   return(fit)

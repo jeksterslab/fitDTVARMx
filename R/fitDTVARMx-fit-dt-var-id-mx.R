@@ -87,6 +87,7 @@
 #'   Number of extra optimization tries.
 #' @param ncores Positive integer.
 #'   Number of cores to use.
+#' @param ... Additional optional arguments to pass to `mxTryHard`.
 #'
 #' @return Returns an object of class `fitdtvaridmx` which is
 #'   a list with the following elements:
@@ -188,7 +189,8 @@ FitDTVARIDMx <- function(data,
                          sigma0_lbound = NULL,
                          sigma0_ubound = NULL,
                          try = 1000,
-                         ncores = NULL) {
+                         ncores = NULL,
+                         ...) {
   byid <- TRUE
   args <- list(
     data = data,
@@ -220,7 +222,8 @@ FitDTVARIDMx <- function(data,
     sigma0_ubound = sigma0_ubound,
     try = try,
     ncores = ncores,
-    byid = byid
+    byid = byid,
+    ...
   )
   output <- .FitDTVAR(
     data = data,
@@ -252,7 +255,8 @@ FitDTVARIDMx <- function(data,
     sigma0_ubound = sigma0_ubound,
     try = try,
     ncores = ncores,
-    byid = byid
+    byid = byid,
+    ...
   )
   out <- list(
     call = match.call(),

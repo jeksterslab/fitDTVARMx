@@ -95,7 +95,8 @@ FitDTVARMx <- function(data,
                        sigma0_lbound = NULL,
                        sigma0_ubound = NULL,
                        try = 1000,
-                       ncores = NULL) {
+                       ncores = NULL,
+                       ...) {
   byid <- FALSE
   args <- list(
     data = data,
@@ -127,7 +128,8 @@ FitDTVARMx <- function(data,
     sigma0_ubound = sigma0_ubound,
     try = try,
     ncores = ncores,
-    byid = byid
+    byid = byid,
+    ...
   )
   output <- .FitDTVAR(
     data = data,
@@ -159,7 +161,8 @@ FitDTVARMx <- function(data,
     sigma0_ubound = sigma0_ubound,
     try = try,
     ncores = ncores,
-    byid = byid
+    byid = byid,
+    ...
   )
   out <- list(
     call = match.call(),

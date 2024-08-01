@@ -27,7 +27,8 @@
                       sigma0_ubound = NULL,
                       try = 1000,
                       ncores = NULL,
-                      byid = TRUE) {
+                      byid = TRUE,
+                      ...) {
   k <- length(observed)
   idx <- seq_len(k)
   statenames <- paste0("eta", idx)
@@ -102,7 +103,8 @@
       ),
       try = try,
       ncores = ncores,
-      byid = byid
+      byid = byid,
+      ...
     )
   )
 }
