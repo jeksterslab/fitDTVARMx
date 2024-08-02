@@ -87,7 +87,7 @@
 #'   Number of extra optimization tries.
 #' @param ncores Positive integer.
 #'   Number of cores to use.
-#' @param ... Additional optional arguments to pass to `mxTryHard`.
+#' @param ... Additional optional arguments to pass to `mxTryHardctsem`.
 #'
 #' @return Returns an object of class `fitdtvaridmx` which is
 #'   a list with the following elements:
