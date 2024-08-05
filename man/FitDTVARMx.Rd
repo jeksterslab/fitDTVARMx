@@ -9,27 +9,27 @@ FitDTVARMx(
   observed,
   id,
   alpha_fixed = TRUE,
-  alpha_start = NULL,
+  alpha_values = NULL,
   alpha_lbound = NULL,
   alpha_ubound = NULL,
-  beta_start = NULL,
+  beta_values = NULL,
   beta_lbound = NULL,
   beta_ubound = NULL,
   psi_diag = TRUE,
-  psi_start = NULL,
+  psi_values = NULL,
   psi_lbound = NULL,
   psi_ubound = NULL,
   theta_fixed = TRUE,
-  theta_start = NULL,
+  theta_values = NULL,
   theta_lbound = NULL,
   theta_ubound = NULL,
   mu0_fixed = TRUE,
-  mu0_start = NULL,
+  mu0_values = NULL,
   mu0_lbound = NULL,
   mu0_ubound = NULL,
   sigma0_fixed = TRUE,
   sigma0_diag = TRUE,
-  sigma0_start = NULL,
+  sigma0_values = NULL,
   sigma0_lbound = NULL,
   sigma0_ubound = NULL,
   try = 1000,
@@ -58,11 +58,11 @@ the dynamic model intercept vector \code{alpha} is fixed at zero.
 If \code{alpha_fixed = FALSE},
 the dynamic model intercept vector \code{alpha} is estimated.}
 
-\item{alpha_start}{Optional starting values for \code{alpha}.
+\item{alpha_values}{Optional starting values for \code{alpha}.
 If \code{alpha_fixed = TRUE},
-\code{alpha_start} will be used as fixed values.
+\code{alpha_values} will be used as fixed values.
 If \code{alpha_fixed = FALSE},
-\code{alpha_start} will be used as starting values.}
+\code{alpha_values} will be used as starting values.}
 
 \item{alpha_lbound}{Optional lower bound for \code{alpha}.
 Ignored if \code{alpha_fixed = TRUE}.}
@@ -70,7 +70,7 @@ Ignored if \code{alpha_fixed = TRUE}.}
 \item{alpha_ubound}{Optional upper bound for \code{alpha}.
 Ignored if \code{alpha_fixed = TRUE}.}
 
-\item{beta_start}{Numeric matrix.
+\item{beta_values}{Numeric matrix.
 Optional starting values for \code{beta}.}
 
 \item{beta_lbound}{Numeric matrix.
@@ -83,7 +83,7 @@ Optional upper bound for \code{beta}.}
 If \code{psi_diag = TRUE},
 \code{psi} is a diagonal matrix.}
 
-\item{psi_start}{Numeric matrix.
+\item{psi_values}{Numeric matrix.
 Optional starting values for \code{psi}.}
 
 \item{psi_lbound}{Numeric matrix.
@@ -97,7 +97,7 @@ the measurement error matrix \code{theta} is fixed to zero.
 If \code{theta_fixed = FALSE},
 estimate the diagonal measurement error matrix \code{theta}.}
 
-\item{theta_start}{Optional starting values for \code{theta}.
+\item{theta_values}{Optional starting values for \code{theta}.
 Ignored if \code{theta_fixed = TRUE}.}
 
 \item{theta_lbound}{Optional lower bound for \code{theta}.
@@ -112,11 +112,11 @@ initial mean vector \code{mu0} is fixed.
 If \code{mu0_fixed = FALSE},
 initial mean vector \code{mu0} is estimated.}
 
-\item{mu0_start}{Optional starting values for \code{mu0}.
+\item{mu0_values}{Optional starting values for \code{mu0}.
 If \code{mu0_fixed = TRUE},
-\code{mu0_start} will be used as fixed values.
+\code{mu0_values} will be used as fixed values.
 If \code{mu0_fixed = FALSE},
-\code{mu0_start} will be used as starting values.}
+\code{mu0_values} will be used as starting values.}
 
 \item{mu0_lbound}{Optional lower bound for \code{mu0}.
 Ignored if \code{mu0_fixed = TRUE}.}
@@ -134,11 +134,11 @@ initial mean vector \code{sigma0} is estimated.}
 If \code{sigma0_diag = TRUE},
 \code{sigma0} is a diagonal matrix.}
 
-\item{sigma0_start}{Optional starting values for \code{sigma0}.
+\item{sigma0_values}{Optional starting values for \code{sigma0}.
 If \code{sigma0_fixed = TRUE},
-\code{sigma0_start} will be used as fixed values.
+\code{sigma0_values} will be used as fixed values.
 If \code{sigma0_fixed = FALSE},
-\code{sigma0_start} will be used as starting values.}
+\code{sigma0_values} will be used as starting values.}
 
 \item{sigma0_lbound}{Optional lower bound for \code{sigma0}.
 Ignored if \code{sigma0_fixed = TRUE}.}

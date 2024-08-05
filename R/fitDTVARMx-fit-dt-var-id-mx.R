@@ -18,22 +18,22 @@
 #'   the dynamic model intercept vector `alpha` is fixed at zero.
 #'   If `alpha_fixed = FALSE`,
 #'   the dynamic model intercept vector `alpha` is estimated.
-#' @param alpha_start Optional starting values for `alpha`.
+#' @param alpha_values Optional starting values for `alpha`.
 #'   If `alpha_fixed = TRUE`,
-#'   `alpha_start` will be used as fixed values.
+#'   `alpha_values` will be used as fixed values.
 #'   If `alpha_fixed = FALSE`,
-#'   `alpha_start` will be used as starting values.
+#'   `alpha_values` will be used as starting values.
 #' @param alpha_lbound Optional lower bound for `alpha`.
 #'   Ignored if `alpha_fixed = TRUE`.
 #' @param alpha_ubound Optional upper bound for `alpha`.
 #'   Ignored if `alpha_fixed = TRUE`.
-#' @param beta_start Numeric matrix.
+#' @param beta_values Numeric matrix.
 #'   Optional starting values for `beta`.
 #' @param beta_lbound Numeric matrix.
 #'   Optional lower bound for `beta`.
 #' @param beta_ubound Numeric matrix.
 #'   Optional upper bound for `beta`.
-#' @param psi_start Numeric matrix.
+#' @param psi_values Numeric matrix.
 #'   Optional starting values for `psi`.
 #' @param psi_lbound Numeric matrix.
 #'   Optional lower bound for `psi`.
@@ -46,7 +46,7 @@
 #'   the measurement error matrix `theta` is fixed to zero.
 #'   If `theta_fixed = FALSE`,
 #'   estimate the diagonal measurement error matrix `theta`.
-#' @param theta_start Optional starting values for `theta`.
+#' @param theta_values Optional starting values for `theta`.
 #'   Ignored if `theta_fixed = TRUE`.
 #' @param theta_lbound Optional lower bound for `theta`.
 #'   Ignored if `theta_fixed = TRUE`.
@@ -57,11 +57,11 @@
 #'   initial mean vector `mu0` is fixed.
 #'   If `mu0_fixed = FALSE`,
 #'   initial mean vector `mu0` is estimated.
-#' @param mu0_start Optional starting values for `mu0`.
+#' @param mu0_values Optional starting values for `mu0`.
 #'   If `mu0_fixed = TRUE`,
-#'   `mu0_start` will be used as fixed values.
+#'   `mu0_values` will be used as fixed values.
 #'   If `mu0_fixed = FALSE`,
-#'   `mu0_start` will be used as starting values.
+#'   `mu0_values` will be used as starting values.
 #' @param mu0_lbound Optional lower bound for `mu0`.
 #'   Ignored if `mu0_fixed = TRUE`.
 #' @param mu0_ubound Optional upper bound for `mu0`.
@@ -74,11 +74,11 @@
 #' @param sigma0_diag Logical.
 #'   If `sigma0_diag = TRUE`,
 #'   `sigma0` is a diagonal matrix.
-#' @param sigma0_start Optional starting values for `sigma0`.
+#' @param sigma0_values Optional starting values for `sigma0`.
 #'   If `sigma0_fixed = TRUE`,
-#'   `sigma0_start` will be used as fixed values.
+#'   `sigma0_values` will be used as fixed values.
 #'   If `sigma0_fixed = FALSE`,
-#'   `sigma0_start` will be used as starting values.
+#'   `sigma0_values` will be used as starting values.
 #' @param sigma0_lbound Optional lower bound for `sigma0`.
 #'   Ignored if `sigma0_fixed = TRUE`.
 #' @param sigma0_ubound Optional upper bound for `sigma0`.
@@ -165,27 +165,27 @@ FitDTVARIDMx <- function(data,
                          observed,
                          id,
                          alpha_fixed = TRUE,
-                         alpha_start = NULL,
+                         alpha_values = NULL,
                          alpha_lbound = NULL,
                          alpha_ubound = NULL,
-                         beta_start = NULL,
+                         beta_values = NULL,
                          beta_lbound = NULL,
                          beta_ubound = NULL,
                          psi_diag = TRUE,
-                         psi_start = NULL,
+                         psi_values = NULL,
                          psi_lbound = NULL,
                          psi_ubound = NULL,
                          theta_fixed = TRUE,
-                         theta_start = NULL,
+                         theta_values = NULL,
                          theta_lbound = NULL,
                          theta_ubound = NULL,
                          mu0_fixed = TRUE,
-                         mu0_start = NULL,
+                         mu0_values = NULL,
                          mu0_lbound = NULL,
                          mu0_ubound = NULL,
                          sigma0_fixed = TRUE,
                          sigma0_diag = TRUE,
-                         sigma0_start = NULL,
+                         sigma0_values = NULL,
                          sigma0_lbound = NULL,
                          sigma0_ubound = NULL,
                          try = 1000,
@@ -197,27 +197,27 @@ FitDTVARIDMx <- function(data,
     observed = observed,
     id = id,
     alpha_fixed = alpha_fixed,
-    alpha_start = alpha_start,
+    alpha_values = alpha_values,
     alpha_lbound = alpha_lbound,
     alpha_ubound = alpha_ubound,
-    beta_start = beta_start,
+    beta_values = beta_values,
     beta_lbound = beta_lbound,
     beta_ubound = beta_ubound,
     psi_diag = psi_diag,
-    psi_start = psi_start,
+    psi_values = psi_values,
     psi_lbound = psi_lbound,
     psi_ubound = psi_ubound,
     theta_fixed = theta_fixed,
-    theta_start = theta_start,
+    theta_values = theta_values,
     theta_lbound = theta_lbound,
     theta_ubound = theta_ubound,
     mu0_fixed = mu0_fixed,
-    mu0_start = mu0_start,
+    mu0_values = mu0_values,
     mu0_lbound = mu0_lbound,
     mu0_ubound = mu0_ubound,
     sigma0_fixed = sigma0_fixed,
     sigma0_diag = sigma0_diag,
-    sigma0_start = sigma0_start,
+    sigma0_values = sigma0_values,
     sigma0_lbound = sigma0_lbound,
     sigma0_ubound = sigma0_ubound,
     try = try,
@@ -230,27 +230,27 @@ FitDTVARIDMx <- function(data,
     observed = observed,
     id = id,
     alpha_fixed = alpha_fixed,
-    alpha_start = alpha_start,
+    alpha_values = alpha_values,
     alpha_lbound = alpha_lbound,
     alpha_ubound = alpha_ubound,
-    beta_start = beta_start,
+    beta_values = beta_values,
     beta_lbound = beta_lbound,
     beta_ubound = beta_ubound,
     psi_diag = psi_diag,
-    psi_start = psi_start,
+    psi_values = psi_values,
     psi_lbound = psi_lbound,
     psi_ubound = psi_ubound,
     theta_fixed = theta_fixed,
-    theta_start = theta_start,
+    theta_values = theta_values,
     theta_lbound = theta_lbound,
     theta_ubound = theta_ubound,
     mu0_fixed = mu0_fixed,
-    mu0_start = mu0_start,
+    mu0_values = mu0_values,
     mu0_lbound = mu0_lbound,
     mu0_ubound = mu0_ubound,
     sigma0_fixed = sigma0_fixed,
     sigma0_diag = sigma0_diag,
-    sigma0_start = sigma0_start,
+    sigma0_values = sigma0_values,
     sigma0_lbound = sigma0_lbound,
     sigma0_ubound = sigma0_ubound,
     try = try,

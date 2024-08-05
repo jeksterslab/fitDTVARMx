@@ -1,7 +1,7 @@
 ---
 title: "Fit the Discrete-Time Vector Autoregressive Model"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-08-02"
+date: "2024-08-05"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -340,8 +340,8 @@ FitDTVARMx(
 #> RMSEA:  0  [95% CI (NA, NA)]
 #> Prob(RMSEA <= 0.05): NA
 #> To get additional fit indices, see help(mxRefModels)
-#> timestamp: 2024-08-02 17:22:13 
-#> Wall clock time: 66.08173 secs 
+#> timestamp: 2024-08-05 06:28:41 
+#> Wall clock time: 66.17723 secs 
 #> optimizer:  SLSQP 
 #> OpenMx version number: 2.21.11 
 #> Need help?  See help(mxSummary)

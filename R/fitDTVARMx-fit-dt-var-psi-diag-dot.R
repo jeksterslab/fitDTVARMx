@@ -1,23 +1,23 @@
 .FitDTVARPsiDiag <- function(k,
                              idx,
                              statenames,
-                             psi_start = NULL,
+                             psi_values = NULL,
                              psi_lbound = NULL,
                              psi_ubound = NULL) {
   # Q
   # process noise
-  if (is.null(psi_start)) {
-    psi_start <- rep(
+  if (is.null(psi_values)) {
+    psi_values <- rep(
       x = 0.10,
       times = k
     )
   } else {
-    if (is.matrix(psi_start)) {
-      psi_start <- diag(psi_start)
+    if (is.matrix(psi_values)) {
+      psi_values <- diag(psi_values)
     }
     stopifnot(
-      is.vector(psi_start),
-      length(psi_start) == k
+      is.vector(psi_values),
+      length(psi_values) == k
     )
   }
   psi_labels <- paste0(
@@ -61,7 +61,7 @@
       nrow = k,
       ncol = k,
       free = TRUE,
-      values = psi_start,
+      values = psi_values,
       labels = psi_labels,
       lbound = psi_lbound,
       ubound = psi_ubound,

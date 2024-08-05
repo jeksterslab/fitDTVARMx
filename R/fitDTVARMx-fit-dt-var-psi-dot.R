@@ -2,7 +2,7 @@
                          idx,
                          statenames,
                          psi_diag = TRUE,
-                         psi_start = NULL,
+                         psi_values = NULL,
                          psi_lbound = NULL,
                          psi_ubound = NULL) {
   # Q
@@ -13,7 +13,7 @@
         k = k,
         idx = idx,
         statenames = statenames,
-        psi_start = psi_start,
+        psi_values = psi_values,
         psi_lbound = psi_lbound,
         psi_ubound = psi_ubound
       )
@@ -24,7 +24,7 @@
         k = k,
         idx = idx,
         statenames = statenames,
-        psi_start = psi_start,
+        psi_values = psi_values,
         psi_lbound = psi_lbound,
         psi_ubound = psi_ubound
       )
