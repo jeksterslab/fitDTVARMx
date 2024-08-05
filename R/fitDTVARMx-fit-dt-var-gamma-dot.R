@@ -1,13 +1,13 @@
 .FitDTVARGamma <- function(k,
                            idx,
                            alpha_fixed = TRUE,
-                           alpha_start = NULL,
+                           alpha_values = NULL,
                            alpha_lbound = NULL,
                            alpha_ubound = NULL) {
   # B
   # latent variables on covariates
   if (alpha_fixed) {
-    if (is.null(alpha_start)) {
+    if (is.null(alpha_values)) {
       return(
         OpenMx::mxMatrix(
           type = "Zero",
@@ -23,30 +23,30 @@
           nrow = k,
           ncol = 1,
           free = FALSE,
-          values = alpha_start,
+          values = alpha_values,
           byrow = FALSE,
           name = "gamma"
         )
       )
     }
   } else {
-    if (is.null(alpha_start)) {
-      alpha_start <- matrix(
+    if (is.null(alpha_values)) {
+      alpha_values <- matrix(
         data = 0,
         nrow = k,
         ncol = 1
       )
     } else {
-      if (is.vector(alpha_start)) {
-        alpha_start <- matrix(
-          data = alpha_start,
+      if (is.vector(alpha_values)) {
+        alpha_values <- matrix(
+          data = alpha_values,
           nrow = k,
           ncol = 1
         )
       } else {
         stopifnot(
-          is.matrix(alpha_start),
-          dim(alpha_start) == c(k, 1)
+          is.matrix(alpha_values),
+          dim(alpha_values) == c(k, 1)
         )
       }
     }
@@ -96,7 +96,7 @@
         nrow = k,
         ncol = 1,
         free = TRUE,
-        values = alpha_start,
+        values = alpha_values,
         labels = paste0("alpha_", idx),
         lbound = alpha_lbound,
         ubound = alpha_ubound,

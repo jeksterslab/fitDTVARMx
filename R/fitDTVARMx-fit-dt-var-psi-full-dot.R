@@ -1,17 +1,17 @@
 .FitDTVARPsiFull <- function(k,
                              idx,
                              statenames,
-                             psi_start = NULL,
+                             psi_values = NULL,
                              psi_lbound = NULL,
                              psi_ubound = NULL) {
   # Q
   # process noise
-  if (is.null(psi_start)) {
-    psi_start <- 0.10 * diag(k)
+  if (is.null(psi_values)) {
+    psi_values <- 0.10 * diag(k)
   } else {
     stopifnot(
-      is.matrix(psi_start),
-      dim(psi_start) == c(k, k)
+      is.matrix(psi_values),
+      dim(psi_values) == c(k, k)
     )
   }
   psi_labels <- matrix(
@@ -54,10 +54,10 @@
     )
   }
   # make sure matrices are symmetric
-  psi_start[
-    upper.tri(psi_start)
-  ] <- t(psi_start)[
-    upper.tri(psi_start)
+  psi_values[
+    upper.tri(psi_values)
+  ] <- t(psi_values)[
+    upper.tri(psi_values)
   ]
   psi_labels[
     upper.tri(psi_labels)
@@ -80,7 +80,7 @@
       nrow = k,
       ncol = k,
       free = TRUE,
-      values = psi_start,
+      values = psi_values,
       labels = psi_labels,
       lbound = psi_lbound,
       ubound = psi_ubound,
