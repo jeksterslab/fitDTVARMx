@@ -1,7 +1,7 @@
 ---
 title: "Fit the Discrete-Time Vector Autoregressive Model"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-08-08"
+date: "2024-08-11"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -115,7 +115,7 @@ $\left( \boldsymbol{\Psi}^{\frac{1}{2}} \right) \left( \boldsymbol{\Psi}^{\frac{
 
 ### Notation
 
-Let $t = 1000$ be the number of time points and $n = 100$ be the number of individuals.
+Let $t = 500$ be the number of time points and $n = 10$ be the number of individuals.
 
 Let the initial condition
 $\boldsymbol{\eta}_{0}$
@@ -196,9 +196,9 @@ Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
 
 ``` r
 n
-#> [1] 100
+#> [1] 10
 time
-#> [1] 1000
+#> [1] 500
 mu0
 #> [1] 0 0 0
 sigma0
@@ -282,7 +282,7 @@ FitDTVARMx(
 #> Beginning initial fit attempt
 #> Running DTVAR with 12 parameters
 #> 
-#>  Lowest minimum so far:  161147.776665735
+#>  Lowest minimum so far:  8131.32124288269
 #> 
 #> Solution found
 ```
@@ -291,25 +291,25 @@ FitDTVARMx(
 
 ```
 #> 
-#>  Solution found!  Final fit=161147.78 (started at 559956.91)  (1 attempt(s): 1 valid, 0 errors)
+#>  Solution found!  Final fit=8131.3212 (started at 28664.244)  (1 attempt(s): 1 valid, 0 errors)
 #>  Start values from best fit:
-#> 0.699100963316375,0.498053073559555,-0.100937447224889,-0.0015600327617861,0.602705790036225,0.401870024126801,0.00490614070660785,-0.00383247105431546,0.498874252399096,0.100182502728935,0.0996918740870773,0.0998830418803938
+#> 0.695647387647896,0.482248204997181,-0.10912047989155,0.0052297470822293,0.627079168483468,0.40990663977437,0.00419066259945524,-0.0185706629628513,0.502514693232057,0.099202398774487,0.100570614025979,0.100196866786614
 #> Summary of DTVAR 
 #>  
 #> free parameters:
-#>       name       matrix  row  col     Estimate    Std.Error A
-#> 1  beta_11 DTVAR_1.beta eta1 eta1  0.699100963 0.0025306502  
-#> 2  beta_21 DTVAR_1.beta eta2 eta1  0.498053074 0.0025316947  
-#> 3  beta_31 DTVAR_1.beta eta3 eta1 -0.100937447 0.0025346201  
-#> 4  beta_12 DTVAR_1.beta eta1 eta2 -0.001560033 0.0021327509  
-#> 5  beta_22 DTVAR_1.beta eta2 eta2  0.602705790 0.0021293455  
-#> 6  beta_32 DTVAR_1.beta eta3 eta2  0.401870024 0.0021363674  
-#> 7  beta_13 DTVAR_1.beta eta1 eta3  0.004906141 0.0021802741  
-#> 8  beta_23 DTVAR_1.beta eta2 eta3 -0.003832471 0.0021741345  
-#> 9  beta_33 DTVAR_1.beta eta3 eta3  0.498874252 0.0021759606  
-#> 10  psi_11  DTVAR_1.psi eta1 eta1  0.100182503 0.0004485499  
-#> 11  psi_22  DTVAR_1.psi eta2 eta2  0.099691874 0.0004463423  
-#> 12  psi_33  DTVAR_1.psi eta3 eta3  0.099883042 0.0004471061  
+#>       name       matrix  row  col     Estimate   Std.Error A
+#> 1  beta_11 DTVAR_1.beta eta1 eta1  0.695647388 0.011135549  
+#> 2  beta_21 DTVAR_1.beta eta2 eta1  0.482248205 0.011300497  
+#> 3  beta_31 DTVAR_1.beta eta3 eta1 -0.109120480 0.011278922  
+#> 4  beta_12 DTVAR_1.beta eta1 eta2  0.005229747 0.009174458  
+#> 5  beta_22 DTVAR_1.beta eta2 eta2  0.627079168 0.009256319  
+#> 6  beta_32 DTVAR_1.beta eta3 eta2  0.409906640 0.009317881  
+#> 7  beta_13 DTVAR_1.beta eta1 eta3  0.004190663 0.009422858  
+#> 8  beta_23 DTVAR_1.beta eta2 eta3 -0.018570663 0.009479058  
+#> 9  beta_33 DTVAR_1.beta eta3 eta3  0.502514693 0.009458129  
+#> 10  psi_11  DTVAR_1.psi eta1 eta1  0.099202399 0.001990934  
+#> 11  psi_22  DTVAR_1.psi eta2 eta2  0.100570614 0.002019620  
+#> 12  psi_33  DTVAR_1.psi eta3 eta3  0.100196867 0.002008890  
 #>                  lbound ubound
 #> 1                             
 #> 2                             
@@ -326,22 +326,22 @@ FitDTVARMx(
 #> 
 #> Model Statistics: 
 #>                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
-#>        Model:             12                 299988              161147.8
+#>        Model:             12                  14988              8131.321
 #>    Saturated:             NA                     NA                    NA
 #> Independence:             NA                     NA                    NA
-#> Number of observations/statistics: 1e+05/3e+05
+#> Number of observations/statistics: 5000/15000
 #> 
 #> Information Criteria: 
 #>       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
-#> AIC:      -438828.2               161171.8                 161171.8
-#> BIC:     -3292591.7               161285.9                 161247.8
+#> AIC:      -21844.68               8155.321                 8155.384
+#> BIC:     -119524.37               8233.528                 8195.396
 #> CFI: NA 
 #> TLI: 1   (also known as NNFI) 
 #> RMSEA:  0  [95% CI (NA, NA)]
 #> Prob(RMSEA <= 0.05): NA
 #> To get additional fit indices, see help(mxRefModels)
-#> timestamp: 2024-08-08 06:17:42 
-#> Wall clock time: 65.82499 secs 
+#> timestamp: 2024-08-11 21:48:14 
+#> Wall clock time: 3.411548 secs 
 #> optimizer:  SLSQP 
 #> OpenMx version number: 2.21.11 
 #> Need help?  See help(mxSummary)
