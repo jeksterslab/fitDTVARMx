@@ -59,7 +59,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-08-08</h4>
+            <h4 data-toc-skip class="date">2024-08-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/fitDTVARMx/blob/main/vignettes/fit-dt-var.Rmd"><code>vignettes/fit-dt-var.Rmd</code></a></small>
       <div class="d-none name"><code>fit-dt-var.Rmd</code></div>
@@ -166,9 +166,9 @@ the covariance matrix of
 <h3 id="notation">Notation<a class="anchor" aria-label="anchor" href="#notation"></a>
 </h3>
 <p>Let
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">t = 1000</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>500</mn></mrow><annotation encoding="application/x-tex">t = 500</annotation></semantics></math>
 be the number of time points and
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>100</mn></mrow><annotation encoding="application/x-tex">n = 100</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>10</mn></mrow><annotation encoding="application/x-tex">n = 10</annotation></semantics></math>
 be the number of individuals.</p>
 <p>Let the initial condition
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>𝛈</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\boldsymbol{\eta}_{0}</annotation></semantics></math>
@@ -246,9 +246,9 @@ be given by</p>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span></span>
-<span><span class="co">#&gt; [1] 100</span></span>
+<span><span class="co">#&gt; [1] 10</span></span>
 <span><span class="va">time</span></span>
-<span><span class="co">#&gt; [1] 1000</span></span>
+<span><span class="co">#&gt; [1] 500</span></span>
 <span><span class="va">mu0</span></span>
 <span><span class="co">#&gt; [1] 0 0 0</span></span>
 <span><span class="va">sigma0</span></span>
@@ -330,29 +330,29 @@ Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-d
 <span><span class="co">#&gt; Beginning initial fit attempt</span></span>
 <span><span class="co">#&gt; Running DTVAR with 12 parameters</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Lowest minimum so far:  161147.776665735</span></span>
+<span><span class="co">#&gt;  Lowest minimum so far:  8131.32124288269</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Solution found</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Solution found!  Final fit=161147.78 (started at 559956.91)  (1 attempt(s): 1 valid, 0 errors)</span></span>
+<span><span class="co">#&gt;  Solution found!  Final fit=8131.3212 (started at 28664.244)  (1 attempt(s): 1 valid, 0 errors)</span></span>
 <span><span class="co">#&gt;  Start values from best fit:</span></span>
-<span><span class="co">#&gt; 0.699100963316375,0.498053073559555,-0.100937447224889,-0.0015600327617861,0.602705790036225,0.401870024126801,0.00490614070660785,-0.00383247105431546,0.498874252399096,0.100182502728935,0.0996918740870773,0.0998830418803938</span></span>
+<span><span class="co">#&gt; 0.695647387647896,0.482248204997181,-0.10912047989155,0.0052297470822293,0.627079168483468,0.40990663977437,0.00419066259945524,-0.0185706629628513,0.502514693232057,0.099202398774487,0.100570614025979,0.100196866786614</span></span>
 <span><span class="co">#&gt; Summary of DTVAR </span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt; free parameters:</span></span>
-<span><span class="co">#&gt;       name       matrix  row  col     Estimate    Std.Error A</span></span>
-<span><span class="co">#&gt; 1  beta_11 DTVAR_1.beta eta1 eta1  0.699100963 0.0025306502  </span></span>
-<span><span class="co">#&gt; 2  beta_21 DTVAR_1.beta eta2 eta1  0.498053074 0.0025316947  </span></span>
-<span><span class="co">#&gt; 3  beta_31 DTVAR_1.beta eta3 eta1 -0.100937447 0.0025346201  </span></span>
-<span><span class="co">#&gt; 4  beta_12 DTVAR_1.beta eta1 eta2 -0.001560033 0.0021327509  </span></span>
-<span><span class="co">#&gt; 5  beta_22 DTVAR_1.beta eta2 eta2  0.602705790 0.0021293455  </span></span>
-<span><span class="co">#&gt; 6  beta_32 DTVAR_1.beta eta3 eta2  0.401870024 0.0021363674  </span></span>
-<span><span class="co">#&gt; 7  beta_13 DTVAR_1.beta eta1 eta3  0.004906141 0.0021802741  </span></span>
-<span><span class="co">#&gt; 8  beta_23 DTVAR_1.beta eta2 eta3 -0.003832471 0.0021741345  </span></span>
-<span><span class="co">#&gt; 9  beta_33 DTVAR_1.beta eta3 eta3  0.498874252 0.0021759606  </span></span>
-<span><span class="co">#&gt; 10  psi_11  DTVAR_1.psi eta1 eta1  0.100182503 0.0004485499  </span></span>
-<span><span class="co">#&gt; 11  psi_22  DTVAR_1.psi eta2 eta2  0.099691874 0.0004463423  </span></span>
-<span><span class="co">#&gt; 12  psi_33  DTVAR_1.psi eta3 eta3  0.099883042 0.0004471061  </span></span>
+<span><span class="co">#&gt;       name       matrix  row  col     Estimate   Std.Error A</span></span>
+<span><span class="co">#&gt; 1  beta_11 DTVAR_1.beta eta1 eta1  0.695647388 0.011135549  </span></span>
+<span><span class="co">#&gt; 2  beta_21 DTVAR_1.beta eta2 eta1  0.482248205 0.011300497  </span></span>
+<span><span class="co">#&gt; 3  beta_31 DTVAR_1.beta eta3 eta1 -0.109120480 0.011278922  </span></span>
+<span><span class="co">#&gt; 4  beta_12 DTVAR_1.beta eta1 eta2  0.005229747 0.009174458  </span></span>
+<span><span class="co">#&gt; 5  beta_22 DTVAR_1.beta eta2 eta2  0.627079168 0.009256319  </span></span>
+<span><span class="co">#&gt; 6  beta_32 DTVAR_1.beta eta3 eta2  0.409906640 0.009317881  </span></span>
+<span><span class="co">#&gt; 7  beta_13 DTVAR_1.beta eta1 eta3  0.004190663 0.009422858  </span></span>
+<span><span class="co">#&gt; 8  beta_23 DTVAR_1.beta eta2 eta3 -0.018570663 0.009479058  </span></span>
+<span><span class="co">#&gt; 9  beta_33 DTVAR_1.beta eta3 eta3  0.502514693 0.009458129  </span></span>
+<span><span class="co">#&gt; 10  psi_11  DTVAR_1.psi eta1 eta1  0.099202399 0.001990934  </span></span>
+<span><span class="co">#&gt; 11  psi_22  DTVAR_1.psi eta2 eta2  0.100570614 0.002019620  </span></span>
+<span><span class="co">#&gt; 12  psi_33  DTVAR_1.psi eta3 eta3  0.100196867 0.002008890  </span></span>
 <span><span class="co">#&gt;                  lbound ubound</span></span>
 <span><span class="co">#&gt; 1                             </span></span>
 <span><span class="co">#&gt; 2                             </span></span>
@@ -369,22 +369,22 @@ Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-d
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model Statistics: </span></span>
 <span><span class="co">#&gt;                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)</span></span>
-<span><span class="co">#&gt;        Model:             12                 299988              161147.8</span></span>
+<span><span class="co">#&gt;        Model:             12                  14988              8131.321</span></span>
 <span><span class="co">#&gt;    Saturated:             NA                     NA                    NA</span></span>
 <span><span class="co">#&gt; Independence:             NA                     NA                    NA</span></span>
-<span><span class="co">#&gt; Number of observations/statistics: 1e+05/3e+05</span></span>
+<span><span class="co">#&gt; Number of observations/statistics: 5000/15000</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Information Criteria: </span></span>
 <span><span class="co">#&gt;       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted</span></span>
-<span><span class="co">#&gt; AIC:      -438828.2               161171.8                 161171.8</span></span>
-<span><span class="co">#&gt; BIC:     -3292591.7               161285.9                 161247.8</span></span>
+<span><span class="co">#&gt; AIC:      -21844.68               8155.321                 8155.384</span></span>
+<span><span class="co">#&gt; BIC:     -119524.37               8233.528                 8195.396</span></span>
 <span><span class="co">#&gt; CFI: NA </span></span>
 <span><span class="co">#&gt; TLI: 1   (also known as NNFI) </span></span>
 <span><span class="co">#&gt; RMSEA:  0  [95% CI (NA, NA)]</span></span>
 <span><span class="co">#&gt; Prob(RMSEA &lt;= 0.05): NA</span></span>
 <span><span class="co">#&gt; To get additional fit indices, see help(mxRefModels)</span></span>
-<span><span class="co">#&gt; timestamp: 2024-08-08 06:17:42 </span></span>
-<span><span class="co">#&gt; Wall clock time: 65.82499 secs </span></span>
+<span><span class="co">#&gt; timestamp: 2024-08-11 21:48:14 </span></span>
+<span><span class="co">#&gt; Wall clock time: 3.411548 secs </span></span>
 <span><span class="co">#&gt; optimizer:  SLSQP </span></span>
 <span><span class="co">#&gt; OpenMx version number: 2.21.11 </span></span>
 <span><span class="co">#&gt; Need help?  See help(mxSummary)</span></span></code></pre>
