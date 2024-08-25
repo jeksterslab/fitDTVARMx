@@ -210,12 +210,10 @@ sim <- SimSSMVARFixed(
   sigma0_l = sigma0_l,
   alpha = alpha,
   beta = beta,
-  psi_l = list(
-    matrix(
-      data = 0,
-      nrow = k,
-      ncol = k
-    )
+  psi_l = matrix(
+    data = 0,
+    nrow = k,
+    ncol = k
   )
 )
 plot(sim, type = "l")

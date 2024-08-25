@@ -281,11 +281,7 @@ theta
 
 ### Visualizing the Dynamics Without Process Noise (n = 5 with Different Initial Condition)
 
-
-```
-#> Error: Not compatible with requested type: [type=list; target=double].
-#> Error in eval(expr, envir, enclos): object 'sim' not found
-```
+<img src="fig-vignettes-model-2-id-random-no-error-1.png" width="3300" /><img src="fig-vignettes-model-2-id-random-no-error-2.png" width="3300" /><img src="fig-vignettes-model-2-id-random-no-error-3.png" width="3300" />
 
 ### Using the `SimSSMFixed` Function from the `simStateSpace` Package to Simulate Data
 
@@ -306,13 +302,13 @@ sim <- SimSSMFixed(
 )
 data <- as.data.frame(sim)
 head(data)
-#>   id time         y1         y2        y3
-#> 1  1    0 -0.3504435  0.5416673 2.6593756
-#> 2  1    1 -0.5065352  1.0987833 1.0293739
-#> 3  1    2 -0.6901502  0.7885010 1.3206576
-#> 4  1    3 -1.6211653 -0.1418180 0.8973636
-#> 5  1    4 -0.8299871 -0.6030920 0.5655792
-#> 6  1    5  0.6757224 -0.2857238 0.0192403
+#>   id time          y1         y2         y3
+#> 1  1    0 -0.36389392  0.2260508 -1.0840920
+#> 2  1    1 -0.17839821 -0.4923748 -0.2933503
+#> 3  1    2 -0.29837320 -0.5441213  0.1678981
+#> 4  1    3  0.06914180 -1.5266350 -0.7623779
+#> 5  1    4  0.55603569 -0.8676678  0.1421071
+#> 6  1    5  0.01185309 -0.4340968 -0.7695032
 plot(sim)
 ```
 
@@ -340,7 +336,7 @@ DTVAR(
 #> Beginning initial fit attempt
 #> Running DTVAR with 15 parameters
 #> 
-#>  Lowest minimum so far:  531159.68631865
+#>  Lowest minimum so far:  531297.191207095
 #> 
 #> Solution found
 ```
@@ -349,28 +345,28 @@ DTVAR(
 
 ```
 #> 
-#>  Solution found!  Final fit=531159.69 (started at 745177.63)  (1 attempt(s): 1 valid, 0 errors)
+#>  Solution found!  Final fit=531297.19 (started at 744579.25)  (1 attempt(s): 1 valid, 0 errors)
 #>  Start values from best fit:
-#> 0.716417654440955,0.50505447085568,-0.101875794882909,-0.00488661473839549,0.595441137928906,0.395461460417462,0.00335723258395463,0.000925052545542193,0.503735097750285,0.0947512877494743,0.102716389013601,0.097170536482104,0.202452460388802,0.198519193850758,0.203583274368718
+#> 0.715108087411677,0.503179384283235,-0.100493849251711,-0.00525790908342593,0.597983475635114,0.393138738520694,0.00372581739740485,-0.00148663884950789,0.506838725958303,0.0950906683043233,0.102449337047043,0.0964589140871214,0.202358434758114,0.198776795623965,0.204403801318225
 #> Summary of DTVAR 
 #>  
 #> free parameters:
-#>        name        matrix  row  col      Estimate   Std.Error A
-#> 1   beta_11  DTVAR_1.beta eta1 eta1  0.7164176544 0.009179822  
-#> 2   beta_21  DTVAR_1.beta eta2 eta1  0.5050544709 0.008588486  
-#> 3   beta_31  DTVAR_1.beta eta3 eta1 -0.1018757949 0.006062702  
-#> 4   beta_12  DTVAR_1.beta eta1 eta2 -0.0048866147 0.005637428  
-#> 5   beta_22  DTVAR_1.beta eta2 eta2  0.5954411379 0.007204854  
-#> 6   beta_32  DTVAR_1.beta eta3 eta2  0.3954614604 0.006251108  
-#> 7   beta_13  DTVAR_1.beta eta1 eta3  0.0033572326 0.004035572  
-#> 8   beta_23  DTVAR_1.beta eta2 eta3  0.0009250525 0.005211877  
-#> 9   beta_33  DTVAR_1.beta eta3 eta3  0.5037350978 0.006435507  
-#> 10   psi_11   DTVAR_1.psi eta1 eta1  0.0947512877 0.002846857  
-#> 11   psi_22   DTVAR_1.psi eta2 eta2  0.1027163890 0.002423614  
-#> 12   psi_33   DTVAR_1.psi eta3 eta3  0.0971705365 0.002815702  
-#> 13 theta_11 DTVAR_1.theta   y1   y1  0.2024524604 0.002416261  
-#> 14 theta_22 DTVAR_1.theta   y2   y2  0.1985191939 0.002312052  
-#> 15 theta_33 DTVAR_1.theta   y3   y3  0.2035832744 0.002839078  
+#>        name        matrix  row  col     Estimate   Std.Error A
+#> 1   beta_11  DTVAR_1.beta eta1 eta1  0.715108087 0.009100146  
+#> 2   beta_21  DTVAR_1.beta eta2 eta1  0.503179384 0.008525193  
+#> 3   beta_31  DTVAR_1.beta eta3 eta1 -0.100493849 0.006006951  
+#> 4   beta_12  DTVAR_1.beta eta1 eta2 -0.005257909 0.005576772  
+#> 5   beta_22  DTVAR_1.beta eta2 eta2  0.597983476 0.007151269  
+#> 6   beta_32  DTVAR_1.beta eta3 eta2  0.393138739 0.006166886  
+#> 7   beta_13  DTVAR_1.beta eta1 eta3  0.003725817 0.004016325  
+#> 8   beta_23  DTVAR_1.beta eta2 eta3 -0.001486639 0.005190456  
+#> 9   beta_33  DTVAR_1.beta eta3 eta3  0.506838726 0.006360097  
+#> 10   psi_11   DTVAR_1.psi eta1 eta1  0.095090668 0.002834522  
+#> 11   psi_22   DTVAR_1.psi eta2 eta2  0.102449337 0.002410159  
+#> 12   psi_33   DTVAR_1.psi eta3 eta3  0.096458914 0.002785813  
+#> 13 theta_11 DTVAR_1.theta   y1   y1  0.202358435 0.002410945  
+#> 14 theta_22 DTVAR_1.theta   y2   y2  0.198776796 0.002299324  
+#> 15 theta_33 DTVAR_1.theta   y3   y3  0.204403801 0.002813680  
 #>                  lbound ubound
 #> 1                             
 #> 2                             
@@ -390,22 +386,22 @@ DTVAR(
 #> 
 #> Model Statistics: 
 #>                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)
-#>        Model:             15                 299985              531159.7
+#>        Model:             15                 299985              531297.2
 #>    Saturated:             NA                     NA                    NA
 #> Independence:             NA                     NA                    NA
 #> Number of observations/statistics: 1e+05/3e+05
 #> 
 #> Information Criteria: 
 #>       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted
-#> AIC:      -68810.31               531189.7                 531189.7
-#> BIC:    -2922545.26               531332.4                 531284.7
+#> AIC:      -68672.81               531327.2                 531327.2
+#> BIC:    -2922407.75               531469.9                 531422.2
 #> CFI: NA 
 #> TLI: 1   (also known as NNFI) 
 #> RMSEA:  0  [95% CI (NA, NA)]
 #> Prob(RMSEA <= 0.05): NA
 #> To get additional fit indices, see help(mxRefModels)
-#> timestamp: 2024-08-25 06:11:47 
-#> Wall clock time: 125.0079 secs 
+#> timestamp: 2024-08-25 19:18:35 
+#> Wall clock time: 125.2504 secs 
 #> optimizer:  SLSQP 
 #> OpenMx version number: 2.21.12 
 #> Need help?  See help(mxSummary)
