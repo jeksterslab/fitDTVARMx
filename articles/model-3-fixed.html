@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Fit the Discrete-Time Vector Autoregressive Model By ID (Model 4) • fitDTVARMx</title>
+<title>Fit the Discrete-Time Vector Autoregressive Model (Model 3) • fitDTVARMx</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 <link href="../deps/Roboto_Slab-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fit the Discrete-Time Vector Autoregressive Model By ID (Model 4)">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fit the Discrete-Time Vector Autoregressive Model (Model 3)">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
 </head>
@@ -57,14 +57,14 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Fit the Discrete-Time Vector Autoregressive Model By ID (Model 4)</h1>
+      <h1>Fit the Discrete-Time Vector Autoregressive Model (Model 3)</h1>
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
             <h4 data-toc-skip class="date">2024-08-25</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jeksterslab/fitDTVARMx/blob/main/vignettes/model-4-id-random.Rmd"><code>vignettes/model-4-id-random.Rmd</code></a></small>
-      <div class="d-none name"><code>model-4-id-random.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/jeksterslab/fitDTVARMx/blob/main/vignettes/model-3-fixed.Rmd"><code>vignettes/model-3-fixed.Rmd</code></a></small>
+      <div class="d-none name"><code>model-3-fixed.Rmd</code></div>
     </div>
 
     
@@ -260,36 +260,18 @@ be given by</p>
 \end{equation}</annotation></semantics></math></p>
 <p>Let the transition matrix
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝛃</mi><annotation encoding="application/x-tex">\boldsymbol{\beta}</annotation></semantics></math>
-be normally distributed with the following means</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.7</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.5</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.6</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>0.1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.4</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.5</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">\begin{equation}
+be given by</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>𝛃</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.7</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0.5</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.6</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mi>−</mi><mn>0.1</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.4</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.5</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
+\boldsymbol{\beta}
+=
 \left(
 \begin{array}{ccc}
   0.7 &amp; 0 &amp; 0 \\
   0.5 &amp; 0.6 &amp; 0 \\
   -0.1 &amp; 0.4 &amp; 0.5 \\
 \end{array}
-\right)
-\end{equation}</annotation></semantics></math></p>
-<p>and covariance matrix</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="center" style="text-align: center"><mn>0.01</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable><mo stretchy="true" form="postfix">)</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">\begin{equation}
-\left(
-\begin{array}{ccc}
-  0.01 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-  0 &amp; 0.01 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-  0 &amp; 0 &amp; 0.01 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-  0 &amp; 0 &amp; 0 &amp; 0.01 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.01 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.01 &amp; 0 &amp; 0 &amp; 0 \\
-  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.01 &amp; 0 &amp; 0 \\
-  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.01 &amp; 0 \\
-  0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.01 \\
-\end{array}
 \right) .
 \end{equation}</annotation></semantics></math></p>
-<p>The <code>SimBetaN</code> function from the
-<code>simStateSpace</code> package generates random transition matrices
-from the multivariate normal distribution. Note that the function
-generates transition matrices that are weakly stationary.</p>
 <p>Let the dynamic process noise
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>𝚿</mi><annotation encoding="application/x-tex">\boldsymbol{\Psi}</annotation></semantics></math>
 be given by</p>
@@ -314,7 +296,6 @@ be given by</p>
 <span><span class="va">time</span></span>
 <span><span class="co">#&gt; [1] 1000</span></span>
 <span><span class="va">mu0</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; [1] 0 0 0</span></span>
 <span><span class="va">sigma0</span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
@@ -322,36 +303,30 @@ be given by</p>
 <span><span class="co">#&gt; [2,]    0    1    0</span></span>
 <span><span class="co">#&gt; [3,]    0    0    1</span></span>
 <span><span class="va">sigma0_l</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
 <span><span class="co">#&gt; [1,]    1    0    0</span></span>
 <span><span class="co">#&gt; [2,]    0    1    0</span></span>
 <span><span class="co">#&gt; [3,]    0    0    1</span></span>
 <span><span class="va">alpha</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; [1] 0 0 0</span></span>
-<span><span class="co"># first beta in the list of length n</span></span>
-<span><span class="va">beta</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
-<span><span class="co">#&gt;           [,1]       [,2]       [,3]</span></span>
-<span><span class="co">#&gt; [1,] 0.6468498 0.02987347 0.09881764</span></span>
-<span><span class="co">#&gt; [2,] 0.5821253 0.64048586 0.12907652</span></span>
-<span><span class="co">#&gt; [3,] 0.1217450 0.33748281 0.46598132</span></span>
+<span><span class="va">beta</span></span>
+<span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
+<span><span class="co">#&gt; [1,]  0.7  0.0  0.0</span></span>
+<span><span class="co">#&gt; [2,]  0.5  0.6  0.0</span></span>
+<span><span class="co">#&gt; [3,] -0.1  0.4  0.5</span></span>
 <span><span class="va">psi</span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
 <span><span class="co">#&gt; [1,]  0.1  0.0  0.0</span></span>
 <span><span class="co">#&gt; [2,]  0.0  0.1  0.0</span></span>
 <span><span class="co">#&gt; [3,]  0.0  0.0  0.1</span></span>
 <span><span class="va">psi_l</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt;           [,1]      [,2]      [,3]</span></span>
 <span><span class="co">#&gt; [1,] 0.3162278 0.0000000 0.0000000</span></span>
 <span><span class="co">#&gt; [2,] 0.0000000 0.3162278 0.0000000</span></span>
 <span><span class="co">#&gt; [3,] 0.0000000 0.0000000 0.3162278</span></span>
 <span><span class="va">nu</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt; [1] 0 0 0</span></span>
 <span><span class="va">lambda</span></span>
-<span><span class="co">#&gt; [[1]]</span></span>
 <span><span class="co">#&gt;      [,1] [,2] [,3]</span></span>
 <span><span class="co">#&gt; [1,]    1    0    0</span></span>
 <span><span class="co">#&gt; [2,]    0    1    0</span></span>
@@ -366,15 +341,16 @@ be given by</p>
 <h3 id="visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition">Visualizing the Dynamics Without Process Noise (n = 5 with Different
 Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition"></a>
 </h3>
-<p><img src="fig-vignettes-model-4-id-random-no-error-1.png" width="3300"><img src="fig-vignettes-model-4-id-random-no-error-2.png" width="3300"><img src="fig-vignettes-model-4-id-random-no-error-3.png" width="3300"></p>
+<pre><code><span><span class="co">#&gt; Error: Not compatible with requested type: [type=list; target=double].</span></span>
+<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'sim' not found</span></span></code></pre>
 </div>
 <div class="section level3">
-<h3 id="using-the-simssmivary-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMIVary</code> Function from the
-<code>simStateSpace</code> Package to Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmivary-function-from-the-simstatespace-package-to-simulate-data"></a>
+<h3 id="using-the-simssmfixed-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMFixed</code> Function from the
+<code>simStateSpace</code> Package to Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmfixed-function-from-the-simstatespace-package-to-simulate-data"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span>
-<span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMIVary.html" class="external-link">SimSSMIVary</a></span><span class="op">(</span></span>
+<span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMFixed.html" class="external-link">SimSSMFixed</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="va">n</span>,</span>
 <span>  time <span class="op">=</span> <span class="va">time</span>,</span>
 <span>  mu0 <span class="op">=</span> <span class="va">mu0</span>,</span>
@@ -388,13 +364,13 @@ Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-d
 <span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   id time          y1         y2          y3</span></span>
-<span><span class="co">#&gt; 1  1    0 -0.63437294  0.6021365 -0.91776552</span></span>
-<span><span class="co">#&gt; 2  1    1 -0.81485487  0.3819811  0.68347267</span></span>
-<span><span class="co">#&gt; 3  1    2 -0.74662080  0.1263441  0.85777810</span></span>
-<span><span class="co">#&gt; 4  1    3 -0.50939822 -0.3310262  0.82453806</span></span>
-<span><span class="co">#&gt; 5  1    4 -0.03333068 -0.4789725 -0.09547539</span></span>
-<span><span class="co">#&gt; 6  1    5  0.82744597 -0.1903433  1.01685273</span></span>
+<span><span class="co">#&gt;   id time         y1         y2        y3</span></span>
+<span><span class="co">#&gt; 1  1    0 -0.3504435  0.5416673 2.6593756</span></span>
+<span><span class="co">#&gt; 2  1    1 -0.5065352  1.0987833 1.0293739</span></span>
+<span><span class="co">#&gt; 3  1    2 -0.6901502  0.7885010 1.3206576</span></span>
+<span><span class="co">#&gt; 4  1    3 -1.6211653 -0.1418180 0.8973636</span></span>
+<span><span class="co">#&gt; 5  1    4 -0.8299871 -0.6030920 0.5655792</span></span>
+<span><span class="co">#&gt; 6  1    5  0.6757224 -0.2857238 0.0192403</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fig-vignettes-model-4-id-random-error-1.png" width="3300"><img src="fig-vignettes-model-4-id-random-error-2.png" width="3300"><img src="fig-vignettes-model-4-id-random-error-3.png" width="3300"></p>
 </div>
@@ -402,32 +378,93 @@ Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-d
 <div class="section level2">
 <h2 id="model-fitting">Model Fitting<a class="anchor" aria-label="anchor" href="#model-fitting"></a>
 </h2>
-<p>The <code>DTVAR</code> function fits a DT-VAR model on each
-individual
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
-using the <code>byid = TRUE</code> argument.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>The <code>DTVAR</code> function fits a DT-VAR model assuming fixed
+parameters using the <code>byid = FALSE</code> argument.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitDTVARMx">fitDTVARMx</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/DTVAR.html">DTVAR</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">data</span>,</span>
 <span>  observed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"y"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="va">k</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  id <span class="op">=</span> <span class="st">"id"</span>,</span>
-<span>  model <span class="op">=</span> <span class="fl">4</span>,</span>
-<span>  byid <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  model <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  byid <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; Running DTVAR with 18 parameters</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Means of the estimated paramaters per individual.</span></span>
-<span><span class="co">#&gt;       beta_11       beta_21       beta_31       beta_12       beta_22 </span></span>
-<span><span class="co">#&gt;  6.547472e-01  4.728106e-01 -9.903454e-02  2.617293e-02  6.092438e-01 </span></span>
-<span><span class="co">#&gt;       beta_32       beta_13       beta_23       beta_33       alpha_1 </span></span>
-<span><span class="co">#&gt;  3.930405e-01 -1.020125e-02 -2.622547e-02  4.933279e-01  1.271217e-03 </span></span>
-<span><span class="co">#&gt;       alpha_2       alpha_3        psi_11        psi_21        psi_22 </span></span>
-<span><span class="co">#&gt;  2.103796e-03  2.195776e-03  9.849657e-02  1.675449e-03  9.745869e-02 </span></span>
-<span><span class="co">#&gt;        psi_31        psi_32        psi_33      theta_11      theta_22 </span></span>
-<span><span class="co">#&gt;  5.546712e-04 -9.522127e-05  1.014263e-01  2.011662e-01  2.030307e-01 </span></span>
-<span><span class="co">#&gt;      theta_33 </span></span>
-<span><span class="co">#&gt;  1.954174e-01</span></span></code></pre></div>
+<span><span class="co">#&gt; Beginning initial fit attempt</span></span>
+<span><span class="co">#&gt; Running DTVAR with 18 parameters</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Lowest minimum so far:  531158.04424379</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Solution found</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  Solution found!  Final fit=531158.04 (started at 745177.63)  (1 attempt(s): 1 valid, 0 errors)</span></span>
+<span><span class="co">#&gt;  Start values from best fit:</span></span>
+<span><span class="co">#&gt; 0.716412813350045,0.505038101321943,-0.1018910165499,-0.00488333582396777,0.595465143814449,0.395490194500693,0.00335545721049376,0.000905271407806999,0.503689073264972,3.09081041637133e-05,0.000257615359234339,0.00159664175698682,0.0947524140443941,0.102708295744269,0.0971695798120045,0.202451871059694,0.198525989458298,0.203581125432285</span></span>
+<span><span class="co">#&gt; Summary of DTVAR </span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; free parameters:</span></span>
+<span><span class="co">#&gt;        name        matrix  row  col      Estimate   Std.Error A</span></span>
+<span><span class="co">#&gt; 1   beta_11  DTVAR_1.beta eta1 eta1  0.7164128134 0.009182520  </span></span>
+<span><span class="co">#&gt; 2   beta_21  DTVAR_1.beta eta2 eta1  0.5050381013 0.008591224  </span></span>
+<span><span class="co">#&gt; 3   beta_31  DTVAR_1.beta eta3 eta1 -0.1018910165 0.006063253  </span></span>
+<span><span class="co">#&gt; 4   beta_12  DTVAR_1.beta eta1 eta2 -0.0048833358 0.005638834  </span></span>
+<span><span class="co">#&gt; 5   beta_22  DTVAR_1.beta eta2 eta2  0.5954651438 0.007207057  </span></span>
+<span><span class="co">#&gt; 6   beta_32  DTVAR_1.beta eta3 eta2  0.3954901945 0.006252210  </span></span>
+<span><span class="co">#&gt; 7   beta_13  DTVAR_1.beta eta1 eta3  0.0033554572 0.004036119  </span></span>
+<span><span class="co">#&gt; 8   beta_23  DTVAR_1.beta eta2 eta3  0.0009052714 0.005212853  </span></span>
+<span><span class="co">#&gt; 9   beta_33  DTVAR_1.beta eta3 eta3  0.5036890733 0.006436978  </span></span>
+<span><span class="co">#&gt; 10  alpha_1 DTVAR_1.gamma    1    1  0.0000309081 0.001054713  </span></span>
+<span><span class="co">#&gt; 11  alpha_2 DTVAR_1.gamma    2    1  0.0002576154 0.001367737  </span></span>
+<span><span class="co">#&gt; 12  alpha_3 DTVAR_1.gamma    3    1  0.0015966418 0.001344372  </span></span>
+<span><span class="co">#&gt; 13   psi_11   DTVAR_1.psi eta1 eta1  0.0947524140 0.002847700  </span></span>
+<span><span class="co">#&gt; 14   psi_22   DTVAR_1.psi eta2 eta2  0.1027082957 0.002423720  </span></span>
+<span><span class="co">#&gt; 15   psi_33   DTVAR_1.psi eta3 eta3  0.0971695798 0.002816171  </span></span>
+<span><span class="co">#&gt; 16 theta_11 DTVAR_1.theta   y1   y1  0.2024518711 0.002416832  </span></span>
+<span><span class="co">#&gt; 17 theta_22 DTVAR_1.theta   y2   y2  0.1985259895 0.002312238  </span></span>
+<span><span class="co">#&gt; 18 theta_33 DTVAR_1.theta   y3   y3  0.2035811254 0.002839508  </span></span>
+<span><span class="co">#&gt;                  lbound ubound</span></span>
+<span><span class="co">#&gt; 1                             </span></span>
+<span><span class="co">#&gt; 2                             </span></span>
+<span><span class="co">#&gt; 3                             </span></span>
+<span><span class="co">#&gt; 4                             </span></span>
+<span><span class="co">#&gt; 5                             </span></span>
+<span><span class="co">#&gt; 6                             </span></span>
+<span><span class="co">#&gt; 7                             </span></span>
+<span><span class="co">#&gt; 8                             </span></span>
+<span><span class="co">#&gt; 9                             </span></span>
+<span><span class="co">#&gt; 10                            </span></span>
+<span><span class="co">#&gt; 11                            </span></span>
+<span><span class="co">#&gt; 12                            </span></span>
+<span><span class="co">#&gt; 13 2.2250738585072e-308       </span></span>
+<span><span class="co">#&gt; 14 2.2250738585072e-308       </span></span>
+<span><span class="co">#&gt; 15 2.2250738585072e-308       </span></span>
+<span><span class="co">#&gt; 16 2.2250738585072e-308       </span></span>
+<span><span class="co">#&gt; 17 2.2250738585072e-308       </span></span>
+<span><span class="co">#&gt; 18 2.2250738585072e-308       </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model Statistics: </span></span>
+<span><span class="co">#&gt;                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)</span></span>
+<span><span class="co">#&gt;        Model:             18                 299982                531158</span></span>
+<span><span class="co">#&gt;    Saturated:             NA                     NA                    NA</span></span>
+<span><span class="co">#&gt; Independence:             NA                     NA                    NA</span></span>
+<span><span class="co">#&gt; Number of observations/statistics: 1e+05/3e+05</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Information Criteria: </span></span>
+<span><span class="co">#&gt;       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted</span></span>
+<span><span class="co">#&gt; AIC:      -68805.96               531194.0                 531194.1</span></span>
+<span><span class="co">#&gt; BIC:    -2922512.36               531365.3                 531308.1</span></span>
+<span><span class="co">#&gt; CFI: NA </span></span>
+<span><span class="co">#&gt; TLI: 1   (also known as NNFI) </span></span>
+<span><span class="co">#&gt; RMSEA:  0  [95% CI (NA, NA)]</span></span>
+<span><span class="co">#&gt; Prob(RMSEA &lt;= 0.05): NA</span></span>
+<span><span class="co">#&gt; To get additional fit indices, see help(mxRefModels)</span></span>
+<span><span class="co">#&gt; timestamp: 2024-08-25 06:18:50 </span></span>
+<span><span class="co">#&gt; Wall clock time: 148.1409 secs </span></span>
+<span><span class="co">#&gt; optimizer:  SLSQP </span></span>
+<span><span class="co">#&gt; OpenMx version number: 2.21.12 </span></span>
+<span><span class="co">#&gt; Need help?  See help(mxSummary)</span></span></code></pre>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
