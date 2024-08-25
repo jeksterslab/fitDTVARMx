@@ -2,6 +2,7 @@
                                idx,
                                observed,
                                theta_values = NULL,
+                               theta_free = NULL,
                                theta_lbound = NULL,
                                theta_ubound = NULL) {
   # R
@@ -53,12 +54,33 @@
       length(theta_ubound) == k
     )
   }
+  if (is.null(theta_free)) {
+    theta_free <- rep(
+      x = TRUE,
+      times = k
+    )
+  } else {
+    if (is.matrix(theta_free)) {
+      theta_free <- diag(theta_free)
+    }
+    stopifnot(
+      is.vector(theta_free),
+      length(theta_free) == k
+    )
+    for (i in idx) {
+      if (!theta_free[i]) {
+        theta_labels[i] <- NA
+        theta_lbound[i] <- NA
+        theta_ubound[i] <- NA
+      }
+    }
+  }
   return(
     OpenMx::mxMatrix(
       type = "Diag",
       nrow = k,
       ncol = k,
-      free = TRUE,
+      free = theta_free,
       values = theta_values,
       labels = theta_labels,
       lbound = theta_lbound,

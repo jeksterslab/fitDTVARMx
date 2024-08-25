@@ -2,12 +2,12 @@
                             idx,
                             statenames,
                             mu0_values = NULL,
+                            mu0_free = NULL,
                             mu0_lbound = NULL,
                             mu0_ubound = NULL) {
   # x0
   # initial condition
   # mean
-  # nocov start
   if (is.null(mu0_values)) {
     mu0_values <- matrix(
       data = 0,
@@ -68,14 +68,46 @@
       )
     }
   }
+  mu0_labels <- matrix(
+    data = paste0(
+      "mu0_",
+      idx
+    ),
+    ncol = 1
+  )
+  if (is.null(mu0_free)) {
+    mu0_free <- matrix(
+      data = TRUE,
+      nrow = k,
+      ncol = 1
+    )
+  } else {
+    if (is.vector(mu0_free)) {
+      mu0_free <- matrix(
+        data = mu0_free,
+        ncol = 1
+      )
+    }
+    stopifnot(
+      is.matrix(mu0_free),
+      dim(mu0_free) == c(k, 1)
+    )
+    for (i in idx) {
+      if (!mu0_free[i, 1]) {
+        mu0_labels[i, 1] <- NA
+        mu0_lbound[i, 1] <- NA
+        mu0_ubound[i, 1] <- NA
+      }
+    }
+  }
   return(
     OpenMx::mxMatrix(
       type = "Full",
       nrow = k,
       ncol = 1,
-      free = TRUE,
+      free = mu0_free,
       values = mu0_values,
-      labels = paste0("mu0_", idx),
+      labels = mu0_labels,
       lbound = mu0_lbound,
       ubound = mu0_ubound,
       byrow = FALSE,
@@ -86,5 +118,4 @@
       name = "mu0"
     )
   )
-  # nocov end
 }

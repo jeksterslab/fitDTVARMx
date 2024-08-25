@@ -5,7 +5,6 @@
   # x0
   # initial condition
   # mean
-  # nocov start
   if (is.null(mu0_values)) {
     mu0_values <- rep(x = 0, times = k)
   } else {
@@ -36,5 +35,4 @@
       name = "mu0"
     )
   )
-  # nocov end
 }

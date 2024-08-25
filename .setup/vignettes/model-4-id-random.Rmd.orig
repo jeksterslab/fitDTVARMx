@@ -1,0 +1,408 @@
+---
+title: "Fit the Discrete-Time Vector Autoregressive Model By ID (Model 4)"
+author: Ivan Jacob Agaloos Pesigan
+date: "`r Sys.Date()`"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @RCoreTeam-2024
+  @Neale-Hunter-Pritikin-etal-2015
+  @Hunter-2017
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Fit the Discrete-Time Vector Autoregressive Model By ID (Model 4)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.path = "fig-vignettes-model-4-id-random-",
+  fig.cap = "",
+  fig.width = 11,
+  fig.height = 8,
+  fig.retina = 2,
+  dpi = 300,
+  comment = "#>"
+)
+```
+
+```{r}
+#| echo = FALSE
+set.seed(42)
+n <- 100
+time <- 1000
+k <- p <- 3
+iden <- diag(k)
+null_vec <- rep(x = 0, times = k)
+mu0 <- list(
+  null_vec
+)
+sigma0 <- diag(p)
+sigma0_l <- list(
+  t(chol(sigma0))
+)
+alpha <- list(
+  null_vec
+)
+psi <- 0.1 * iden
+psi_l <- list(
+  t(chol(psi))
+)
+nu <- list(
+  null_vec
+)
+lambda <- list(
+  iden
+)
+theta <- 0.2 * iden
+theta_l <- list(
+  t(chol(theta))
+)
+```
+
+```{r}
+#| echo = FALSE
+library(simStateSpace)
+beta_mu <- matrix(
+  data = c(
+    0.7, 0.5, -0.1,
+    0.0, 0.6, 0.4,
+    0, 0, 0.5
+  ),
+  nrow = p
+)
+beta_sigma <- 0.01 * diag(p * p)
+beta <- SimBetaN(
+  n = n,
+  beta = beta_mu,
+  vcov_beta_vec_l = t(chol(beta_sigma))
+)
+```
+
+## Model
+
+The measurement model is given by
+\begin{equation}
+  \mathbf{y}_{i, t}
+  =
+  \boldsymbol{\Lambda}
+  \boldsymbol{\eta}_{i, t}
+  +
+  \boldsymbol{\varepsilon}_{i, t},
+  \quad
+  \mathrm{with}
+  \quad
+  \boldsymbol{\varepsilon}_{i, t}
+  \sim
+  \mathcal{N}
+  \left(
+  \mathbf{0},
+  \boldsymbol{\Theta}
+  \right)
+\end{equation}
+where
+$\mathbf{y}_{i, t}$,
+$\boldsymbol{\eta}_{i, t}$,
+and
+$\boldsymbol{\varepsilon}_{i, t}$
+are random variables
+and
+$\boldsymbol{\Lambda}$,
+and
+$\boldsymbol{\Theta}$
+are model parameters.
+$\mathbf{y}_{i, t}$
+represents a vector of observed random variables,
+$\boldsymbol{\eta}_{i, t}$
+a vector of latent random variables,
+and
+$\boldsymbol{\varepsilon}_{i, t}$
+a vector of random measurement errors,
+at time $t$ and individual $i$.
+$\boldsymbol{\Lambda}$
+denotes a matrix of factor loadings,
+and
+$\boldsymbol{\Theta}$
+the covariance matrix of
+$\boldsymbol{\varepsilon}$.
+In this model,
+$\boldsymbol{\Lambda}$ is an identity matrix and
+$\boldsymbol{\Theta}$ is a diagonal matrix.
+
+The dynamic structure is given by
+\begin{equation}
+  \boldsymbol{\eta}_{i, t}
+  =
+  \boldsymbol{\alpha}
+  +
+  \boldsymbol{\beta}
+  \boldsymbol{\eta}_{i, t - 1}
+  +
+  \boldsymbol{\zeta}_{i, t},
+  \quad
+  \mathrm{with}
+  \quad
+  \boldsymbol{\zeta}_{i, t}
+  \sim
+  \mathcal{N}
+  \left(
+  \mathbf{0},
+  \boldsymbol{\Psi}
+  \right)
+\end{equation}
+where
+$\boldsymbol{\eta}_{i, t}$,
+$\boldsymbol{\eta}_{i, t - 1}$,
+and
+$\boldsymbol{\zeta}_{i, t}$
+are random variables,
+and
+$\boldsymbol{\alpha}$,
+$\boldsymbol{\beta}$,
+and
+$\boldsymbol{\Psi}$
+are model parameters.
+Here,
+$\boldsymbol{\eta}_{i, t}$
+is a vector of latent variables
+at time $t$ and individual $i$,
+$\boldsymbol{\eta}_{i, t - 1}$
+represents a vector of latent variables
+at time $t - 1$ and individual $i$,
+and
+$\boldsymbol{\zeta}_{i, t}$
+represents a vector of dynamic noise
+at time $t$ and individual $i$.
+$\boldsymbol{\alpha}$
+denotes a vector of intercepts,
+$\boldsymbol{\beta}$
+a matrix of autoregression
+and cross regression coefficients,
+and
+$\boldsymbol{\Psi}$
+the covariance matrix of
+$\boldsymbol{\zeta}_{i, t}$.
+In this model,
+$\boldsymbol{\Psi}$ is a symmetric matrix.
+
+## Data Generation
+
+### Notation
+
+Let $t = `r time`$ be the number of time points and $n = `r n`$ be the number of individuals.
+
+Let the measurement model intecept vector $\boldsymbol{\nu}$ be given by
+
+\begin{equation}
+\boldsymbol{\nu}
+=
+\left(
+\begin{array}{c}
+  `r nu[[1]][1]` \\
+  `r nu[[1]][2]` \\
+  `r nu[[1]][3]` \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the factor loadings matrix $\boldsymbol{\Lambda}$ be given by
+
+\begin{equation}
+\boldsymbol{\Lambda}
+=
+\left(
+\begin{array}{ccc}
+  `r lambda[[1]][1, 1]` & `r lambda[[1]][1, 2]` & `r lambda[[1]][1, 3]` \\
+  `r lambda[[1]][2, 1]` & `r lambda[[1]][2, 2]` & `r lambda[[1]][2, 3]` \\
+  `r lambda[[1]][3, 1]` & `r lambda[[1]][3, 2]` & `r lambda[[1]][3, 3]` \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the measurement error covariance matrix $\boldsymbol{\Theta}$ be given by
+
+\begin{equation}
+\boldsymbol{\Theta}
+=
+\left(
+\begin{array}{ccc}
+  `r theta[1, 1]` & `r theta[1, 2]` & `r theta[1, 3]` \\
+  `r theta[2, 1]` & `r theta[2, 2]` & `r theta[2, 3]` \\
+  `r theta[3, 1]` & `r theta[3, 2]` & `r theta[3, 3]` \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the initial condition
+$\boldsymbol{\eta}_{0}$
+be given by
+
+\begin{equation}
+\boldsymbol{\eta}_{0} \sim \mathcal{N} \left( \boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}, \boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0} \right)
+\end{equation}
+
+\begin{equation}
+\boldsymbol{\mu}_{\boldsymbol{\eta} \mid 0}
+=
+\left(
+\begin{array}{c}
+  `r mu0[[1]][1]` \\
+  `r mu0[[1]][2]` \\
+  `r mu0[[1]][3]` \\
+\end{array}
+\right)
+\end{equation}
+
+\begin{equation}
+\boldsymbol{\Sigma}_{\boldsymbol{\eta} \mid 0}
+=
+\left(
+\begin{array}{ccc}
+  `r sigma0[1, 1]` & `r sigma0[1, 2]` & `r sigma0[1, 3]` \\
+  `r sigma0[2, 1]` & `r sigma0[2, 2]` & `r sigma0[2, 3]` \\
+  `r sigma0[3, 1]` & `r sigma0[3, 2]` & `r sigma0[3, 3]` \\
+\end{array}
+\right) .
+\end{equation}
+
+Let the transition matrix $\boldsymbol{\beta}$ be normally distributed with the following means
+
+\begin{equation}
+\left(
+\begin{array}{ccc}
+  `r beta_mu[1, 1]` & `r beta_mu[1, 2]` & `r beta_mu[1, 3]` \\
+  `r beta_mu[2, 1]` & `r beta_mu[2, 2]` & `r beta_mu[2, 3]` \\
+  `r beta_mu[3, 1]` & `r beta_mu[3, 2]` & `r beta_mu[3, 3]` \\
+\end{array}
+\right)
+\end{equation}
+
+and covariance matrix
+
+\begin{equation}
+\left(
+\begin{array}{ccc}
+  `r beta_sigma[1, 1]` & `r beta_sigma[1, 2]` & `r beta_sigma[1, 3]` & `r beta_sigma[1, 4]` & `r beta_sigma[1, 5]` & `r beta_sigma[1, 6]` & `r beta_sigma[1, 7]` & `r beta_sigma[1, 8]` & `r beta_sigma[1, 9]` \\
+  `r beta_sigma[2, 1]` & `r beta_sigma[2, 2]` & `r beta_sigma[2, 3]` & `r beta_sigma[2, 4]` & `r beta_sigma[2, 5]` & `r beta_sigma[2, 6]` & `r beta_sigma[2, 7]` & `r beta_sigma[2, 8]` & `r beta_sigma[2, 9]` \\
+  `r beta_sigma[3, 1]` & `r beta_sigma[3, 2]` & `r beta_sigma[3, 3]` & `r beta_sigma[3, 4]` & `r beta_sigma[3, 5]` & `r beta_sigma[3, 6]` & `r beta_sigma[3, 7]` & `r beta_sigma[3, 8]` & `r beta_sigma[3, 9]` \\
+  `r beta_sigma[4, 1]` & `r beta_sigma[4, 2]` & `r beta_sigma[4, 3]` & `r beta_sigma[4, 4]` & `r beta_sigma[4, 5]` & `r beta_sigma[4, 6]` & `r beta_sigma[4, 7]` & `r beta_sigma[4, 8]` & `r beta_sigma[4, 9]` \\
+  `r beta_sigma[5, 1]` & `r beta_sigma[5, 2]` & `r beta_sigma[5, 3]` & `r beta_sigma[5, 4]` & `r beta_sigma[5, 5]` & `r beta_sigma[5, 6]` & `r beta_sigma[5, 7]` & `r beta_sigma[5, 8]` & `r beta_sigma[5, 9]` \\
+  `r beta_sigma[6, 1]` & `r beta_sigma[6, 2]` & `r beta_sigma[6, 3]` & `r beta_sigma[6, 4]` & `r beta_sigma[6, 5]` & `r beta_sigma[6, 6]` & `r beta_sigma[6, 7]` & `r beta_sigma[6, 8]` & `r beta_sigma[6, 9]` \\
+  `r beta_sigma[7, 1]` & `r beta_sigma[7, 2]` & `r beta_sigma[7, 3]` & `r beta_sigma[7, 4]` & `r beta_sigma[7, 5]` & `r beta_sigma[7, 6]` & `r beta_sigma[7, 7]` & `r beta_sigma[7, 8]` & `r beta_sigma[7, 9]` \\
+  `r beta_sigma[8, 1]` & `r beta_sigma[8, 2]` & `r beta_sigma[8, 3]` & `r beta_sigma[8, 4]` & `r beta_sigma[8, 5]` & `r beta_sigma[8, 6]` & `r beta_sigma[8, 7]` & `r beta_sigma[8, 8]` & `r beta_sigma[8, 9]` \\
+  `r beta_sigma[9, 1]` & `r beta_sigma[9, 2]` & `r beta_sigma[9, 3]` & `r beta_sigma[9, 4]` & `r beta_sigma[9, 5]` & `r beta_sigma[9, 6]` & `r beta_sigma[9, 7]` & `r beta_sigma[9, 8]` & `r beta_sigma[9, 9]` \\
+\end{array}
+\right) .
+\end{equation}
+
+The `SimBetaN` function from the `simStateSpace` package generates random transition matrices from the multivariate normal distribution. Note that the function generates transition matrices that are weakly stationary.
+
+Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
+
+\begin{equation}
+\boldsymbol{\Psi}
+=
+\left(
+\begin{array}{ccc}
+  `r psi[1, 1]` & `r psi[1, 2]` & `r psi[1, 3]` \\
+  `r psi[2, 1]` & `r psi[2, 2]` & `r psi[2, 3]` \\
+  `r psi[3, 1]` & `r psi[3, 2]` & `r psi[3, 3]` \\
+\end{array}
+\right) .
+\end{equation}
+
+### R Function Arguments
+
+```{r}
+n
+time
+mu0
+sigma0
+sigma0_l
+alpha
+# first beta in the list of length n
+beta[[1]]
+psi
+psi_l
+nu
+lambda
+theta
+```
+
+### Visualizing the Dynamics Without Process Noise (n = 5 with Different Initial Condition)
+
+```{r no-error}
+#| echo = FALSE
+library(simStateSpace)
+sim <- SimSSMIVary(
+  n = 5,
+  time = 50,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  alpha = alpha,
+  beta = beta,
+  psi_l = list(
+    matrix(
+      data = 0,
+      nrow = k,
+      ncol = k
+    )
+  ),
+  nu = nu,
+  lambda = lambda,
+  theta_l = theta_l
+)
+plot(sim, type = "l")
+```
+
+### Using the `SimSSMIVary` Function from the `simStateSpace` Package to Simulate Data
+
+```{r error}
+library(simStateSpace)
+sim <- SimSSMIVary(
+  n = n,
+  time = time,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  alpha = alpha,
+  beta = beta,
+  psi_l = psi_l,
+  nu = nu,
+  lambda = lambda,
+  theta_l = theta_l
+)
+data <- as.data.frame(sim)
+head(data)
+plot(sim)
+```
+
+## Model Fitting
+
+The `DTVAR` function fits a DT-VAR model on each individual $i$ using the `byid = TRUE` argument.
+
+```{r}
+#| include = FALSE
+library(fitDTVARMx)
+```
+
+```{r}
+library(fitDTVARMx)
+DTVAR(
+  data = data,
+  observed = paste0("y", seq_len(k)),
+  id = "id",
+  model = 4,
+  byid = TRUE,
+  ncores = parallel::detectCores()
+)
+```
+
+## References
+
+```{r}
+#| include = FALSE
+rm(list = ls())
+```

@@ -5,7 +5,6 @@
   # R0
   # initial condition
   # covariance
-  # nocov start
   if (sigma0_diag) {
     return(
       .FitDTVARSigma0FixedDiag(
@@ -21,5 +20,4 @@
       )
     )
   }
-  # nocov end
 }
