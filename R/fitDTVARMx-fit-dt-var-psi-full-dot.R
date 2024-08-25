@@ -2,6 +2,7 @@
                              idx,
                              statenames,
                              psi_values = NULL,
+                             psi_free = NULL,
                              psi_lbound = NULL,
                              psi_ubound = NULL) {
   # Q
@@ -14,20 +15,18 @@
       dim(psi_values) == c(k, k)
     )
   }
-  psi_labels <- matrix(
-    data = NA,
-    nrow = k,
-    ncol = k
-  )
-  for (j in idx) {
-    for (i in idx) {
-      psi_labels[i, j] <- paste0(
-        "psi_",
-        i,
-        j
+  psi_labels <- outer(
+    X = idx,
+    Y = idx,
+    FUN = function(x, y) {
+      paste0(
+        "psi",
+        "_",
+        x,
+        y
       )
     }
-  }
+  )
   if (is.null(psi_lbound)) {
     psi_lbound <- matrix(
       data = NA,
@@ -53,7 +52,33 @@
       dim(psi_ubound) == c(k, k)
     )
   }
+  if (is.null(psi_free)) {
+    psi_free <- matrix(
+      data = TRUE,
+      nrow = k,
+      ncol = k
+    )
+  } else {
+    stopifnot(
+      is.matrix(psi_free),
+      dim(psi_free) == c(k, k)
+    )
+    for (i in idx) {
+      for (j in idx) {
+        if (!psi_free[i, j]) {
+          psi_labels[i, j] <- NA
+          psi_lbound[i, j] <- NA
+          psi_ubound[i, j] <- NA
+        }
+      }
+    }
+  }
   # make sure matrices are symmetric
+  psi_free[
+    upper.tri(psi_free)
+  ] <- t(psi_free)[
+    upper.tri(psi_free)
+  ]
   psi_values[
     upper.tri(psi_values)
   ] <- t(psi_values)[
@@ -79,7 +104,7 @@
       type = "Symm",
       nrow = k,
       ncol = k,
-      free = TRUE,
+      free = psi_free,
       values = psi_values,
       labels = psi_labels,
       lbound = psi_lbound,

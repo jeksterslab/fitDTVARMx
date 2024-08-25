@@ -1,5 +1,4 @@
-.FitDTVARX <- function(k,
-                       alpha_fixed = TRUE) {
+.FitDTVARX <- function(alpha_fixed = TRUE) {
   # u
   # covariates
   if (alpha_fixed) {

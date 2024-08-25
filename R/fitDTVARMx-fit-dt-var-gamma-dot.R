@@ -2,6 +2,7 @@
                            idx,
                            alpha_fixed = TRUE,
                            alpha_values = NULL,
+                           alpha_free = NULL,
                            alpha_lbound = NULL,
                            alpha_ubound = NULL) {
   # B
@@ -90,14 +91,46 @@
         )
       }
     }
+    alpha_labels <- matrix(
+      data = paste0(
+        "alpha_",
+        idx
+      ),
+      ncol = 1
+    )
+    if (is.null(alpha_free)) {
+      alpha_free <- matrix(
+        data = TRUE,
+        nrow = k,
+        ncol = 1
+      )
+    } else {
+      if (is.vector(alpha_free)) {
+        alpha_free <- matrix(
+          data = alpha_free,
+          ncol = 1
+        )
+      }
+      stopifnot(
+        is.matrix(alpha_free),
+        dim(alpha_free) == c(k, 1)
+      )
+      for (i in idx) {
+        if (!alpha_free[i, 1]) {
+          alpha_labels[i, 1] <- NA
+          alpha_lbound[i, 1] <- NA
+          alpha_ubound[i, 1] <- NA
+        }
+      }
+    }
     return(
       OpenMx::mxMatrix(
         type = "Full",
         nrow = k,
         ncol = 1,
-        free = TRUE,
+        free = alpha_free,
         values = alpha_values,
-        labels = paste0("alpha_", idx),
+        labels = alpha_labels,
         lbound = alpha_lbound,
         ubound = alpha_ubound,
         byrow = FALSE,

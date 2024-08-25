@@ -10,26 +10,32 @@ FitDTVARMx(
   id,
   alpha_fixed = TRUE,
   alpha_values = NULL,
+  alpha_free = NULL,
   alpha_lbound = NULL,
   alpha_ubound = NULL,
   beta_values = NULL,
+  beta_free = NULL,
   beta_lbound = NULL,
   beta_ubound = NULL,
   psi_diag = TRUE,
   psi_values = NULL,
+  psi_free = NULL,
   psi_lbound = NULL,
   psi_ubound = NULL,
   theta_fixed = TRUE,
   theta_values = NULL,
+  theta_free = NULL,
   theta_lbound = NULL,
   theta_ubound = NULL,
   mu0_fixed = TRUE,
   mu0_values = NULL,
+  mu0_free = NULL,
   mu0_lbound = NULL,
   mu0_ubound = NULL,
   sigma0_fixed = TRUE,
   sigma0_diag = TRUE,
   sigma0_values = NULL,
+  sigma0_free = NULL,
   sigma0_lbound = NULL,
   sigma0_ubound = NULL,
   try = 1000,
@@ -64,6 +70,9 @@ If \code{alpha_fixed = TRUE},
 If \code{alpha_fixed = FALSE},
 \code{alpha_values} will be used as starting values.}
 
+\item{alpha_free}{Optional logical vector
+representing free parameters for \code{alpha}.}
+
 \item{alpha_lbound}{Optional lower bound for \code{alpha}.
 Ignored if \code{alpha_fixed = TRUE}.}
 
@@ -72,6 +81,9 @@ Ignored if \code{alpha_fixed = TRUE}.}
 
 \item{beta_values}{Numeric matrix.
 Optional starting values for \code{beta}.}
+
+\item{beta_free}{Optional logical matrix
+representing free parameters for \code{beta}.}
 
 \item{beta_lbound}{Numeric matrix.
 Optional lower bound for \code{beta}.}
@@ -86,6 +98,9 @@ If \code{psi_diag = TRUE},
 \item{psi_values}{Numeric matrix.
 Optional starting values for \code{psi}.}
 
+\item{psi_free}{Optional logical matrix
+representing free parameters for \code{psi}.}
+
 \item{psi_lbound}{Numeric matrix.
 Optional lower bound for \code{psi}.}
 
@@ -99,6 +114,9 @@ estimate the diagonal measurement error matrix \code{theta}.}
 
 \item{theta_values}{Optional starting values for \code{theta}.
 Ignored if \code{theta_fixed = TRUE}.}
+
+\item{theta_free}{Optional logical matrix
+representing free parameters for \code{theta}.}
 
 \item{theta_lbound}{Optional lower bound for \code{theta}.
 Ignored if \code{theta_fixed = TRUE}.}
@@ -117,6 +135,9 @@ If \code{mu0_fixed = TRUE},
 \code{mu0_values} will be used as fixed values.
 If \code{mu0_fixed = FALSE},
 \code{mu0_values} will be used as starting values.}
+
+\item{mu0_free}{Optional logical vector
+representing free parameters for \code{mu0}.}
 
 \item{mu0_lbound}{Optional lower bound for \code{mu0}.
 Ignored if \code{mu0_fixed = TRUE}.}
@@ -139,6 +160,9 @@ If \code{sigma0_fixed = TRUE},
 \code{sigma0_values} will be used as fixed values.
 If \code{sigma0_fixed = FALSE},
 \code{sigma0_values} will be used as starting values.}
+
+\item{sigma0_free}{Optional logical matrix
+representing free parameters for \code{sigma0}.}
 
 \item{sigma0_lbound}{Optional lower bound for \code{sigma0}.
 Ignored if \code{sigma0_fixed = TRUE}.}
@@ -221,6 +245,7 @@ OpenMx 2.0: Extended structural equation and statistical modeling.
 }
 \seealso{
 Other DTVAR Functions: 
+\code{\link{DTVAR}()},
 \code{\link{FitDTVARIDMx}()}
 }
 \author{

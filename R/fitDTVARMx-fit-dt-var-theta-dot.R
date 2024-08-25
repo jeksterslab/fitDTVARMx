@@ -3,6 +3,7 @@
                            observed,
                            theta_fixed = TRUE,
                            theta_values = NULL,
+                           theta_free = NULL,
                            theta_lbound = NULL,
                            theta_ubound = NULL) {
   # R
@@ -21,6 +22,7 @@
         idx = idx,
         observed = observed,
         theta_values = theta_values,
+        theta_free = theta_free,
         theta_lbound = theta_lbound,
         theta_ubound = theta_ubound
       )

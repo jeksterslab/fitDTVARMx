@@ -23,18 +23,24 @@
 #'   `alpha_values` will be used as fixed values.
 #'   If `alpha_fixed = FALSE`,
 #'   `alpha_values` will be used as starting values.
+#' @param alpha_free Optional logical vector
+#'   representing free parameters for `alpha`.
 #' @param alpha_lbound Optional lower bound for `alpha`.
 #'   Ignored if `alpha_fixed = TRUE`.
 #' @param alpha_ubound Optional upper bound for `alpha`.
 #'   Ignored if `alpha_fixed = TRUE`.
 #' @param beta_values Numeric matrix.
 #'   Optional starting values for `beta`.
+#' @param beta_free Optional logical matrix
+#'   representing free parameters for `beta`.
 #' @param beta_lbound Numeric matrix.
 #'   Optional lower bound for `beta`.
 #' @param beta_ubound Numeric matrix.
 #'   Optional upper bound for `beta`.
 #' @param psi_values Numeric matrix.
 #'   Optional starting values for `psi`.
+#' @param psi_free Optional logical matrix
+#'   representing free parameters for `psi`.
 #' @param psi_lbound Numeric matrix.
 #'   Optional lower bound for `psi`.
 #' @param psi_ubound Optional upper bound for `psi`.
@@ -48,6 +54,8 @@
 #'   estimate the diagonal measurement error matrix `theta`.
 #' @param theta_values Optional starting values for `theta`.
 #'   Ignored if `theta_fixed = TRUE`.
+#' @param theta_free Optional logical matrix
+#'   representing free parameters for `theta`.
 #' @param theta_lbound Optional lower bound for `theta`.
 #'   Ignored if `theta_fixed = TRUE`.
 #' @param theta_ubound Optional upper bound for `theta`.
@@ -62,6 +70,8 @@
 #'   `mu0_values` will be used as fixed values.
 #'   If `mu0_fixed = FALSE`,
 #'   `mu0_values` will be used as starting values.
+#' @param mu0_free Optional logical vector
+#'   representing free parameters for `mu0`.
 #' @param mu0_lbound Optional lower bound for `mu0`.
 #'   Ignored if `mu0_fixed = TRUE`.
 #' @param mu0_ubound Optional upper bound for `mu0`.
@@ -79,6 +89,8 @@
 #'   `sigma0_values` will be used as fixed values.
 #'   If `sigma0_fixed = FALSE`,
 #'   `sigma0_values` will be used as starting values.
+#' @param sigma0_free Optional logical matrix
+#'   representing free parameters for `sigma0`.
 #' @param sigma0_lbound Optional lower bound for `sigma0`.
 #'   Ignored if `sigma0_fixed = TRUE`.
 #' @param sigma0_ubound Optional upper bound for `sigma0`.
@@ -166,26 +178,32 @@ FitDTVARIDMx <- function(data,
                          id,
                          alpha_fixed = TRUE,
                          alpha_values = NULL,
+                         alpha_free = NULL,
                          alpha_lbound = NULL,
                          alpha_ubound = NULL,
                          beta_values = NULL,
+                         beta_free = NULL,
                          beta_lbound = NULL,
                          beta_ubound = NULL,
                          psi_diag = TRUE,
                          psi_values = NULL,
+                         psi_free = NULL,
                          psi_lbound = NULL,
                          psi_ubound = NULL,
                          theta_fixed = TRUE,
                          theta_values = NULL,
+                         theta_free = NULL,
                          theta_lbound = NULL,
                          theta_ubound = NULL,
                          mu0_fixed = TRUE,
                          mu0_values = NULL,
+                         mu0_free = NULL,
                          mu0_lbound = NULL,
                          mu0_ubound = NULL,
                          sigma0_fixed = TRUE,
                          sigma0_diag = TRUE,
                          sigma0_values = NULL,
+                         sigma0_free = NULL,
                          sigma0_lbound = NULL,
                          sigma0_ubound = NULL,
                          try = 1000,
@@ -198,26 +216,32 @@ FitDTVARIDMx <- function(data,
     id = id,
     alpha_fixed = alpha_fixed,
     alpha_values = alpha_values,
+    alpha_free = alpha_free,
     alpha_lbound = alpha_lbound,
     alpha_ubound = alpha_ubound,
     beta_values = beta_values,
+    beta_free = beta_free,
     beta_lbound = beta_lbound,
     beta_ubound = beta_ubound,
     psi_diag = psi_diag,
     psi_values = psi_values,
+    psi_free = psi_free,
     psi_lbound = psi_lbound,
     psi_ubound = psi_ubound,
     theta_fixed = theta_fixed,
     theta_values = theta_values,
+    theta_free = theta_free,
     theta_lbound = theta_lbound,
     theta_ubound = theta_ubound,
     mu0_fixed = mu0_fixed,
     mu0_values = mu0_values,
+    mu0_free = mu0_free,
     mu0_lbound = mu0_lbound,
     mu0_ubound = mu0_ubound,
     sigma0_fixed = sigma0_fixed,
     sigma0_diag = sigma0_diag,
     sigma0_values = sigma0_values,
+    sigma0_free = sigma0_free,
     sigma0_lbound = sigma0_lbound,
     sigma0_ubound = sigma0_ubound,
     try = try,
@@ -231,26 +255,32 @@ FitDTVARIDMx <- function(data,
     id = id,
     alpha_fixed = alpha_fixed,
     alpha_values = alpha_values,
+    alpha_free = alpha_free,
     alpha_lbound = alpha_lbound,
     alpha_ubound = alpha_ubound,
     beta_values = beta_values,
+    beta_free = beta_free,
     beta_lbound = beta_lbound,
     beta_ubound = beta_ubound,
     psi_diag = psi_diag,
     psi_values = psi_values,
+    psi_free = psi_free,
     psi_lbound = psi_lbound,
     psi_ubound = psi_ubound,
     theta_fixed = theta_fixed,
     theta_values = theta_values,
+    theta_free = theta_free,
     theta_lbound = theta_lbound,
     theta_ubound = theta_ubound,
     mu0_fixed = mu0_fixed,
     mu0_values = mu0_values,
+    mu0_free = mu0_free,
     mu0_lbound = mu0_lbound,
     mu0_ubound = mu0_ubound,
     sigma0_fixed = sigma0_fixed,
     sigma0_diag = sigma0_diag,
     sigma0_values = sigma0_values,
+    sigma0_free = sigma0_free,
     sigma0_lbound = sigma0_lbound,
     sigma0_ubound = sigma0_ubound,
     try = try,
