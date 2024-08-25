@@ -341,14 +341,13 @@ be given by</p>
 <h3 id="visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition">Visualizing the Dynamics Without Process Noise (n = 5 with Different
 Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-dynamics-without-process-noise-n-5-with-different-initial-condition"></a>
 </h3>
-<pre><code><span><span class="co">#&gt; Error: Not compatible with requested type: [type=list; target=double].</span></span>
-<span><span class="co">#&gt; Error in eval(expr, envir, enclos): object 'sim' not found</span></span></code></pre>
+<p><img src="fig-vignettes-model-4-id-random-no-error-1.png" width="3300"><img src="fig-vignettes-model-4-id-random-no-error-2.png" width="3300"><img src="fig-vignettes-model-4-id-random-no-error-3.png" width="3300"></p>
 </div>
 <div class="section level3">
 <h3 id="using-the-simssmfixed-function-from-the-simstatespace-package-to-simulate-data">Using the <code>SimSSMFixed</code> Function from the
 <code>simStateSpace</code> Package to Simulate Data<a class="anchor" aria-label="anchor" href="#using-the-simssmfixed-function-from-the-simstatespace-package-to-simulate-data"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/simStateSpace" class="external-link">simStateSpace</a></span><span class="op">)</span></span>
 <span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/jeksterslab/simStateSpace/reference/SimSSMFixed.html" class="external-link">SimSSMFixed</a></span><span class="op">(</span></span>
 <span>  n <span class="op">=</span> <span class="va">n</span>,</span>
@@ -364,13 +363,13 @@ Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-d
 <span><span class="op">)</span></span>
 <span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   id time         y1         y2        y3</span></span>
-<span><span class="co">#&gt; 1  1    0 -0.3504435  0.5416673 2.6593756</span></span>
-<span><span class="co">#&gt; 2  1    1 -0.5065352  1.0987833 1.0293739</span></span>
-<span><span class="co">#&gt; 3  1    2 -0.6901502  0.7885010 1.3206576</span></span>
-<span><span class="co">#&gt; 4  1    3 -1.6211653 -0.1418180 0.8973636</span></span>
-<span><span class="co">#&gt; 5  1    4 -0.8299871 -0.6030920 0.5655792</span></span>
-<span><span class="co">#&gt; 6  1    5  0.6757224 -0.2857238 0.0192403</span></span>
+<span><span class="co">#&gt;   id time          y1         y2         y3</span></span>
+<span><span class="co">#&gt; 1  1    0 -0.36389392  0.2260508 -1.0840920</span></span>
+<span><span class="co">#&gt; 2  1    1 -0.17839821 -0.4923748 -0.2933503</span></span>
+<span><span class="co">#&gt; 3  1    2 -0.29837320 -0.5441213  0.1678981</span></span>
+<span><span class="co">#&gt; 4  1    3  0.06914180 -1.5266350 -0.7623779</span></span>
+<span><span class="co">#&gt; 5  1    4  0.55603569 -0.8676678  0.1421071</span></span>
+<span><span class="co">#&gt; 6  1    5  0.01185309 -0.4340968 -0.7695032</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fig-vignettes-model-4-id-random-error-1.png" width="3300"><img src="fig-vignettes-model-4-id-random-error-2.png" width="3300"><img src="fig-vignettes-model-4-id-random-error-3.png" width="3300"></p>
 </div>
@@ -380,7 +379,7 @@ Initial Condition)<a class="anchor" aria-label="anchor" href="#visualizing-the-d
 </h2>
 <p>The <code>DTVAR</code> function fits a DT-VAR model assuming fixed
 parameters using the <code>byid = FALSE</code> argument.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/fitDTVARMx">fitDTVARMx</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/DTVAR.html">DTVAR</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">data</span>,</span>
@@ -395,35 +394,35 @@ parameters using the <code>byid = FALSE</code> argument.</p>
 <span><span class="co">#&gt; Beginning initial fit attempt</span></span>
 <span><span class="co">#&gt; Running DTVAR with 18 parameters</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Lowest minimum so far:  531158.04424379</span></span>
+<span><span class="co">#&gt;  Lowest minimum so far:  531295.756335847</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Solution found</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  Solution found!  Final fit=531158.04 (started at 745177.63)  (1 attempt(s): 1 valid, 0 errors)</span></span>
+<span><span class="co">#&gt;  Solution found!  Final fit=531295.76 (started at 744579.25)  (1 attempt(s): 1 valid, 0 errors)</span></span>
 <span><span class="co">#&gt;  Start values from best fit:</span></span>
-<span><span class="co">#&gt; 0.716412813350045,0.505038101321943,-0.1018910165499,-0.00488333582396777,0.595465143814449,0.395490194500693,0.00335545721049376,0.000905271407806999,0.503689073264972,3.09081041637133e-05,0.000257615359234339,0.00159664175698682,0.0947524140443941,0.102708295744269,0.0971695798120045,0.202451871059694,0.198525989458298,0.203581125432285</span></span>
+<span><span class="co">#&gt; 0.715101027178573,0.503160910355199,-0.100509850498249,-0.00525204793499744,0.598009279214163,0.39317094911294,0.00371927103372965,-0.00150742702017093,0.50678482095224,0.000141056784286791,0.000278284197007213,0.00145694006091994,0.0950923106531206,0.102440168751525,0.0964631724728338,0.202357362595767,0.198784590368917,0.204397683418866</span></span>
 <span><span class="co">#&gt; Summary of DTVAR </span></span>
 <span><span class="co">#&gt;  </span></span>
 <span><span class="co">#&gt; free parameters:</span></span>
 <span><span class="co">#&gt;        name        matrix  row  col      Estimate   Std.Error A</span></span>
-<span><span class="co">#&gt; 1   beta_11  DTVAR_1.beta eta1 eta1  0.7164128134 0.009182520  </span></span>
-<span><span class="co">#&gt; 2   beta_21  DTVAR_1.beta eta2 eta1  0.5050381013 0.008591224  </span></span>
-<span><span class="co">#&gt; 3   beta_31  DTVAR_1.beta eta3 eta1 -0.1018910165 0.006063253  </span></span>
-<span><span class="co">#&gt; 4   beta_12  DTVAR_1.beta eta1 eta2 -0.0048833358 0.005638834  </span></span>
-<span><span class="co">#&gt; 5   beta_22  DTVAR_1.beta eta2 eta2  0.5954651438 0.007207057  </span></span>
-<span><span class="co">#&gt; 6   beta_32  DTVAR_1.beta eta3 eta2  0.3954901945 0.006252210  </span></span>
-<span><span class="co">#&gt; 7   beta_13  DTVAR_1.beta eta1 eta3  0.0033554572 0.004036119  </span></span>
-<span><span class="co">#&gt; 8   beta_23  DTVAR_1.beta eta2 eta3  0.0009052714 0.005212853  </span></span>
-<span><span class="co">#&gt; 9   beta_33  DTVAR_1.beta eta3 eta3  0.5036890733 0.006436978  </span></span>
-<span><span class="co">#&gt; 10  alpha_1 DTVAR_1.gamma    1    1  0.0000309081 0.001054713  </span></span>
-<span><span class="co">#&gt; 11  alpha_2 DTVAR_1.gamma    2    1  0.0002576154 0.001367737  </span></span>
-<span><span class="co">#&gt; 12  alpha_3 DTVAR_1.gamma    3    1  0.0015966418 0.001344372  </span></span>
-<span><span class="co">#&gt; 13   psi_11   DTVAR_1.psi eta1 eta1  0.0947524140 0.002847700  </span></span>
-<span><span class="co">#&gt; 14   psi_22   DTVAR_1.psi eta2 eta2  0.1027082957 0.002423720  </span></span>
-<span><span class="co">#&gt; 15   psi_33   DTVAR_1.psi eta3 eta3  0.0971695798 0.002816171  </span></span>
-<span><span class="co">#&gt; 16 theta_11 DTVAR_1.theta   y1   y1  0.2024518711 0.002416832  </span></span>
-<span><span class="co">#&gt; 17 theta_22 DTVAR_1.theta   y2   y2  0.1985259895 0.002312238  </span></span>
-<span><span class="co">#&gt; 18 theta_33 DTVAR_1.theta   y3   y3  0.2035811254 0.002839508  </span></span>
+<span><span class="co">#&gt; 1   beta_11  DTVAR_1.beta eta1 eta1  0.7151010272 0.009099277  </span></span>
+<span><span class="co">#&gt; 2   beta_21  DTVAR_1.beta eta2 eta1  0.5031609104 0.008524039  </span></span>
+<span><span class="co">#&gt; 3   beta_31  DTVAR_1.beta eta3 eta1 -0.1005098505 0.006006985  </span></span>
+<span><span class="co">#&gt; 4   beta_12  DTVAR_1.beta eta1 eta2 -0.0052520479 0.005576297  </span></span>
+<span><span class="co">#&gt; 5   beta_22  DTVAR_1.beta eta2 eta2  0.5980092792 0.007150496  </span></span>
+<span><span class="co">#&gt; 6   beta_32  DTVAR_1.beta eta3 eta2  0.3931709491 0.006166610  </span></span>
+<span><span class="co">#&gt; 7   beta_13  DTVAR_1.beta eta1 eta3  0.0037192710 0.004016368  </span></span>
+<span><span class="co">#&gt; 8   beta_23  DTVAR_1.beta eta2 eta3 -0.0015074270 0.005190396  </span></span>
+<span><span class="co">#&gt; 9   beta_33  DTVAR_1.beta eta3 eta3  0.5067848210 0.006360109  </span></span>
+<span><span class="co">#&gt; 10  alpha_1 DTVAR_1.gamma    1    1  0.0001410568 0.001057022  </span></span>
+<span><span class="co">#&gt; 11  alpha_2 DTVAR_1.gamma    2    1  0.0002782842 0.001363941  </span></span>
+<span><span class="co">#&gt; 12  alpha_3 DTVAR_1.gamma    3    1  0.0014569401 0.001338757  </span></span>
+<span><span class="co">#&gt; 13   psi_11   DTVAR_1.psi eta1 eta1  0.0950923107 0.002834304  </span></span>
+<span><span class="co">#&gt; 14   psi_22   DTVAR_1.psi eta2 eta2  0.1024401688 0.002409821  </span></span>
+<span><span class="co">#&gt; 15   psi_33   DTVAR_1.psi eta3 eta3  0.0964631725 0.002786064  </span></span>
+<span><span class="co">#&gt; 16 theta_11 DTVAR_1.theta   y1   y1  0.2023573626 0.002410799  </span></span>
+<span><span class="co">#&gt; 17 theta_22 DTVAR_1.theta   y2   y2  0.1987845904 0.002299081  </span></span>
+<span><span class="co">#&gt; 18 theta_33 DTVAR_1.theta   y3   y3  0.2043976834 0.002813891  </span></span>
 <span><span class="co">#&gt;                  lbound ubound</span></span>
 <span><span class="co">#&gt; 1                             </span></span>
 <span><span class="co">#&gt; 2                             </span></span>
@@ -446,22 +445,22 @@ parameters using the <code>byid = FALSE</code> argument.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Model Statistics: </span></span>
 <span><span class="co">#&gt;                |  Parameters  |  Degrees of Freedom  |  Fit (-2lnL units)</span></span>
-<span><span class="co">#&gt;        Model:             18                 299982                531158</span></span>
+<span><span class="co">#&gt;        Model:             18                 299982              531295.8</span></span>
 <span><span class="co">#&gt;    Saturated:             NA                     NA                    NA</span></span>
 <span><span class="co">#&gt; Independence:             NA                     NA                    NA</span></span>
 <span><span class="co">#&gt; Number of observations/statistics: 1e+05/3e+05</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Information Criteria: </span></span>
 <span><span class="co">#&gt;       |  df Penalty  |  Parameters Penalty  |  Sample-Size Adjusted</span></span>
-<span><span class="co">#&gt; AIC:      -68805.96               531194.0                 531194.1</span></span>
-<span><span class="co">#&gt; BIC:    -2922512.36               531365.3                 531308.1</span></span>
+<span><span class="co">#&gt; AIC:      -68668.24               531331.8                 531331.8</span></span>
+<span><span class="co">#&gt; BIC:    -2922374.65               531503.0                 531445.8</span></span>
 <span><span class="co">#&gt; CFI: NA </span></span>
 <span><span class="co">#&gt; TLI: 1   (also known as NNFI) </span></span>
 <span><span class="co">#&gt; RMSEA:  0  [95% CI (NA, NA)]</span></span>
 <span><span class="co">#&gt; Prob(RMSEA &lt;= 0.05): NA</span></span>
 <span><span class="co">#&gt; To get additional fit indices, see help(mxRefModels)</span></span>
-<span><span class="co">#&gt; timestamp: 2024-08-25 06:18:50 </span></span>
-<span><span class="co">#&gt; Wall clock time: 148.1409 secs </span></span>
+<span><span class="co">#&gt; timestamp: 2024-08-25 19:25:42 </span></span>
+<span><span class="co">#&gt; Wall clock time: 143.5341 secs </span></span>
 <span><span class="co">#&gt; optimizer:  SLSQP </span></span>
 <span><span class="co">#&gt; OpenMx version number: 2.21.12 </span></span>
 <span><span class="co">#&gt; Need help?  See help(mxSummary)</span></span></code></pre>
