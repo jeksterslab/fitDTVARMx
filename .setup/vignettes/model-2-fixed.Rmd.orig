@@ -1,7 +1,7 @@
 ---
-title: "Fit the Discrete-Time Vector Autoregressive Model By ID (Model 4)"
+title: "Fit the Discrete-Time Vector Autoregressive Model (Model 2)"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-08-25"
+date: "`r Sys.Date()`"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -10,16 +10,52 @@ nocite: |
   @Hunter-2017
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Fit the Discrete-Time Vector Autoregressive Model By ID (Model 4)}
+  %\VignetteIndexEntry{Fit the Discrete-Time Vector Autoregressive Model (Model 2)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.path = "fig-vignettes-model-2-id-random-",
+  fig.cap = "",
+  fig.width = 11,
+  fig.height = 8,
+  fig.retina = 2,
+  dpi = 300,
+  comment = "#>"
+)
+```
 
-
-
-
-
+```{r}
+#| echo = FALSE
+set.seed(42)
+n <- 100
+time <- 1000
+k <- p <- 3
+iden <- diag(k)
+null_vec <- rep(x = 0, times = k)
+mu0 <- null_vec
+sigma0 <- diag(p)
+sigma0_l <- t(chol(sigma0))
+alpha <- null_vec
+psi <- 0.1 * iden
+psi_l <- t(chol(psi))
+nu <- null_vec
+lambda <- iden
+theta <- 0.2 * iden
+theta_l <- t(chol(theta))
+beta <- matrix(
+  data = c(
+    0.7, 0.5, -0.1,
+    0.0, 0.6, 0.4,
+    0, 0, 0.5
+  ),
+  nrow = p
+)
+```
 
 ## Model
 
@@ -75,8 +111,6 @@ The dynamic structure is given by
 \begin{equation}
   \boldsymbol{\eta}_{i, t}
   =
-  \boldsymbol{\alpha}
-  +
   \boldsymbol{\beta}
   \boldsymbol{\eta}_{i, t - 1}
   +
@@ -99,7 +133,6 @@ and
 $\boldsymbol{\zeta}_{i, t}$
 are random variables,
 and
-$\boldsymbol{\alpha}$,
 $\boldsymbol{\beta}$,
 and
 $\boldsymbol{\Psi}$
@@ -115,23 +148,21 @@ and
 $\boldsymbol{\zeta}_{i, t}$
 represents a vector of dynamic noise
 at time $t$ and individual $i$.
-$\boldsymbol{\alpha}$
-denotes a vector of intercepts,
 $\boldsymbol{\beta}$
-a matrix of autoregression
+denotes a matrix of autoregression
 and cross regression coefficients,
 and
 $\boldsymbol{\Psi}$
 the covariance matrix of
 $\boldsymbol{\zeta}_{i, t}$.
 In this model,
-$\boldsymbol{\Psi}$ is a symmetric matrix.
+$\boldsymbol{\Psi}$ is a diagonal matrix.
 
 ## Data Generation
 
 ### Notation
 
-Let $t = 1000$ be the number of time points and $n = 100$ be the number of individuals.
+Let $t = `r time`$ be the number of time points and $n = `r n`$ be the number of individuals.
 
 Let the measurement model intecept vector $\boldsymbol{\nu}$ be given by
 
@@ -140,9 +171,9 @@ Let the measurement model intecept vector $\boldsymbol{\nu}$ be given by
 =
 \left(
 \begin{array}{c}
-  0 \\
-  0 \\
-  0 \\
+  `r nu[1]` \\
+  `r nu[2]` \\
+  `r nu[3]` \\
 \end{array}
 \right) .
 \end{equation}
@@ -154,9 +185,9 @@ Let the factor loadings matrix $\boldsymbol{\Lambda}$ be given by
 =
 \left(
 \begin{array}{ccc}
-  1 & 0 & 0 \\
-  0 & 1 & 0 \\
-  0 & 0 & 1 \\
+  `r lambda[1, 1]` & `r lambda[1, 2]` & `r lambda[1, 3]` \\
+  `r lambda[2, 1]` & `r lambda[2, 2]` & `r lambda[2, 3]` \\
+  `r lambda[3, 1]` & `r lambda[3, 2]` & `r lambda[3, 3]` \\
 \end{array}
 \right) .
 \end{equation}
@@ -168,9 +199,9 @@ Let the measurement error covariance matrix $\boldsymbol{\Theta}$ be given by
 =
 \left(
 \begin{array}{ccc}
-  0.2 & 0 & 0 \\
-  0 & 0.2 & 0 \\
-  0 & 0 & 0.2 \\
+  `r theta[1, 1]` & `r theta[1, 2]` & `r theta[1, 3]` \\
+  `r theta[2, 1]` & `r theta[2, 2]` & `r theta[2, 3]` \\
+  `r theta[3, 1]` & `r theta[3, 2]` & `r theta[3, 3]` \\
 \end{array}
 \right) .
 \end{equation}
@@ -188,9 +219,9 @@ be given by
 =
 \left(
 \begin{array}{c}
-  0 \\
-  0 \\
-  0 \\
+  `r mu0[1]` \\
+  `r mu0[2]` \\
+  `r mu0[3]` \\
 \end{array}
 \right)
 \end{equation}
@@ -200,44 +231,26 @@ be given by
 =
 \left(
 \begin{array}{ccc}
-  1 & 0 & 0 \\
-  0 & 1 & 0 \\
-  0 & 0 & 1 \\
+  `r sigma0[1, 1]` & `r sigma0[1, 2]` & `r sigma0[1, 3]` \\
+  `r sigma0[2, 1]` & `r sigma0[2, 2]` & `r sigma0[2, 3]` \\
+  `r sigma0[3, 1]` & `r sigma0[3, 2]` & `r sigma0[3, 3]` \\
 \end{array}
 \right) .
 \end{equation}
 
-Let the transition matrix $\boldsymbol{\beta}$ be normally distributed with the following means
+Let the transition matrix $\boldsymbol{\beta}$ be given by
 
 \begin{equation}
+\boldsymbol{\beta}
+=
 \left(
 \begin{array}{ccc}
-  0.7 & 0 & 0 \\
-  0.5 & 0.6 & 0 \\
-  -0.1 & 0.4 & 0.5 \\
-\end{array}
-\right)
-\end{equation}
-
-and covariance matrix
-
-\begin{equation}
-\left(
-\begin{array}{ccc}
-  0.01 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  0 & 0.01 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  0 & 0 & 0.01 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  0 & 0 & 0 & 0.01 & 0 & 0 & 0 & 0 & 0 \\
-  0 & 0 & 0 & 0 & 0.01 & 0 & 0 & 0 & 0 \\
-  0 & 0 & 0 & 0 & 0 & 0.01 & 0 & 0 & 0 \\
-  0 & 0 & 0 & 0 & 0 & 0 & 0.01 & 0 & 0 \\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.01 & 0 \\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.01 \\
+  `r beta[1, 1]` & `r beta[1, 2]` & `r beta[1, 3]` \\
+  `r beta[2, 1]` & `r beta[2, 2]` & `r beta[2, 3]` \\
+  `r beta[3, 1]` & `r beta[3, 2]` & `r beta[3, 3]` \\
 \end{array}
 \right) .
 \end{equation}
-
-The `SimBetaN` function from the `simStateSpace` package generates random transition matrices from the multivariate normal distribution. Note that the function generates transition matrices that are weakly stationary.
 
 Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
 
@@ -246,81 +259,61 @@ Let the dynamic process noise $\boldsymbol{\Psi}$ be given by
 =
 \left(
 \begin{array}{ccc}
-  0.1 & 0 & 0 \\
-  0 & 0.1 & 0 \\
-  0 & 0 & 0.1 \\
+  `r psi[1, 1]` & `r psi[1, 2]` & `r psi[1, 3]` \\
+  `r psi[2, 1]` & `r psi[2, 2]` & `r psi[2, 3]` \\
+  `r psi[3, 1]` & `r psi[3, 2]` & `r psi[3, 3]` \\
 \end{array}
 \right) .
 \end{equation}
 
 ### R Function Arguments
 
-
-``` r
+```{r}
 n
-#> [1] 100
 time
-#> [1] 1000
 mu0
-#> [[1]]
-#> [1] 0 0 0
 sigma0
-#>      [,1] [,2] [,3]
-#> [1,]    1    0    0
-#> [2,]    0    1    0
-#> [3,]    0    0    1
 sigma0_l
-#> [[1]]
-#>      [,1] [,2] [,3]
-#> [1,]    1    0    0
-#> [2,]    0    1    0
-#> [3,]    0    0    1
 alpha
-#> [[1]]
-#> [1] 0 0 0
-# first beta in the list of length n
-beta[[1]]
-#>           [,1]       [,2]       [,3]
-#> [1,] 0.6468498 0.02987347 0.09881764
-#> [2,] 0.5821253 0.64048586 0.12907652
-#> [3,] 0.1217450 0.33748281 0.46598132
+beta
 psi
-#>      [,1] [,2] [,3]
-#> [1,]  0.1  0.0  0.0
-#> [2,]  0.0  0.1  0.0
-#> [3,]  0.0  0.0  0.1
 psi_l
-#> [[1]]
-#>           [,1]      [,2]      [,3]
-#> [1,] 0.3162278 0.0000000 0.0000000
-#> [2,] 0.0000000 0.3162278 0.0000000
-#> [3,] 0.0000000 0.0000000 0.3162278
 nu
-#> [[1]]
-#> [1] 0 0 0
 lambda
-#> [[1]]
-#>      [,1] [,2] [,3]
-#> [1,]    1    0    0
-#> [2,]    0    1    0
-#> [3,]    0    0    1
 theta
-#>      [,1] [,2] [,3]
-#> [1,]  0.2  0.0  0.0
-#> [2,]  0.0  0.2  0.0
-#> [3,]  0.0  0.0  0.2
 ```
 
 ### Visualizing the Dynamics Without Process Noise (n = 5 with Different Initial Condition)
 
-<img src="fig-vignettes-model-4-id-random-no-error-1.png" width="3300" /><img src="fig-vignettes-model-4-id-random-no-error-2.png" width="3300" /><img src="fig-vignettes-model-4-id-random-no-error-3.png" width="3300" />
-
-### Using the `SimSSMIVary` Function from the `simStateSpace` Package to Simulate Data
-
-
-``` r
+```{r no-error}
+#| echo = FALSE
 library(simStateSpace)
-sim <- SimSSMIVary(
+sim <- SimSSMFixed(
+  n = 5,
+  time = 50,
+  mu0 = mu0,
+  sigma0_l = sigma0_l,
+  alpha = alpha,
+  beta = beta,
+  psi_l = list(
+    matrix(
+      data = 0,
+      nrow = k,
+      ncol = k
+    )
+  ),
+  nu = nu,
+  lambda = lambda,
+  theta_l = theta_l
+)
+plot(sim, type = "l")
+```
+
+### Using the `SimSSMFixed` Function from the `simStateSpace` Package to Simulate Data
+
+```{r error}
+library(simStateSpace)
+sim <- SimSSMFixed(
   n = n,
   time = time,
   mu0 = mu0,
@@ -334,49 +327,33 @@ sim <- SimSSMIVary(
 )
 data <- as.data.frame(sim)
 head(data)
-#>   id time          y1         y2          y3
-#> 1  1    0 -0.63437294  0.6021365 -0.91776552
-#> 2  1    1 -0.81485487  0.3819811  0.68347267
-#> 3  1    2 -0.74662080  0.1263441  0.85777810
-#> 4  1    3 -0.50939822 -0.3310262  0.82453806
-#> 5  1    4 -0.03333068 -0.4789725 -0.09547539
-#> 6  1    5  0.82744597 -0.1903433  1.01685273
 plot(sim)
 ```
 
-<img src="fig-vignettes-model-4-id-random-error-1.png" width="3300" /><img src="fig-vignettes-model-4-id-random-error-2.png" width="3300" /><img src="fig-vignettes-model-4-id-random-error-3.png" width="3300" />
-
 ## Model Fitting
 
-The `DTVAR` function fits a DT-VAR model on each individual $i$ using the `byid = TRUE` argument.
+The `DTVAR` function fits a DT-VAR model assuming fixed parameters using the `byid = FALSE` argument.
 
+```{r}
+#| include = FALSE
+library(fitDTVARMx)
+```
 
-
-
-``` r
+```{r}
 library(fitDTVARMx)
 DTVAR(
   data = data,
   observed = paste0("y", seq_len(k)),
   id = "id",
-  model = 4,
-  byid = TRUE,
+  model = 2,
+  byid = FALSE,
   ncores = parallel::detectCores()
 )
-#> 
-#> Means of the estimated paramaters per individual.
-#>       beta_11       beta_21       beta_31       beta_12       beta_22 
-#>  6.547472e-01  4.728106e-01 -9.903454e-02  2.617293e-02  6.092438e-01 
-#>       beta_32       beta_13       beta_23       beta_33       alpha_1 
-#>  3.930405e-01 -1.020125e-02 -2.622547e-02  4.933279e-01  1.271217e-03 
-#>       alpha_2       alpha_3        psi_11        psi_21        psi_22 
-#>  2.103796e-03  2.195776e-03  9.849657e-02  1.675449e-03  9.745869e-02 
-#>        psi_31        psi_32        psi_33      theta_11      theta_22 
-#>  5.546712e-04 -9.522127e-05  1.014263e-01  2.011662e-01  2.030307e-01 
-#>      theta_33 
-#>  1.954174e-01
 ```
 
 ## References
 
-
+```{r}
+#| include = FALSE
+rm(list = ls())
+```

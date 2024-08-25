@@ -24,6 +24,10 @@ reference:
 articles:
 - title: Examples
   contents:
+  - model-1-fixed
+  - model-2-fixed
+  - model-3-fixed
+  - model-4-fixed
   - model-1-id-random
   - model-2-id-random
   - model-3-id-random
