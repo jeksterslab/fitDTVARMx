@@ -301,8 +301,8 @@ DTVAR(
 #> RMSEA:  0  [95% CI (NA, NA)]
 #> Prob(RMSEA <= 0.05): NA
 #> To get additional fit indices, see help(mxRefModels)
-#> timestamp: 2024-09-21 18:01:34 
-#> Wall clock time: 148.626 secs 
+#> timestamp: 2024-09-21 21:21:52 
+#> Wall clock time: 144.0279 secs 
 #> optimizer:  SLSQP 
 #> OpenMx version number: 2.21.12 
 #> Need help?  See help(mxSummary)

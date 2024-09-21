@@ -47,8 +47,8 @@ Number of cores to use.}
 }
 \value{
 Returns an object of class
-\code{fitdtvaridmx} if \code{byid = TRUE} or
-\code{fitdtvarmx} if \code{byid = FALSE}.
+\code{dtvaridmx} if \code{byid = TRUE} or
+\code{dtvarmx} if \code{byid = FALSE}.
 The returned object is a list with the following elements:
 \describe{
 \item{call}{Function call.}

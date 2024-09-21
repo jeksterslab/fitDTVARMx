@@ -290,8 +290,8 @@
 #'   fit the model by `id`.
 #'
 #' @return Returns an object of class
-#'   `fitdtvaridmx` if `byid = TRUE` or
-#'   `fitdtvarmx` if `byid = FALSE`.
+#'   `dtvaridmx` if `byid = TRUE` or
+#'   `dtvarmx` if `byid = FALSE`.
 #'   The returned object is a list with the following elements:
 #'   \describe{
 #'     \item{call}{Function call.}

@@ -1,18 +1,18 @@
-#' Print Method for Object of Class `fitdtvaridmx`
+#' Print Method for Object of Class `dtvaridmx`
 #'
 #' @author Ivan Jacob Agaloos Pesigan
-#' @param x an object of class `fitdtvaridmx`.
+#' @param x an object of class `dtvaridmx`.
 #' @param means Logical.
 #'   If `means = TRUE`, return means.
 #'   Otherwise, the function returns raw estimates.
 #' @param ... further arguments.
 #'
-#' @method print fitdtvaridmx
+#' @method print dtvaridmx
 #' @keywords methods
 #' @export
-print.fitdtvaridmx <- function(x,
-                               means = TRUE,
-                               ...) {
+print.dtvaridmx <- function(x,
+                            means = TRUE,
+                            ...) {
   out <- do.call(
     what = "rbind",
     args = lapply(
@@ -29,21 +29,21 @@ print.fitdtvaridmx <- function(x,
   base::print(out)
 }
 
-#' Summary Method for Object of Class `fitdtvaridmx`
+#' Summary Method for Object of Class `dtvaridmx`
 #'
 #' @author Ivan Jacob Agaloos Pesigan
-#' @param object an object of class `fitdtvaridmx`.
+#' @param object an object of class `dtvaridmx`.
 #' @param means Logical.
 #'   If `means = TRUE`, return means.
 #'   Otherwise, the function returns raw estimates.
 #' @param ... further arguments.
 #'
-#' @method summary fitdtvaridmx
+#' @method summary dtvaridmx
 #' @keywords methods
 #' @export
-summary.fitdtvaridmx <- function(object,
-                                 means = TRUE,
-                                 ...) {
+summary.dtvaridmx <- function(object,
+                              means = TRUE,
+                              ...) {
   out <- do.call(
     what = "rbind",
     args = lapply(
@@ -72,7 +72,7 @@ summary.fitdtvaridmx <- function(object,
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param object Object of class `fitdtvaridmx`.
+#' @param object Object of class `dtvaridmx`.
 #' @param alpha Logical.
 #'   If `alpha = TRUE`,
 #'   include estimates of the `alpha` vector, if available.
@@ -91,14 +91,14 @@ summary.fitdtvaridmx <- function(object,
 #' @param ... additional arguments.
 #' @return Returns a list of vectors of parameter estimates.
 #'
-#' @method coef fitdtvaridmx
+#' @method coef dtvaridmx
 #' @keywords methods
 #' @export
-coef.fitdtvaridmx <- function(object,
-                              alpha = FALSE,
-                              psi = FALSE,
-                              theta = FALSE,
-                              ...) {
+coef.dtvaridmx <- function(object,
+                           alpha = FALSE,
+                           psi = FALSE,
+                           theta = FALSE,
+                           ...) {
   parnames <- names(
     coef(object$output[[1]])
   )
@@ -149,7 +149,7 @@ coef.fitdtvaridmx <- function(object,
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param object Object of class `fitdtvaridmx`.
+#' @param object Object of class `dtvaridmx`.
 #' @param alpha Logical.
 #'   If `alpha = TRUE`,
 #'   include estimates of the `alpha` vector, if available.
@@ -168,14 +168,14 @@ coef.fitdtvaridmx <- function(object,
 #' @param ... additional arguments.
 #' @return Returns a list of sampling variance-covariance matrices.
 #'
-#' @method vcov fitdtvaridmx
+#' @method vcov dtvaridmx
 #' @keywords methods
 #' @export
-vcov.fitdtvaridmx <- function(object,
-                              alpha = FALSE,
-                              psi = FALSE,
-                              theta = FALSE,
-                              ...) {
+vcov.dtvaridmx <- function(object,
+                           alpha = FALSE,
+                           psi = FALSE,
+                           theta = FALSE,
+                           ...) {
   parnames <- names(
     coef(object$output[[1]])
   )

@@ -179,7 +179,7 @@ Number of cores to use.}
 \item{...}{Additional optional arguments to pass to \code{mxTryHardctsem}.}
 }
 \value{
-Returns an object of class \code{fitdtvaridmx} which is
+Returns an object of class \code{dtvaridmx} which is
 a list with the following elements:
 \describe{
 \item{call}{Function call.}
