@@ -1,7 +1,7 @@
 ---
 title: "Fit the Discrete-Time Vector Autoregressive Model (Model 1)"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-08-25"
+date: "2024-09-21"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -254,20 +254,20 @@ DTVAR(
 #> 
 #>  Solution found!  Final fit=161039.81 (started at 557941.17)  (1 attempt(s): 1 valid, 0 errors)
 #>  Start values from best fit:
-#> 0.698246492825734,0.49858330124918,-0.101115903050835,-0.000998116351757373,0.602045350253745,0.401558877654461,0.00479802018617338,-0.00378028100146903,0.499300186782043,0.100179544689414,0.0996669845536954,0.0998790044456791
+#> 0.698246492812554,0.498583301246745,-0.101115903036828,-0.000998116359015136,0.602045350258964,0.401558877647742,0.00479802020531404,-0.00378028100285481,0.499300186783842,0.100179544689319,0.0996669845545017,0.0998790044443722
 #> Summary of DTVAR 
 #>  
 #> free parameters:
 #>       name       matrix  row  col      Estimate    Std.Error A
-#> 1  beta_11 DTVAR_1.beta eta1 eta1  0.6982464928 0.0025391566  
-#> 2  beta_21 DTVAR_1.beta eta2 eta1  0.4985833012 0.0025372000  
-#> 3  beta_31 DTVAR_1.beta eta3 eta1 -0.1011159031 0.0025405933  
-#> 4  beta_12 DTVAR_1.beta eta1 eta2 -0.0009981164 0.0021375413  
-#> 5  beta_22 DTVAR_1.beta eta2 eta2  0.6020453503 0.0021333347  
-#> 6  beta_32 DTVAR_1.beta eta3 eta2  0.4015588777 0.0021398383  
-#> 7  beta_13 DTVAR_1.beta eta1 eta3  0.0047980202 0.0021807256  
-#> 8  beta_23 DTVAR_1.beta eta2 eta3 -0.0037802810 0.0021747021  
-#> 9  beta_33 DTVAR_1.beta eta3 eta3  0.4993001868 0.0021767152  
+#> 1  beta_11 DTVAR_1.beta eta1 eta1  0.6982464928 0.0025391568  
+#> 2  beta_21 DTVAR_1.beta eta2 eta1  0.4985833012 0.0025372039  
+#> 3  beta_31 DTVAR_1.beta eta3 eta1 -0.1011159030 0.0025405888  
+#> 4  beta_12 DTVAR_1.beta eta1 eta2 -0.0009981164 0.0021375422  
+#> 5  beta_22 DTVAR_1.beta eta2 eta2  0.6020453503 0.0021333402  
+#> 6  beta_32 DTVAR_1.beta eta3 eta2  0.4015588776 0.0021398312  
+#> 7  beta_13 DTVAR_1.beta eta1 eta3  0.0047980202 0.0021807234  
+#> 8  beta_23 DTVAR_1.beta eta2 eta3 -0.0037802810 0.0021747033  
+#> 9  beta_33 DTVAR_1.beta eta3 eta3  0.4993001868 0.0021767150  
 #> 10  psi_11  DTVAR_1.psi eta1 eta1  0.1001795447 0.0004484372  
 #> 11  psi_22  DTVAR_1.psi eta2 eta2  0.0996669846 0.0004461657  
 #> 12  psi_33  DTVAR_1.psi eta3 eta3  0.0998790044 0.0004471070  
@@ -301,8 +301,8 @@ DTVAR(
 #> RMSEA:  0  [95% CI (NA, NA)]
 #> Prob(RMSEA <= 0.05): NA
 #> To get additional fit indices, see help(mxRefModels)
-#> timestamp: 2024-08-25 19:12:11 
-#> Wall clock time: 68.03423 secs 
+#> timestamp: 2024-09-21 18:01:34 
+#> Wall clock time: 148.626 secs 
 #> optimizer:  SLSQP 
 #> OpenMx version number: 2.21.12 
 #> Need help?  See help(mxSummary)

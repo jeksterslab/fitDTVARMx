@@ -1,7 +1,7 @@
 ---
 title: "Fit the Discrete-Time Vector Autoregressive Model (Model 3)"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-08-25"
+date: "2024-09-21"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -352,29 +352,29 @@ DTVAR(
 #> 
 #>  Solution found!  Final fit=531295.76 (started at 744579.25)  (1 attempt(s): 1 valid, 0 errors)
 #>  Start values from best fit:
-#> 0.715101027178573,0.503160910355199,-0.100509850498249,-0.00525204793499744,0.598009279214163,0.39317094911294,0.00371927103372965,-0.00150742702017093,0.50678482095224,0.000141056784286791,0.000278284197007213,0.00145694006091994,0.0950923106531206,0.102440168751525,0.0964631724728338,0.202357362595767,0.198784590368917,0.204397683418866
+#> 0.715101027969633,0.503160910963144,-0.100509850060316,-0.00525204829373575,0.59800927885227,0.393170948320076,0.003719271093607,-0.00150742701280248,0.506784821711808,0.000141056788307544,0.000278284220587505,0.00145694003210771,0.095092310422866,0.10244016890825,0.0964631722679604,0.202357362747647,0.198784590156588,0.204397683639594
 #> Summary of DTVAR 
 #>  
 #> free parameters:
 #>        name        matrix  row  col      Estimate   Std.Error A
-#> 1   beta_11  DTVAR_1.beta eta1 eta1  0.7151010272 0.009099277  
-#> 2   beta_21  DTVAR_1.beta eta2 eta1  0.5031609104 0.008524039  
-#> 3   beta_31  DTVAR_1.beta eta3 eta1 -0.1005098505 0.006006985  
-#> 4   beta_12  DTVAR_1.beta eta1 eta2 -0.0052520479 0.005576297  
-#> 5   beta_22  DTVAR_1.beta eta2 eta2  0.5980092792 0.007150496  
-#> 6   beta_32  DTVAR_1.beta eta3 eta2  0.3931709491 0.006166610  
-#> 7   beta_13  DTVAR_1.beta eta1 eta3  0.0037192710 0.004016368  
-#> 8   beta_23  DTVAR_1.beta eta2 eta3 -0.0015074270 0.005190396  
-#> 9   beta_33  DTVAR_1.beta eta3 eta3  0.5067848210 0.006360109  
-#> 10  alpha_1 DTVAR_1.gamma    1    1  0.0001410568 0.001057022  
-#> 11  alpha_2 DTVAR_1.gamma    2    1  0.0002782842 0.001363941  
-#> 12  alpha_3 DTVAR_1.gamma    3    1  0.0014569401 0.001338757  
-#> 13   psi_11   DTVAR_1.psi eta1 eta1  0.0950923107 0.002834304  
-#> 14   psi_22   DTVAR_1.psi eta2 eta2  0.1024401688 0.002409821  
-#> 15   psi_33   DTVAR_1.psi eta3 eta3  0.0964631725 0.002786064  
-#> 16 theta_11 DTVAR_1.theta   y1   y1  0.2023573626 0.002410799  
-#> 17 theta_22 DTVAR_1.theta   y2   y2  0.1987845904 0.002299081  
-#> 18 theta_33 DTVAR_1.theta   y3   y3  0.2043976834 0.002813891  
+#> 1   beta_11  DTVAR_1.beta eta1 eta1  0.7151010280 0.009097515  
+#> 2   beta_21  DTVAR_1.beta eta2 eta1  0.5031609110 0.008524219  
+#> 3   beta_31  DTVAR_1.beta eta3 eta1 -0.1005098501 0.006006596  
+#> 4   beta_12  DTVAR_1.beta eta1 eta2 -0.0052520483 0.005575145  
+#> 5   beta_22  DTVAR_1.beta eta2 eta2  0.5980092789 0.007151306  
+#> 6   beta_32  DTVAR_1.beta eta3 eta2  0.3931709483 0.006166619  
+#> 7   beta_13  DTVAR_1.beta eta1 eta3  0.0037192711 0.004016034  
+#> 8   beta_23  DTVAR_1.beta eta2 eta3 -0.0015074270 0.005190749  
+#> 9   beta_33  DTVAR_1.beta eta3 eta3  0.5067848217 0.006360396  
+#> 10  alpha_1 DTVAR_1.gamma    1    1  0.0001410568 0.001057021  
+#> 11  alpha_2 DTVAR_1.gamma    2    1  0.0002782842 0.001363937  
+#> 12  alpha_3 DTVAR_1.gamma    3    1  0.0014569400 0.001338754  
+#> 13   psi_11   DTVAR_1.psi eta1 eta1  0.0950923104 0.002833889  
+#> 14   psi_22   DTVAR_1.psi eta2 eta2  0.1024401689 0.002409947  
+#> 15   psi_33   DTVAR_1.psi eta3 eta3  0.0964631723 0.002786086  
+#> 16 theta_11 DTVAR_1.theta   y1   y1  0.2023573627 0.002410551  
+#> 17 theta_22 DTVAR_1.theta   y2   y2  0.1987845902 0.002299211  
+#> 18 theta_33 DTVAR_1.theta   y3   y3  0.2043976836 0.002813887  
 #>                  lbound ubound
 #> 1                             
 #> 2                             
@@ -411,8 +411,8 @@ DTVAR(
 #> RMSEA:  0  [95% CI (NA, NA)]
 #> Prob(RMSEA <= 0.05): NA
 #> To get additional fit indices, see help(mxRefModels)
-#> timestamp: 2024-08-25 19:25:42 
-#> Wall clock time: 143.5341 secs 
+#> timestamp: 2024-09-21 18:27:39 
+#> Wall clock time: 511.0244 secs 
 #> optimizer:  SLSQP 
 #> OpenMx version number: 2.21.12 
 #> Need help?  See help(mxSummary)

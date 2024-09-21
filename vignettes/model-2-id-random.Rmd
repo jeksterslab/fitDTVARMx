@@ -1,7 +1,7 @@
 ---
 title: "Fit the Discrete-Time Vector Autoregressive Model By ID (Model 2)"
 author: Ivan Jacob Agaloos Pesigan
-date: "2024-08-25"
+date: "2024-09-21"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -361,11 +361,11 @@ DTVAR(
 #> 
 #> Means of the estimated paramaters per individual.
 #>      beta_11      beta_21      beta_31      beta_12      beta_22      beta_32 
-#>  0.686051697  0.496737793 -0.099603395 -0.005823983  0.580737161  0.392063973 
+#>  0.686051671  0.496737838 -0.099603412 -0.005823978  0.580737137  0.392063972 
 #>      beta_13      beta_23      beta_33       psi_11       psi_22       psi_33 
-#>  0.006858463 -0.012488545  0.495878787  0.100488502  0.096258125  0.100394770 
+#>  0.006858467 -0.012488544  0.495878788  0.100488503  0.096258127  0.100394772 
 #>     theta_11     theta_22     theta_33 
-#>  0.197328622  0.203562454  0.196733277
+#>  0.197328625  0.203562450  0.196733273
 ```
 
 ## References
