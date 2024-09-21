@@ -20,7 +20,7 @@ Imports: stats
 Suggests: knitr, rmarkdown, testthat, simStateSpace
 RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2024-09-21 19:38:38 UTC; root
+Packaged: 2024-09-21 22:30:30 UTC; root
 Author: Ivan Jacob Agaloos Pesigan [aut, cre, cph]
     (<https://orcid.org/0000-0003-4818-8420>)
 Maintainer: Ivan Jacob Agaloos Pesigan <r.jeksterslab@gmail.com>

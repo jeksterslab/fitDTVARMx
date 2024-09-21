@@ -4,7 +4,7 @@
 #'
 #' @inheritParams FitDTVARIDMx
 #'
-#' @return Returns an object of class `fitdtvarmx` which is
+#' @return Returns an object of class `dtvarmx` which is
 #'   a list with the following elements:
 #'   \describe{
 #'     \item{call}{Function call.}
@@ -189,7 +189,7 @@ FitDTVARMx <- function(data,
     output = output
   )
   class(out) <- c(
-    "fitdtvarmx",
+    "dtvarmx",
     class(out)
   )
   return(out)

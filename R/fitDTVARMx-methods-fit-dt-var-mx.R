@@ -1,30 +1,30 @@
-#' Print Method for Object of Class `fitdtvarmx`
+#' Print Method for Object of Class `dtvarmx`
 #'
 #' @author Ivan Jacob Agaloos Pesigan
-#' @param x an object of class `fitdtvarmx`.
+#' @param x an object of class `dtvarmx`.
 #' @param ... further arguments.
 #'
-#' @method print fitdtvarmx
+#' @method print dtvarmx
 #' @keywords methods
 #' @export
-print.fitdtvarmx <- function(x,
-                             ...) {
+print.dtvarmx <- function(x,
+                          ...) {
   base::print(
     summary(x$output)
   )
 }
 
-#' Summary Method for Object of Class `fitdtvarmx`
+#' Summary Method for Object of Class `dtvarmx`
 #'
 #' @author Ivan Jacob Agaloos Pesigan
-#' @param object an object of class `fitdtvarmx`.
+#' @param object an object of class `dtvarmx`.
 #' @param ... further arguments.
 #'
-#' @method summary fitdtvarmx
+#' @method summary dtvarmx
 #' @keywords methods
 #' @export
-summary.fitdtvarmx <- function(object,
-                               ...) {
+summary.dtvarmx <- function(object,
+                            ...) {
   return(
     summary(object$output)
   )
@@ -34,7 +34,7 @@ summary.fitdtvarmx <- function(object,
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param object Object of class `fitdtvarmx`.
+#' @param object Object of class `dtvarmx`.
 #' @param alpha Logical.
 #'   If `alpha = TRUE`,
 #'   include estimates of the `alpha` vector, if available.
@@ -53,14 +53,14 @@ summary.fitdtvarmx <- function(object,
 #' @param ... additional arguments.
 #' @return Returns a vector of parameter estimates.
 #'
-#' @method coef fitdtvarmx
+#' @method coef dtvarmx
 #' @keywords methods
 #' @export
-coef.fitdtvarmx <- function(object,
-                            alpha = FALSE,
-                            psi = FALSE,
-                            theta = FALSE,
-                            ...) {
+coef.dtvarmx <- function(object,
+                         alpha = FALSE,
+                         psi = FALSE,
+                         theta = FALSE,
+                         ...) {
   coefs <- coef(object$output)
   parnames <- names(coefs)
   idx <- grep(
@@ -103,7 +103,7 @@ coef.fitdtvarmx <- function(object,
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param object Object of class `fitdtvarmx`.
+#' @param object Object of class `dtvarmx`.
 #' @param alpha Logical.
 #'   If `alpha = TRUE`,
 #'   include estimates of the `alpha` vector, if available.
@@ -122,14 +122,14 @@ coef.fitdtvarmx <- function(object,
 #' @param ... additional arguments.
 #' @return Returns a list of sampling variance-covariance matrices.
 #'
-#' @method vcov fitdtvarmx
+#' @method vcov dtvarmx
 #' @keywords methods
 #' @export
-vcov.fitdtvarmx <- function(object,
-                            alpha = FALSE,
-                            psi = FALSE,
-                            theta = FALSE,
-                            ...) {
+vcov.dtvarmx <- function(object,
+                         alpha = FALSE,
+                         psi = FALSE,
+                         theta = FALSE,
+                         ...) {
   vcovs <- vcov(object$output)
   parnames <- rownames(vcovs)
   idx <- grep(

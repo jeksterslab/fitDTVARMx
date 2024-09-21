@@ -101,7 +101,7 @@
 #'   Number of cores to use.
 #' @param ... Additional optional arguments to pass to `mxTryHardctsem`.
 #'
-#' @return Returns an object of class `fitdtvaridmx` which is
+#' @return Returns an object of class `dtvaridmx` which is
 #'   a list with the following elements:
 #'   \describe{
 #'     \item{call}{Function call.}
@@ -295,7 +295,7 @@ FitDTVARIDMx <- function(data,
     output = output
   )
   class(out) <- c(
-    "fitdtvaridmx",
+    "dtvaridmx",
     class(out)
   )
   return(out)
